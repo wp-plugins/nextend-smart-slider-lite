@@ -3,7 +3,7 @@
 function smartslider_install() {
     global $wpdb;
     if ( $wpdb->get_var( "SHOW TABLES LIKE '" . $wpdb->offlajn_slider . "'" ) != $wpdb->offlajn_slider ) {
-      require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'joomla'.DIRECTORY_SEPARATOR.'softinit.php');
+      require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR.'softinit.php');
       
       jimport('joomla.installer.helper');
       
