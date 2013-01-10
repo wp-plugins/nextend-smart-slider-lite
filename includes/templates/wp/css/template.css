@@ -475,13 +475,19 @@ div.toolbar-list ul {
 	padding: 0;
 }
 
-div.toolbar-list li {
-	padding: 1px 1px 3px 4px;
+div.toolbar-list li,
+#content-box div.toolbar-list li{
+	padding: 0;
 	text-align: center;
 	color: #666;
-	height: 48px;
+	height: 55px;
 	list-style: none;
 	float: left;
+}
+
+#content-box div.toolbar-list li{
+  margin-right: 10px;
+  padding: 0;
 }
 
 div.toolbar-list li.spacer {
