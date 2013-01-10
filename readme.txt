@@ -44,6 +44,9 @@ We have a fully working demo site with a lot of predefined templates. You can re
 
 == Changelog ==
 
+= 1.0.1 =
+* Fix
+
 = 1.0.0 =
 * First public release
 
