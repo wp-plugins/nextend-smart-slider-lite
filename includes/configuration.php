@@ -3,6 +3,8 @@
 
 define('WP_TABLE_PREFIX', $table_prefix);
 
+define('WP_SS_TMP', wp_upload_dir());
+
 class JConfig {
 	public $offline = '0';
 	public $offline_message = '';
@@ -56,8 +58,8 @@ class JConfig {
 	public $sef_suffix = '0';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
-	public $log_path = wp_upload_dir();
-	public $tmp_path = wp_upload_dir();
+	public $log_path = WP_SS_TMP;
+	public $tmp_path = WP_SS_TMP;
 	public $lifetime = '15';
 	public $session_handler = 'none';
 }
