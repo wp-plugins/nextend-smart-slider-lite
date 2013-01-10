@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0" client="site">
+  <name>Nextend Smart Slider</name>
+  <author>Roland Soos @ Nextendweb.com</author>
+  <creationDate>August 2011</creationDate>
+  <copyright>Nextendweb.com</copyright>
+  <authorEmail>roland.soos@offlajn.com</authorEmail>
+  <authorUrl>http://www.nextendweb.com</authorUrl>
+  <version>3.1.0</version>
+  <description/>
+  <languages>
+    <language tag="en-GB">language/en-GB/en-GB.mod_smartslider.ini</language>
+  </languages>
+  <params addPath="/modules/mod_smartslider/params/offlajndashboard">
+    <param name="update" type="offlajndashboard" label="Smart Slider - " jed="http://extensions.joomla.org/extensions/photos-a-images/slideshow/image-jquery-slideshow/18006" id="37"/>
+  </params>
+  <config>
+    <fields name="params" addfieldpath="/modules/mod_smartslider/params/offlajndashboard">
+      <fieldset name="basic">
+        <field name="update" type="offlajndashboard" jed="http://extensions.joomla.org/extensions/photos-a-images/slideshow/image-jquery-slideshow/18006" label="Smart Slider - "/>
+        <field name="moduleparametersTab" type="offlajntab" label="Module parameters" position="first">
+          <param name="slider" type="offlajnsliders" default="" label="Slider" description=""/>
+        </field>
+        <field name="advancedTab" type="offlajntab" label="Advanced properties">
+          <param name="moduleclass_sfx" type="offlajntext" default="" label="Module Class Suffix" description=""/>
+          <param name="cache" type="offlajnlist" default="1" label="Caching" description="Select whether to cache the content of this module">
+            <option value="1">Use global</option>
+            <option value="0">No caching</option>
+          </param>
+          <param name="cache_time" type="offlajntext" default="900" label="Cache Time" description="The time before the module is recached"/>
+          <param name="cachemode" type="hidden" default="itemid">
+            <option value="itemid"/>
+          </param>
+        </field>
+      </fieldset>
+    </fields>
+  </config>
+  <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL</license>
+  <releaseDate>2013-01-10</releaseDate>
+  <files>
+    <folder>captions</folder>
+    <folder>classes</folder>
+    <filename>clear.css.php</filename>
+    <folder>contents</folder>
+    <folder>generators</folder>
+    <folder>helpers</folder>
+    <folder>ie6</folder>
+    <folder>images</folder>
+    <filename>index.html</filename>
+    <folder>js</folder>
+    <folder>language</folder>
+    <filename>live_demo.php</filename>
+    <filename module="mod_smartslider">mod_smartslider.php</filename>
+    <filename>mod_smartslider.xml</filename>
+    <filename>mod_smartslider_wp.php</filename>
+    <folder>params</folder>
+    <folder>params_bak</folder>
+    <folder>types</folder>
+  </files>
+</install>

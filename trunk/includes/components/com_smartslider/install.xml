@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5" method="upgrade">
+  <name>Smart Slider</name>
+  <creationDate>Aug 2011</creationDate>
+  <author>Roland Soós</author>
+  <authorUrl>http://www.nextendweb.com</authorUrl>
+  <copyright>Copyright (C) 2009-2013 Nextendweb.com. All rights reserved.</copyright>
+  <version>3.0.1</version>
+  <media folder="" destination="../images/smartslider/">
+    <folder>slidericons</folder>
+  </media>
+  <administration>
+    <menu link="option=com_smartslider" img="components/com_smartslider/images/adminsmall.png">COM_SMARTSLIDER_MENU</menu>
+    <languages folder="">
+      <language tag="en-GB">language/en-GB/en-GB.com_smartslider.ini</language>
+      <language tag="en-GB">language/en-GB/en-GB.com_smartslider.sys.ini</language>
+      <language tag="en-GB">language/en-GB/en-GB.plg_system_smartslidertabber.ini</language>
+    </languages>
+    <files>
+      <filename>access.xml</filename>
+      <folder>buttons</folder>
+      <filename>config.xml</filename>
+      <filename>controller.php</filename>
+      <folder>controllers</folder>
+      <folder>forms</folder>
+      <folder>frontend</folder>
+      <filename>gpl-licenses.txt</filename>
+      <folder>images</folder>
+      <filename>index.html</filename>
+      <filename>install.php</filename>
+      <filename>install.sql</filename>
+      <filename>install.xml</filename>
+      <filename>install15.sql</filename>
+      <filename>install16.sql</filename>
+      <filename>install_wp.sql</filename>
+      <folder>js</folder>
+      <folder>language</folder>
+      <folder>models</folder>
+      <folder>oldparams</folder>
+      <folder>slidericons</folder>
+      <filename>smartslider.php</filename>
+      <filename>smartslider.xml</filename>
+      <filename>style.css</filename>
+      <folder>tables</folder>
+      <folder>views</folder>
+    </files>
+  </administration>
+  <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL</license>
+  <releaseDate>2013-01-10</releaseDate>
+  <files folder="frontend">
+    <filename>index.html</filename>
+  </files>
+</install>
