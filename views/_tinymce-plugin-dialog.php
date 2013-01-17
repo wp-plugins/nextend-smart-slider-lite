@@ -1,3 +1,4 @@
+
 <div id="smartslider_tinymce_dialog">
 	<p>Choose a Smarts Slider from the list below to embed in your post:</p>
 	<?php if( isset( $smartsliders ) && !empty( $smartsliders ) ): ?>

@@ -25,6 +25,7 @@ if(!class_exists('OfflajnFontHelper')){
           $f = json_decode($f, true);
   
           $tabs = array_keys($f);
+          
           $default_tab = $tabs[0];
           $f['default_tab'] = $default_tab;
           if(version_compare(JVERSION,'3.0','ge'))
@@ -36,9 +37,12 @@ if(!class_exists('OfflajnFontHelper')){
           if(!isset($f[$default_tab]['italic'])) $f[$default_tab]['italic'] = '';
           $italic = $f[$default_tab]['italic'] ? 'italic' : '';
           $subset = $this->_getSubset(isset($f[$default_tab]['subset']) ? $f[$default_tab]['subset'] : 'latin');
+
           foreach($f AS $k => $t){
-          if($k == $default_tab) continue;
+          if($k == 'default_tab') continue;
           if(isset($t['type']) && $t['type'] == '0' || !isset($t['type']) && $f[$default_tab]['type'] == '0') continue;
+          
+          
             $url = isset($t['family']) ? $t['family'] : $f[$default_tab]['family'];
             $url.= ":".(isset($t['bold']) ? ($t['bold'] ? 700 : 400) : $weight);
             $url.= (isset($t['italic']) ? ($t['italic'] ? 'italic' : '') : $italic);

@@ -85,12 +85,16 @@ dojo.declare("SliderTemplate", null, {
     var html = this.html;
     this.vals = {};
     dojo.forEach(this.fields,function(field){
+      var elemID = dojo.attr(field, 'id');
       if(field.nodeName == 'select'){
-        //eval("this.vals."+dojo.attr(field, 'id')+"='"+field.options[field.selectedIndex].value+"'");
-        this.vals[dojo.attr(field, 'id')] = field.options[field.selectedIndex].value;
+        this.vals[elemID] = field.options[field.selectedIndex].value;
+      }else if(elemID.match(/imageurl$/)){
+        if(field.value.substr(0,4) != 'http' && field.value.substr(0,3) != '://'){
+          field.value = this.imageurl+field.value;
+        }
+        this.vals[elemID] = field.value;
       }else{
-        //eval("this.vals."+dojo.attr(field, 'id')+"="+dojo.toJson(field.value)+"");
-        this.vals[dojo.attr(field, 'id')] = field.value;
+        this.vals[elemID] = field.value;
       }
     },this);
     this.htmlField.value  = tmpl(html, this.vals);

@@ -12,9 +12,9 @@
 defined('JPATH_BASE') or die();
 
 ?>
-<div class="panel <?php echo $class; ?>">
-  <h3 id="<?php echo $id; ?>-title" class="title pane-toggler-down"><a href="" onclick="return false;"><span><?php echo $title; ?></span></a></h3>
-  <div class="pane-slider content pane-down" style="padding-top: 0px; border-top: medium none; padding-bottom: 0px; border-bottom: medium none; height: auto;">		
+<div class="nextendpanel <?php echo $class; ?>">
+  <h3 id="<?php echo $id; ?>-title" class="nextend-jpane-toggler title pane-toggler-down"><a href="" onclick="return false;"><span><?php echo $title; ?></span></a></h3>
+  <div class="nextend-pane-slider content pane-down" style="padding-top: 0px; border-top: medium none; padding-bottom: 0px; border-bottom: medium none; height: auto;">		
     <fieldset class="panelform" id="<?php echo $id; ?>-fieldset" >				
       <?php echo $text; ?>
       <div style="clear: left;" id="<?php echo $id; ?>-details">

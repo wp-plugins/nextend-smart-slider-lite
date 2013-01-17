@@ -7,8 +7,8 @@
 # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 # Websites: http://www.offlajn.com
 -------------------------------------------------------------------------*/
-$revision = '3.1.0.19';
-$revision = '3.0.1';
+$revision = '3.2.0.39';
+$revision = '3.2.0';
 ?>
 <?php
 defined('_JEXEC') or die('Restricted access');

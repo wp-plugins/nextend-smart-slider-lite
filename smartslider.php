@@ -5,7 +5,7 @@ Plugin URI: http://www.nextendweb.com/smart-slider
 Description: The perfect all-in-one slider solution for WordPress. 
 Author: Roland Soos
 Author URI: http://www.nextendweb.com
-Version: 1.0.3
+Version: 1.0.4
 License: GPL2
 */
 
@@ -17,11 +17,11 @@ License: GPL2
 # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 # Websites: http://www.nextendweb.com
 -------------------------------------------------------------------------*/
+define("SS_LITE", 1);
 
 if ( !isset( $wpdb ) && empty( $wpdb ) ) {
     global $wpdb;
 }
-
 global $smartslider;
 
 $wpdb->offlajn_slide = $wpdb->base_prefix.'offlajn_slide';

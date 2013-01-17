@@ -164,7 +164,6 @@ dojo.declare("SlideGenerator", null, {
     var pos = '';
     if(type == 'content') {
       pos = dojo.byId('contentaddbuttons');
-      console.log(pos);
     } else if(type == 'caption') {
       pos = dojo.byId('captionaddbuttons');
     }

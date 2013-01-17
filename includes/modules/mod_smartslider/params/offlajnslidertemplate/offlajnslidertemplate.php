@@ -33,6 +33,12 @@ class JElementOfflajnSliderTemplate extends JElementOfflajnList{
     $this->editor	= $node->attributes('editor');
     
     $typeSelector = $this->generateTemplateSelector($name, $value, $node);
+    
+    if(defined('WP_ADMIN')){
+      $url = smartslider_url('includes');
+    }else{
+      $url = rtrim(JURI::root(),"/");
+    }
     DojoLoader::addScript('
       new SliderTemplate({
         container: dojo.byId("'.$this->id.'-container"),
@@ -40,7 +46,8 @@ class JElementOfflajnSliderTemplate extends JElementOfflajnList{
         editor: dojo.byId("'.$this->editor.'"),
         data: '.json_encode($this->_data).',
         v16: "'.(version_compare(JVERSION,'1.6.0','ge') ? 1 : 0).'",
-        ext: "'.$this->ext.'"
+        ext: "'.$this->ext.'",
+        imageurl: "'.$url.'"
       });
     ');
 

@@ -3,9 +3,9 @@
 # com_smartslider - Smart Slider
 # -------------------------------------------------------------------------
 # @ author    Roland Soós
-# @ copyright Copyright (C) 2013 Offlajn.com  All Rights Reserved.
+# @ copyright Copyright (C) 2013 Nextendweb.com  All Rights Reserved.
 # @ license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# @ website   http://www.offlajn.com
+# @ website   http://www.nextendweb.com
 -------------------------------------------------------------------------*/
 ?><?php
 /**

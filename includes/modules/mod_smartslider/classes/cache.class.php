@@ -49,7 +49,7 @@ if(!defined('OfflajnSliderThemeCache')) {
           echo JPATH_CACHE." is unwriteable, so the Slider won't work correctly. Please set the folder to 777!";
         }
       }
-      $this->themeCacheUrl = JURI::root(false).'/modules/'.$this->module->module.'/cache/'.$this->module->id.'/';
+      $this->themeCacheUrl = JURI::root(false).'modules/'.$this->module->module.'/cache/'.$this->module->id.'/';
     }
     
     function generateCss($c){

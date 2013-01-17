@@ -8,9 +8,9 @@
 # @ website   http://www.offlajn.com
 -------------------------------------------------------------------------*/
 ?>
-<div class="panel <?php echo $class; ?>">  
-  <h3 id="<?php echo $id; ?>-title" class="jpane-toggler title jpane-toggler-down"><span style="background-image: none;"><?php echo $title; ?></span></h3>  
-  <div class="jpane-slider content">
+<div class="nextendpanel <?php echo $class; ?>">  
+  <h3 id="<?php echo $id; ?>-title" class="nextend-jpane-toggler title jpane-toggler-down"><span style="background-image: none;"><?php echo $title; ?></span></h3>  
+  <div class="nextend-jpane-slider content">
     <?php echo $text; ?>      
     <div style="clear: left;" id="<?php echo $id; ?>-details">      
     </div> 

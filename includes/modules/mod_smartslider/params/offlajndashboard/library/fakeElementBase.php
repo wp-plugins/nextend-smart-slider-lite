@@ -69,9 +69,10 @@ if(!class_exists('JOfflajnFakeElementBase')) {
       
     	public function render(&$xmlElement, $value, $control_name = 'params')
     	{
-    		$name	= $xmlElement->attributes('name');
-    		$label	= $xmlElement->attributes('label');
-    		$descr	= $xmlElement->attributes('description');
+        $attr = $xmlElement->attributes();
+    		$name	= isset($attr['name']) ? (string)$attr['name'] : '';
+    		$label	= isset($attr['label']) ? (string)$attr['label'] : '';
+    		$descr	= isset($attr['description']) ? (string)$attr['description'] : '';
     		//make sure we have a valid label
     		$label = $label ? $label : $name;
     		$result[0] = $this->fetchTooltip($label, $descr, $xmlElement, $control_name, $name);

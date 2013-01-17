@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 ?>
-<div class="panel dashboard">
+<div class="nextendpanel dashboard">
   <div id="dashboard-icon" class="opened"></div>
   <h3 class="title" style="background-image:url('<?php echo $logoUrl?>');"><span><?php echo @$this->attr['label']?> DASHBOARD</span></h3>
   <div class="pane-slider content" style="padding-top: 0px; border-top: medium none; padding-bottom: 0px; border-bottom: medium none; overflow: hidden;">

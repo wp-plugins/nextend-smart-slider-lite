@@ -49,6 +49,20 @@ class CobaltCckParser {
       }
     }
     
+    for($x = 1; $x <= 5; $x++ ){
+      $filter = explode('|*|',$this->params->get("generatorfilter".$x));
+      if($filter[0] == '' || $filter[0] === '0') continue;
+      if(strpos($filter[0], 'field.') !== false){
+        $field = substr($filter[0], 6);
+        $where.= 'AND (SELECT f.field_value FROM #__js_res_record_values AS f 
+          WHERE f.field_id = \''.Nextendescape($db, $field).'\' 
+          AND f.record_id = #__js_res_record.id) '; 
+      }else{
+        $where.= ' AND '.NextendnameQuote($db,$filter[0]).' ';
+      }
+      $where.= $this->isAcceptedCriterion($filter[1]).' \''.Nextendescape($db, $this->parseCriterionValue($filter[2])).'\'';
+    }
+    
     $order = $this->params->get("generatorordering", 'ctime');
     
     if($order == 'random') $order = 'rand()';
@@ -98,6 +112,22 @@ class CobaltCckParser {
       $slides[$i]->title = $d["generatorslidetitle"];
     }
     return $slides;
+  }
+  
+  function isAcceptedCriterion($c){
+    $accepted = array('<', '<=','>', '>=', '=', '!=', '<>', 'LIKE', 'NOT LIKE');
+    if(in_array($c, $accepted)) return $c;
+    return '=';
+  }
+  
+  function parseCriterionValue($v){
+    switch($v){
+      case '*user_id*':
+        return intval(isset($_GET['user_id']) ? $_GET['user_id'] : 0);
+        break;
+      default:
+    }
+    return $v;
   }
   
   function makeParams($i) {

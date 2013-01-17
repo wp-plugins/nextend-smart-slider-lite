@@ -88,14 +88,14 @@ $module->id = "1";
 $id = $module->module.'_'.$module->id;
 
 $themecache = new OfflajnSliderThemeCache($tthis, $module, $params, $theme.'style.css.php');
-if(defined('WP_ADMIN')) $themecache->themeCacheUrl = smartslider_translate_url($themecache->themeCacheUrl);
+if(defined('ABSPATH')) $themecache->themeCacheUrl = smartslider_translate_url($themecache->themeCacheUrl);
 $context = array();
 $context['helper'] = new OfflajnSliderHelper($themecache->themeCacheDir, $themecache->themeCacheUrl);
 $context['bghelper'] = new OfflajnBgHelper($themecache->themeCacheDir, $themecache->themeCacheUrl);
 $context['fonturl'] = JURI::root().'modules/'.$module->module.'/fonts/';
-if(defined('WP_ADMIN')) $context['fonturl'] = smartslider_translate_url('modules/'.$module->module.'/fonts/');
+if(defined('ABSPATH')) $context['fonturl'] = smartslider_translate_url('modules/'.$module->module.'/fonts/');
 $context['url'] = JURI::root().'modules/'.$module->module.'/types/'.$tthis->slider->type.'/'.$tthis->slider->theme.'/';
-if(defined('WP_ADMIN')) $context['url'] = smartslider_translate_url('modules/'.$module->module.'/types/'.$tthis->slider->type.'/'.$tthis->slider->theme.'/');
+if(defined('ABSPATH')) $context['url'] = smartslider_translate_url('modules/'.$module->module.'/types/'.$tthis->slider->type.'/'.$tthis->slider->theme.'/');
 $context['clearcss'] = dirname(__FILE__). DS .'clear.css.php';
 $context['captioncss'] = dirname(__FILE__). DS .'captions'. DS .'style.css.php';
 $context['contentcss'] = dirname(__FILE__). DS .'contents'. DS .'style.css.php';

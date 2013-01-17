@@ -57,9 +57,29 @@ if(!$this->calc && isset($c['clearcss'])){
   margin: 0 auto;
 }
 
+<?php 
+  $shadow = '';
+  if(!$this->calc && $sp->get('shadow') != ''){
+    if(defined('ABSPATH')){
+      $sh = $sp->get('shadow');
+      if(strpos($sh, site_url()) === 0){
+        $path = ABSPATH.str_replace(site_url(),'',$sh);
+        if(is_file($path)){
+          $shadow = $this->themeCacheUrl.$c['helper']->ResizeImage(ABSPATH.str_replace(site_url(),'',$sh), $cwidth, 0);
+        }
+      }else{
+        $shadow = $sh;
+        $GLOBALS['height'] = 100;
+      }
+    }else if(is_file(JPATH_SITE.$sp->get('shadow'))){
+      $shadow = $this->themeCacheUrl.$c['helper']->ResizeImage(JPATH_SITE.$sp->get('shadow'), $cwidth, 0);
+    }
+  } 
+?>
+
 <?php echo $c['id']; ?> .shadow{
   width: <?php echo $cwidth; ?>px;
-  background: url('<?php if(!$this->calc && $sp->get('shadow') != '' && is_file(JPATH_SITE.$sp->get('shadow'))) echo $this->themeCacheUrl.$c['helper']->ResizeImage(JPATH_SITE.$sp->get('shadow'), $cwidth, 0); ?>') no-repeat;
+  background: url('<?php echo $shadow; ?>') no-repeat;
   height: <?php echo isset($GLOBALS['height'])?$GLOBALS['height']:0; ?>px;
 }
 

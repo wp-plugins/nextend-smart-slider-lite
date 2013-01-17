@@ -66,4 +66,4 @@ function smartslider_dir( $str="" ) {
 }
 
 
-?><?php define("SS_LITE", 1); 
+?>

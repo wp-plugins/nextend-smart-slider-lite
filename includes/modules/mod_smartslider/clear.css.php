@@ -40,7 +40,8 @@ div<?php echo $c['id']; ?> h3,
 div<?php echo $c['id']; ?> h4,
 div<?php echo $c['id']; ?> h5,
 div<?php echo $c['id']; ?> h6,
-div<?php echo $c['id']; ?> p{
+div<?php echo $c['id']; ?> p,
+div<?php echo $c['id']; ?> .title{
   padding: 0;
   margin: 0;
   border: 0;
@@ -49,6 +50,12 @@ div<?php echo $c['id']; ?> p{
   background-color: transparent;
   position: static;
   text-transform: none;
+  border-radius: 0;
+}
+
+div<?php echo $c['id']; ?> .title{
+  background:none;
+  text-shadow: none;
 }
 
 

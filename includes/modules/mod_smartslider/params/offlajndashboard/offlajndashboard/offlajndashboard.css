@@ -2,12 +2,12 @@
 @import url('http://fonts.googleapis.com/css?family=PT Sans:400');
 
 /*Joomla! 1.5 border fix*/
-#content-box div.panel fieldset{
+#nextend-configurator-lightbox div.nextendpanel fieldset{
   border:none;
 }
 
 /*Parameters head*/
-#content-box div.panel h3.title{
+#nextend-configurator-lightbox div.nextendpanel h3.title{
   border-left: 5px solid #146295;
   border-bottom: none;
   -webkit-touch-callout: none;
@@ -21,28 +21,36 @@
   color: #146295;
 }
 
-#content-box div.panel .title span{
+#nextend-configurator-lightbox div.nextendpanel .title span,
+#nextend-configurator-lightbox div.nextendpanel .title span label{
   text-transform:uppercase;
   font-size: 15px;
   line-height: 30px;
   padding-left: 5px;
   background-image: none;
+  float: none;
+  display: inline;
 }
 
-#content-box div.panel .title span,
-#content-box div.panel .title a span{
+#nextend-configurator-lightbox div.nextendpanel .title span,
+#nextend-configurator-lightbox div.nextendpanel .title a span{
   color: #146295;
 }
 
-#content-box div.pane-slider fieldset.panelform{
+#nextend-configurator-lightbox div.nextend-pane-slider > fieldset{
+  margin: 0;
+  padding: 0;
+}
+
+#nextend-configurator-lightbox div.nextend-pane-slider fieldset.nextendpanelform{
   padding: 0;
   margin: 0;
   /*overflow: auto;*/
   overflow: visible;
 }
 
-#content-box div.pane-slider ul.adminformlist li,
-#content-box div.panel table.paramlist tr{
+#nextend-configurator-lightbox div.nextend-pane-slider ul.adminformlist li,
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr{
   background: #ffffff;
   padding-left: 0;
   display : block;
@@ -53,23 +61,24 @@
   position: relative;
 }
 
-#content-box div.panel table.paramlist tr{
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr{
   background-image: url('../images/greypx15.png');
   background-repeat: repeat-y;
 }
 
-#content-box div.panel table.paramlist tr td{
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr td{
   height: 40px;
 }
 
-#content-box div.panel table.paramlist tr td.paramlist_key{
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr td.paramlist_key{
   border: 0;
   background-color: transparent;
   border-right: 1px solid #CCCCCC;
   padding-right: 5px;
 }
 
-#content-box div.panel table.paramlist tr td.paramlist_value{
+#nextend-configurator-lightbox div.nextend-pane-slider ul.adminformlist li.levelgroup,
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr td.paramlist_value{
   padding: 7px 0px 7px 10px;
 }
 
@@ -77,42 +86,43 @@
   /*overflow: hidden;*/
 }
 
-#content-box div.pane-slider ul.adminformlist li.blue,
-#content-box div.panel table.paramlist tr.blue{
+#nextend-configurator-lightbox div.nextend-pane-slider ul.adminformlist li.blue,
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr.blue{
   background-color: #dce8ef;
 }
 
-#content-box div.pane-slider ul.adminformlist li.levelgroup,
-#content-box div.panel table.paramlist tr.levelgroup{
+#nextend-configurator-lightbox div.nextend-pane-slider ul.adminformlist li.levelgroup,
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr.levelgroup{
   background-color: #FAFAFA;
   background-image: none;
 }
 
-#content-box div.pane-slider ul.adminformlist li.hide,
-#content-box div.panel table.paramlist tr.hide{
+#nextend-configurator-lightbox div.nextend-pane-slider ul.adminformlist li.hide,
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr.hide{
   display: none;
 }
 
-#content-box div.pane-slider,
-#content-box div.jpane-slider{
+#nextend-configurator-lightbox div.nextend-pane-slider,
+#nextend-configurator-lightbox div.nextend-jpane-slider{
   height: 0px;
 }
 
-#content-box div.pane-slider fieldset.jelement{
+#nextend-configurator-lightbox div.nextend-pane-slider fieldset.jelement{
   background-color: transparent;
   margin-right: 5px;
 }
 
-#content-box div.pane-slider fieldset.panelform li{
+#nextend-configurator-lightbox div.nextend-pane-slider fieldset.panelform li{
   min-height: 20px;
   padding: 8px 0;
   background-image: url('../images/greypx.png');
   background-repeat: repeat-y;
 }
 
-#content-box div.pane-slider fieldset.panelform li> label{
+#nextend-configurator-lightbox div.nextend-pane-slider fieldset.panelform li> label{
   padding: 4px 21px 4px 10px;
   width: 146px;
+  min-width: auto;
   min-height: 10px;
 /*  border-right: 1px solid #c0d5e3;*/
   text-align: right;
@@ -123,7 +133,7 @@
   margin: 0; 
 }
 
-#contetn-box ul.adminformlist{
+#nextend-configurator-lightbox ul.adminformlist{
     border: medium none;
     list-style: none outside none;
     margin: 0;
@@ -132,14 +142,14 @@
 
 /**/
 
-#content-box div.panel table.paramlist tr td.paramlist_value .legend{
+#nextend-configurator-lightbox div.nextendpanel table.paramlist tr td.paramlist_value .legend{
   border: 1px solid #CCCCCC;
   margin-bottom: 3px;
 }
 
 /*Offlajn Dashboard*/
 
-#content-box div.panel.dashboard h3.title{
+#nextend-configurator-lightbox div.nextendpanel.dashboard h3.title{
   border:0;
   border-bottom: 1px solid #cccccc;
   padding:0;
@@ -155,35 +165,35 @@
   padding-left: 10px
 }
 
-#content-box div.panel.dashboard h3.title span{
+#nextend-configurator-lightbox div.nextendpanel.dashboard h3.title span{
   font-size: 18px;
   text-transform: uppercase;
   line-height:40px;
   color:#025A8D;
 }
 
-#content-box div.panel.dashboard{
+#nextend-configurator-lightbox div.nextendpanel.dashboard{
   -moz-border-radius-topleft: 5px;
   -moz-border-radius-topright: 5px;
   -webkit-border-radius: 5px 5px 0px 0px;
   border-radius: 5px 5px 0px 0px; 
 }
 
-#content-box div.panel.dashboard .pane-slider{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .nextend-pane-slider{
   height: 100%;
 }
 
-#content-box div.panel.dashboard .column{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .column{
   float: left;
   width: 33.333%;
   overflow:hidden;
 }
 
-#content-box div.panel.dashboard .dashboard-box{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box{
   width:100%;
 }
 
-#content-box div.panel.dashboard .dashboard-box .box-title{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box .box-title{
   height:30px;
   border-left: 5px solid #ededed;
   padding-left: 5px;
@@ -196,58 +206,58 @@
   overflow: hidden;
 }
 
-#content-box div.panel.dashboard .dashboard-box{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box{
   border: 1px solid #cccccc;
   border-top:0;
 }
 
-#content-box div.panel.dashboard .left .dashboard-box{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .left .dashboard-box{
   border-left:0;
   border-bottom:0;
 }
 
-#related-news-iframe{
+#nextend-configurator-lightbox #related-news-iframe{
   height: 200px;
 }
 
-#content-box div.panel.dashboard .mid .dashboard-box{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .mid .dashboard-box{
   border-right: 0;
   border-bottom: 0;
 }
 
-#content-box div.panel.dashboard .dashboard-box .box-content{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box .box-content{
   border-top: 1px solid #cccccc;
   background-color: #FFFFFF;
 }
 
-#content-box div.panel.dashboard .dashboard-box .box-content .content-inner{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box .box-content .content-inner{
   padding: 7px;
   border-left: 5px solid #ededed;
   min-height: 77px;
   color: #393939;
 }
 
-#content-box div.panel.dashboard .dashboard-box .box-content .content-inner .support-ticket-button{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box .box-content .content-inner .support-ticket-button{
   float: right;
   height: 21px;
   width: 110px;
   margin: 12px 5px 2px 5px;
 }
 
-#content-box div.panel.dashboard .dashboard-box .box-content .content-inner .support-ticket-button a{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box .box-content .content-inner .support-ticket-button a{
   height: 21px;
   width: 110px;
   display: block;
 }
 
-#content-box div.panel.dashboard .dashboard-box .box-content .content-inner .support-us-button{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box .box-content .content-inner .support-us-button{
   float: right;
   height: 21px;
   width: 88px;
   margin: 12px 5px 2px 5px;
 }
 
-#content-box div.panel.dashboard .dashboard-box .box-content .content-inner .support-us-button a{
+#nextend-configurator-lightbox div.nextendpanel.dashboard .dashboard-box .box-content .content-inner .support-us-button a{
   height: 21px;
   width: 88px;
   display: block;
@@ -323,53 +333,54 @@ span.tooltipInf {
     white-space: nowrap;
 }
 
-#module-sliders.pane-sliders .panel {
-  margin-bottom: 5px;
+#nextend-configurator-lightbox .pane-sliders .nextendpanel {
+  border: 1px solid #CCCCCC;
+  margin-bottom: 3px;
 }
 
 
 /*
 Joomla 3
 */
-.pane-sliders .panel{
+#nextend-configurator-lightbox .pane-sliders .nextendpanel{
   clear: both;
 }
 
-.pane-sliders .panel .clr{
+#nextend-configurator-lightbox .pane-sliders .nextendpanel .clr{
   clear: both;
 }
 
-.pane-sliders .panel h3 {
+#nextend-configurator-lightbox .pane-sliders .nextendpanel h3 {
     background: none repeat scroll 0 0 #FAFAFA;
     color: #666666;
     margin:0;
     cursor: pointer;
 }
 
-.pane-sliders .panel {
+#nextend-configurator-lightbox .pane-sliders .nextendpanel {
     border: 1px solid #CCCCCC;
 }
 
-.pane-sliders .adminformlist{
+#nextend-configurator-lightbox .pane-sliders .adminformlist{
   margin:0;
 }
 
-#content-box .pane-sliders fieldset label, 
-#content-box .pane-sliders fieldset span.faux-label {
+#nextend-configurator-lightbox .pane-sliders fieldset label, 
+#nextend-configurator-lightbox .pane-sliders fieldset span.faux-label {
   clear: left;
   display: block;
   float: left;
 }
 
-#options-basic .control-group{
+#nextend-configurator-lightbox #options-basic .control-group{
   display: none;
 }
 
-#content-box .pane-sliders input,
+#nextend-configurator-lightbox .pane-sliders input,
 .OfflajnWindowFont input{
   width: auto;
 }
 
-#content-box .pane-sliders a:HOVER{
+#nextend-configurator-lightbox .pane-sliders a:HOVER{
   text-decoration: none;
 }

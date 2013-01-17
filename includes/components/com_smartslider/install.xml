@@ -5,7 +5,7 @@
   <author>Roland Soós</author>
   <authorUrl>http://www.nextendweb.com</authorUrl>
   <copyright>Copyright (C) 2009-2013 Nextendweb.com. All rights reserved.</copyright>
-  <version>3.0.1</version>
+  <version>3.2.0</version>
   <media folder="" destination="../images/smartslider/">
     <folder>slidericons</folder>
   </media>
@@ -46,7 +46,7 @@
     </files>
   </administration>
   <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL</license>
-  <releaseDate>2013-01-10</releaseDate>
+  <releaseDate>2013-01-17</releaseDate>
   <files folder="frontend">
     <filename>index.html</filename>
   </files>

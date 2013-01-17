@@ -23,15 +23,12 @@ class JElementOfflajnTab extends JOfflajnFakeElementBase{
       $params->bind($this->_parent->_raw);
       $params->_raw = & $this->_parent->_raw;
     }else{ // Joomla 1.7 > 
+      $this->element = $node->attributes();
       $control = $name;
       if($value != '')
         $params->bind($value);
     }
     plgSystemOfflajnParams::addNewTab($this->generateId($name), parent::getLabel(), $params->render($control), (string)$attr['position']);
-    return '';
-  }
-  
-  function getLabel(){
     return '';
   }
   

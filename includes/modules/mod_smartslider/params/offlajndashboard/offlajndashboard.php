@@ -8,21 +8,6 @@ if (!extension_loaded('gd') || !function_exists('gd_info')) {
 
 }
 
-if (!extension_loaded('dom') || !class_exists('DOMDocument')) {
-    JError::raiseWarning( 100, "This extension Menu needs the <a href='http://php.net/manual/en/dom.setup.php'>php-xml</a> enabled in your PHP runtime 
-    environment. Please consult with your System Administrator and he will 
-    enable it!");
-}
-
-if(!defined('WP_ADMIN')){
-  if(!isset($_REQUEST['offlajnformrenderer']) && (!isset($_SESSION['offlajnurl']) || !isset($_SESSION['offlajnurl'][$_SERVER['REQUEST_URI']]))){
-    $_SESSION['offlajnurl'][$_SERVER['REQUEST_URI']] = true;
-    if($_SERVER['REQUEST_METHOD']!='POST'){
-      header('LOCATION: '.$_SERVER['REQUEST_URI']);
-      exit;
-    }
-  }
-}
 if(version_compare(JVERSION,'3.0.0','l') && !function_exists('Nextendjimport')){
   function Nextendjimport($key, $base = null){
     return jimport($key);
@@ -132,17 +117,18 @@ class JElementOfflajnDashboard extends JOfflajnFakeElementBase
       $x = file_get_contents($xml);
       preg_match('/<fieldset.*?>(.*)<\/fieldset>/ms', $x, $out);
       
-      $params = str_replace(array('<field', '</field'),array('<param','</param'),$out[0]);
+      //$params = str_replace(array('<field', '</field'),array('<param','</param'),$out[0]);
+      $params = $out[0];
       $n = new JSimpleXML();
       $n->loadString($params);
       $attrs = $n->document->attributes();
       if(($_REQUEST['option'] == 'com_modules') || ($_REQUEST['option'] == 'com_advancedmodules')){
-        $n->document->removeChild($n->document->param[0]);
+        $n->document->field[0]->params[0]->removeChild($n->document->field[0]->params[0]->param[0]);
         $params = new OfflajnJParameter('');
-        $params->setXML($n->document);
+        $params->setXML($n->document->field[0]->params[0]);
         $params->_raw = & $this->_parent->_raw;
         $params->bind($this->_parent->_raw);
-        echo $params->render($control);
+        $params->render($control);
       }
     }
     if(!isset($hash) || $hash == '') return;

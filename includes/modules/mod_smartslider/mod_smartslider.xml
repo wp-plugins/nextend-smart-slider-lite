@@ -6,37 +6,45 @@
   <copyright>Nextendweb.com</copyright>
   <authorEmail>roland.soos@offlajn.com</authorEmail>
   <authorUrl>http://www.nextendweb.com</authorUrl>
-  <version>3.1.0</version>
+  <version>3.2.0</version>
   <description/>
   <languages>
     <language tag="en-GB">language/en-GB/en-GB.mod_smartslider.ini</language>
   </languages>
-  <params addPath="/modules/mod_smartslider/params/offlajndashboard">
-    <param name="update" type="offlajndashboard" label="Smart Slider - " jed="http://extensions.joomla.org/extensions/photos-a-images/slideshow/image-jquery-slideshow/18006" id="37"/>
+  <params addPath="/modules/mod_smartslider/params/nextendconfigurator">
+    <param name="nextendconfig" type="nextendconfigurator" label="&amp;nbsp;">
+      <params>
+        <param name="update" type="offlajndashboard" label="Smart Slider - " jed="http://extensions.joomla.org/extensions/photos-a-images/slideshow/image-jquery-slideshow/18006"/>
+      </params>
+    </param>
   </params>
   <config>
-    <fields name="params" addfieldpath="/modules/mod_smartslider/params/offlajndashboard">
+    <fields name="params" addfieldpath="/modules/mod_smartslider/params/nextendconfigurator">
       <fieldset name="basic">
-        <field name="update" type="offlajndashboard" jed="http://extensions.joomla.org/extensions/photos-a-images/slideshow/image-jquery-slideshow/18006" label="Smart Slider - "/>
-        <field name="moduleparametersTab" type="offlajntab" label="Module parameters" position="first">
-          <param name="slider" type="offlajnsliders" default="" label="Slider" description=""/>
-        </field>
-        <field name="advancedTab" type="offlajntab" label="Advanced properties">
-          <param name="moduleclass_sfx" type="offlajntext" default="" label="Module Class Suffix" description=""/>
-          <param name="cache" type="offlajnlist" default="1" label="Caching" description="Select whether to cache the content of this module">
-            <option value="1">Use global</option>
-            <option value="0">No caching</option>
-          </param>
-          <param name="cache_time" type="offlajntext" default="900" label="Cache Time" description="The time before the module is recached"/>
-          <param name="cachemode" type="hidden" default="itemid">
-            <option value="itemid"/>
-          </param>
+        <field name="nextendconfig" type="nextendconfigurator" label="&amp;nbsp;">
+          <params>
+            <param name="update" type="offlajndashboard" label="Smart Slider - " jed="http://extensions.joomla.org/extensions/photos-a-images/slideshow/image-jquery-slideshow/18006"/>
+            <param name="moduleparametersTab" type="offlajntab" label="Module parameters" position="first">
+              <param name="slider" type="offlajnsliders" default="" label="Slider" description=""/>
+            </param>
+            <param name="advancedTab" type="offlajntab" label="Advanced properties">
+              <param name="moduleclass_sfx" type="offlajntext" default="" label="Module Class Suffix" description=""/>
+              <param name="cache" type="offlajnlist" default="1" label="Caching" description="Select whether to cache the content of this module">
+                <option value="1">Use global</option>
+                <option value="0">No caching</option>
+              </param>
+              <param name="cache_time" type="offlajntext" default="900" label="Cache Time" description="The time before the module is recached"/>
+              <param name="cachemode" type="hidden" default="itemid">
+                <option value="itemid"/>
+              </param>
+            </param>
+          </params>
         </field>
       </fieldset>
     </fields>
   </config>
   <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL</license>
-  <releaseDate>2013-01-10</releaseDate>
+  <releaseDate>2013-01-17</releaseDate>
   <files>
     <folder>captions</folder>
     <folder>classes</folder>

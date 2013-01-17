@@ -6,13 +6,13 @@ dojo.require("dojo.cookie");
 dojo.declare("OfflajnParams", null, {
 	constructor: function(args) {
     dojo.mixin(this,args);
-    this.panelContainer = dojo.byId('module-sliders');
-    var allpanels = dojo.query('.panel', this.panelContainer);
-    var subpanels = dojo.query('.panel .panel', this.panelContainer);
+    this.panelContainer = dojo.byId('nextend-configurator-panels');
+    var allpanels = dojo.query('.nextendpanel', this.panelContainer);
+    var subpanels = dojo.query('.nextendpanel .nextendpanel', this.panelContainer);
     allpanels.diff(subpanels);
     this.panels = allpanels;
     this.relatedNews = dojo.byId('related-news-iframe');
-    this.rightColumn = dojo.query('div.panel.dashboard .column.right', this.panelContainer)[0];
+    this.rightColumn = dojo.query('div.nextendpanel.dashboard .column.right', this.panelContainer)[0];
     this.boxTitle = dojo.query('.box-title', this.rightColumn)[0]; 
     this.contentBox = dojo.byId('content-box');
     
@@ -26,7 +26,6 @@ dojo.declare("OfflajnParams", null, {
       var els = dojo.query('div.content', panel);
       if(els.length == 0) return;
       panelTitle.content = els[0];
-
       if(dojo.hasClass(panel, 'alwaysopen') || dojo.indexOf(this.lastState, dojo.attr(panel, "id")) >= 0){
         panelTitle.content.state = 1;  // Panel state: 1-open 0-close
         dojo.style(panelTitle.content,"opacity","1");
@@ -40,15 +39,16 @@ dojo.declare("OfflajnParams", null, {
       }
     },this);
     dojo.connect(window, "onresize", this, "resizeBoxes");
-    
+    window.OfflajnParams = this;
     var optionsbasic30 = dojo.byId('options-basic');
     if(optionsbasic30)
       dojo.style(optionsbasic30, 'display', 'block');
     this.resizeBoxes();
     if(optionsbasic30)
       dojo.removeAttr(optionsbasic30, 'style');
+      
     dojo.global.toolTips = this;
-    this.connectToolTips();
+    //this.connectToolTips();
     //window.labelFix = this.labelFix;
     //dojo.addOnLoad(window.labelFix);
   },
@@ -127,7 +127,7 @@ dojo.declare("OfflajnParams", null, {
     if(db){
       dojo.style(db, {
       'marginBottom': '0px',
-      'height': dojo.position(db).h + 1 + 'px',
+      'height': 'auto',
       'borderBottom': '0px'
       });
       var ci = dojo.query('.content-inner', db)[0];
@@ -136,6 +136,7 @@ dojo.declare("OfflajnParams", null, {
   },
 
   connectToolTips : function(parentElement){
+    return;
     this.tips = dojo.query('.hasOfflajnTip', parentElement?parentElement:this.panelContainer);
     dojo.forEach(this.tips,function(tip){
       if (!tip.toolTipped) dojo.connect(tip,"onmouseenter",this,"showToolTip");

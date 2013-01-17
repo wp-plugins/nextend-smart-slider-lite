@@ -38,7 +38,15 @@ var captions = new Array;
               <span class="numbering">
                 <?php echo $x+1; ?>
               </span>
-              <span class="icon" style="<?php if($slide->icon != '' && $slide->icon != '-1') : ?>background-image:url('<?php echo (defined('WP_PLUGIN_DIR') ? smartslider_url('/') : JURI::base()).'images/smartslider/slidericons/'.$slide->icon; ?>');<?php endif; ?>"></span>
+              <?php 
+                $icon = '';
+                if(defined('ABSPATH')){
+                  $icon = $slide->icon;
+                }else{
+                  $icon = JURI::base().'images/smartslider/slidericons/'.$slide->icon;
+                }
+              ?>
+              <span class="icon" style="<?php if($slide->icon != '' && $slide->icon != '-1') : ?>background-image:url('<?php echo $icon; ?>');<?php endif; ?>"></span>
             </span>
           </span>
         </dt>

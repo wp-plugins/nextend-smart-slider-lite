@@ -5,6 +5,86 @@
   <params>
     <param name="generatortypes" type="cobalttypes" default="" label="Select a type"/>
     <param name="generatorsection" type="cobaltsections" default="" label="Section filter"/>
+    <param name="generatorfilter1" type="offlajncombine" default="0|*|=|*|" label="Filter #1">
+      <param label="Key" type="nextendcckcriterion">
+        <option value="0">Disabled</option>
+      </param>
+      <param label="Criterion" type="offlajnlist">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value="&lt;">&lt;</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value="&gt;">&gt;</option>
+        <option value="&gt;=">&gt;=</option>
+        <option value="LIKE">LIKE</option>
+        <option value="NOT LIKE">NOT LIKE</option>
+      </param>
+      <param label="Value" type="offlajntext" />
+    </param>
+    <param name="generatorfilter2" type="offlajncombine" default="0|*|=|*|" label="Filter #2">
+      <param label="Key" type="nextendcckcriterion">
+        <option value="0">Disabled</option>
+      </param>
+      <param label="Criterion" type="offlajnlist">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value="&lt;">&lt;</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value="&gt;">&gt;</option>
+        <option value="&gt;=">&gt;=</option>
+        <option value="LIKE">LIKE</option>
+        <option value="NOT LIKE">NOT LIKE</option>
+      </param>
+      <param label="Value" type="offlajntext" />
+    </param>
+    <param name="generatorfilter3" type="offlajncombine" default="0|*|=|*|" label="Filter #3">
+      <param label="Key" type="nextendcckcriterion">
+        <option value="0">Disabled</option>
+      </param>
+      <param label="Criterion" type="offlajnlist">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value="&lt;">&lt;</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value="&gt;">&gt;</option>
+        <option value="&gt;=">&gt;=</option>
+        <option value="LIKE">LIKE</option>
+        <option value="NOT LIKE">NOT LIKE</option>
+      </param>
+      <param label="Value" type="offlajntext" />
+    </param>
+    <param name="generatorfilter4" type="offlajncombine" default="0|*|=|*|" label="Filter #4">
+      <param label="Key" type="nextendcckcriterion">
+        <option value="0">Disabled</option>
+      </param>
+      <param label="Criterion" type="offlajnlist">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value="&lt;">&lt;</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value="&gt;">&gt;</option>
+        <option value="&gt;=">&gt;=</option>
+        <option value="LIKE">LIKE</option>
+        <option value="NOT LIKE">NOT LIKE</option>
+      </param>
+      <param label="Value" type="offlajntext" />
+    </param>
+    <param name="generatorfilter5" type="offlajncombine" default="0|*|=|*|" label="Filter #5">
+      <param label="Key" type="nextendcckcriterion">
+        <option value="0">Disabled</option>
+      </param>
+      <param label="Criterion" type="offlajnlist">
+        <option value="=">=</option>
+        <option value="!=">!=</option>
+        <option value="&lt;">&lt;</option>
+        <option value="&lt;=">&lt;=</option>
+        <option value="&gt;">&gt;</option>
+        <option value="&gt;=">&gt;=</option>
+        <option value="LIKE">LIKE</option>
+        <option value="NOT LIKE">NOT LIKE</option>
+      </param>
+      <param label="Value" type="offlajntext" />
+    </param>
     <param name="generatorordering" type="offlajnlist" default="ctime" label="Order by">
       <option value="ctime">Publish date</option>
       <option value="hits">Hits</option>
