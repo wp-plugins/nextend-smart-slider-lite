@@ -112,6 +112,10 @@
   margin-right: 5px;
 }
 
+#nextend-configurator-lightbox fieldset.panelform{
+  overflow: visible;
+}
+
 #nextend-configurator-lightbox div.nextend-pane-slider fieldset.panelform li{
   min-height: 20px;
   padding: 8px 0;

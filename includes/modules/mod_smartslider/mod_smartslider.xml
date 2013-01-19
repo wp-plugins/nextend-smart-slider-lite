@@ -6,7 +6,7 @@
   <copyright>Nextendweb.com</copyright>
   <authorEmail>roland.soos@offlajn.com</authorEmail>
   <authorUrl>http://www.nextendweb.com</authorUrl>
-  <version>3.2.0</version>
+  <version>3.2.1</version>
   <description/>
   <languages>
     <language tag="en-GB">language/en-GB/en-GB.mod_smartslider.ini</language>
@@ -44,7 +44,7 @@
     </fields>
   </config>
   <license>http://www.gnu.org/licenseses/gpl-2.0.html GNU/GPL</license>
-  <releaseDate>2013-01-17</releaseDate>
+  <releaseDate>2013-01-19</releaseDate>
   <files>
     <folder>captions</folder>
     <folder>classes</folder>

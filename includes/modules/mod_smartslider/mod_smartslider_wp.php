@@ -53,13 +53,9 @@ if(!function_exists('getSmartSlider')) {
     $tthis = new stdClass();
     $tthis->slider = &$s;
     
-    require_once(dirname(__FILE__).DS.'classes'.DS.'js.cache.class.php');
-    
     $module = new stdClass();
     $module->module = 'mod_smartslider';
     $module->id = $s->id+$s->instance*10000;
-    
-    $GLOBALS['jscache'] = new OfflajnSliderJsCache($module);
     
     $type = dirname(__FILE__) . DS . 'types' . DS . $s->type . DS;
     if(!is_dir($type)){
@@ -141,7 +137,6 @@ if(!function_exists('getSmartSlider')) {
     $ss = ob_get_contents();
     ob_clean();
     
-    //$js_url = smartslider_translate_url($GLOBALS['jscache']->generate());
     $js_url = '';
     $css_url = $themecache->generateCss($context);
 
@@ -154,9 +149,6 @@ $slider->instance = $instance;
 $s = getSmartSlider($slider);
 
 echo $s[0];
-
-//wp_register_script( 'smartslider-script'.md5($s[1]), $s[1]);
-//wp_enqueue_script( 'smartslider-script'.md5($s[1]));
 
 wp_register_style( 'smartslider-style'.md5($s[2]), $s[2]);
 wp_enqueue_style( 'smartslider-style'.md5($s[2]));

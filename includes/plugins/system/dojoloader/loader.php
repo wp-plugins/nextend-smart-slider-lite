@@ -118,26 +118,28 @@ class DojoLoader{
     
     if(isset($_GET['nextendclearcache']) || !JFile::exists($path)){
       $t = '
-        (function(){
-          djConfig = {
-            modulePaths: {
-              "dojo": "'.$this->urlToDojo().'dojo",
-              "dijit": "'.$this->urlToDojo().'dijit",
-              "dojox": "'.$this->urlToDojo().'dojox"
-            }
-            
-            '.($this->scope != '' ? ',
-            scopeMap: [
-              [ "dojo", "'.$this->scope.'dojo" ],
-              [ "dijit", "'.$this->scope.'dijit" ],
-              [ "dojox", "'.$this->scope.'dojox" ]
-            ]' : '').'
-          };
-          
-          if(typeof '.$this->scope.'dojo === "undefined"){
-      ';
-      $t.= JFile::read($this->path.'dojo'.DIRECTORY_SEPARATOR.'dojo.js');
-      $t.= "} \n";
+        (function(){';
+      if(!isset($_POST['offlajnformrenderer'])){
+        $t.='
+            djConfig = {
+              modulePaths: {
+                "dojo": "'.$this->urlToDojo().'dojo",
+                "dijit": "'.$this->urlToDojo().'dijit",
+                "dojox": "'.$this->urlToDojo().'dojox"
+              }
+              
+              '.($this->scope != '' ? ',
+              scopeMap: [
+                [ "dojo", "'.$this->scope.'dojo" ],
+                [ "dijit", "'.$this->scope.'dijit" ],
+                [ "dojox", "'.$this->scope.'dojox" ]
+              ]' : '').'
+            };
+            if(typeof '.$this->scope.'dojo === "undefined"){
+        ';
+        $t.= JFile::read($this->path.'dojo'.DIRECTORY_SEPARATOR.'dojo.js');
+        $t.= "} \n";
+      }
       if($this->scope != ''){
         $t.= "\nvar dojo = ".$this->scope."dojo;\n";
         $t.= "\nvar dijit = ".$this->scope."dijit;\n";

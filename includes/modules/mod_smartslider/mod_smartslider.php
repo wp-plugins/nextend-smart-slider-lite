@@ -7,8 +7,8 @@
 # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 # Websites: http://www.offlajn.com
 -------------------------------------------------------------------------*/
-$revision = '3.2.0.39';
-$revision = '3.2.0';
+$revision = '3.2.1.42';
+$revision = '3.2.1';
 ?>
 <?php
 defined('_JEXEC') or die('Restricted access');
@@ -24,7 +24,6 @@ if(version_compare(JVERSION,'1.6.0','ge')) {
 if(!function_exists('getSmartSlider')) {
   function getSmartSlider($params, $this, $module, $slider, $sliderparams) {  
     ob_start();
-    require_once(dirname(__FILE__).DS.'classes'.DS.'js.cache.class.php');
 
     JPluginHelper::importPlugin( 'smartslider' );
     $dispatcher =& JDispatcher::getInstance();
@@ -41,13 +40,6 @@ if(!function_exists('getSmartSlider')) {
     }
     
     $params->def('plugin', 0);
-    /*
-    $sliderid = $params->get('slider', 0);
-    if(!$sliderid){
-      echo JText::_('Please select a slider on the backend!');
-      return;
-    }
-    */
     $tthis = new stdClass();
     if(isset($this)){
       $tthis = &$this;
@@ -57,17 +49,7 @@ if(!function_exists('getSmartSlider')) {
     $sliderid = $tthis->slider->id;
     
     $db =& JFactory::getDBO();
-    /*$query = 'SELECT *'
-    . ' FROM #__offlajn_slider'
-    . ' WHERE published = 1 AND id = '.((int)$sliderid);
-    $db->setQuery($query);
-    $tthis->slider = $db->loadObject();
-    if($tthis->slider == NULL){
-      echo JText::_('Please select a slider on the backend!');
-      return;
-    }
-   */ 
-   
+
     $type = dirname(__FILE__) . DS . 'types' . DS . $tthis->slider->type . DS;
     if(!is_dir($type)){
       echo JText::_('Please select the type for the slider!');

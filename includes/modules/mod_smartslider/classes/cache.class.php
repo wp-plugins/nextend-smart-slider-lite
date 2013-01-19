@@ -13,10 +13,6 @@ defined('_JEXEC') or die('Restricted access');
 
 if(!defined('OfflajnSliderThemeCache')) {
   define("OfflajnSliderThemeCache", null);
-
-  if (version_compare(PHP_VERSION, '5.2.0', '>=')) {
-    require_once('cssmin5.php');
-  }
   class OfflajnSliderThemeCache{
   
     var $env;
@@ -50,6 +46,27 @@ if(!defined('OfflajnSliderThemeCache')) {
         }
       }
       $this->themeCacheUrl = JURI::root(false).'modules/'.$this->module->module.'/cache/'.$this->module->id.'/';
+      $this->checkFolders();
+    }
+  
+    function checkFolders() {
+      $date = date('Ymd');
+      $folders = array();
+      $path = $this->themeCacheDir;
+      if(!JFolder::exists($path.$date)) {
+        $folders = JFolder::folders($path, '', '', 1);
+        if(is_array($folders)){
+          foreach($folders as $folder) {
+            JFolder::delete($folder);
+          }
+        }
+        if(!JFolder::create($path.$date, 0777)){
+          echo $path.DIRECTORY_SEPARATOR.$date." is unwriteable, so the Slider won't work correctly. Please set the folder to 777!";
+        }
+      }
+      $this->themeCacheDir = $path.$date.DS;
+      $this->themeCacheUrl.= $date.'/';
+      return $date;
     }
     
     function generateCss($c){
@@ -68,17 +85,13 @@ if(!defined('OfflajnSliderThemeCache')) {
         count($this->env->slides));
         $doc =& JFactory::getDocument();
         
-      if(!is_file($this->themeCacheDir.DS.$hash.'.css')){
+      if(!is_file($this->themeCacheDir.$hash.'.css')){
         $this->calc = false;
         ob_start();
         include($this->css);
         $css = ob_get_contents();
         ob_end_clean();
-        
-        if(class_exists('CssMin')){
-          //$css = CssMin::minify($css);
-        }
-        file_put_contents($this->themeCacheDir.DS.$hash.'.css', $css);
+        file_put_contents($this->themeCacheDir.$hash.'.css', $css);
         @chmod($this->themeCacheDir.DS.$hash.'.css',0777);
       }
       return $this->themeCacheUrl.$hash.'.css';

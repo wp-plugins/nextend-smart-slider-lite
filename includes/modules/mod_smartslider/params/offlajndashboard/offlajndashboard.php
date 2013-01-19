@@ -2,10 +2,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 if (!extension_loaded('gd') || !function_exists('gd_info')) {
-    JError::raiseWarning( 100, "This extension needs the <a href='http://php.net/manual/en/book.image.php'>GD module</a> enabled in your PHP runtime 
-    environment. Please consult with your System Administrator and he will 
-    enable it!");
-
+    JError::raiseWarning( 100, "This extension needs the <a href='http://php.net/manual/en/book.image.php'>GD module</a> enabled in your PHP runtime environment. Please consult with your System Administrator and he will enable it!");
 }
 
 if(version_compare(JVERSION,'3.0.0','l') && !function_exists('Nextendjimport')){

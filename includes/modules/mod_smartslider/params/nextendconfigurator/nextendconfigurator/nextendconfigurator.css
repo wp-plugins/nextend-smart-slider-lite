@@ -33,7 +33,7 @@
 #nextend-configurator-lightbox .nextend-configurator-container .nextend-configurator-container-inner{
   height: 100%;
   width: 100%;
-	overflow: auto;
+	overflow: scroll;
   cursor: default;
 }
 
