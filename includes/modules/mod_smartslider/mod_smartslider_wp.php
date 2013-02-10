@@ -111,6 +111,7 @@ if(!function_exists('getSmartSlider')) {
     
     $id = $module->module.'_'.$module->id;
     
+    DojoLoader::r('dojo.uacss');
     DojoLoader::r('dojo.fx.easing');
     DojoLoader::addScriptFile(DS.'modules'.DS.'mod_smartslider'.DS.'ie6'.DS.'ie6.js');
     DojoLoader::addScriptFile(DS.'modules'.DS.'mod_smartslider'.DS.'captions'.DS.'captions.js');
