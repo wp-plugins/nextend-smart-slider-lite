@@ -2,8 +2,9 @@
     global $table_prefix;
 
 define('WP_TABLE_PREFIX', $table_prefix);
+global $wp_object_cache;
 
-define('WP_SS_TMP', wp_upload_dir());
+if($wp_object_cache != null) define('WP_SS_TMP', wp_upload_dir());
 
 class JConfig {
 	public $offline = '0';
