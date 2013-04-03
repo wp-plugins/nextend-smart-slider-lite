@@ -10,10 +10,11 @@
 ?>
 <?php
 defined('_JEXEC') or die('Restricted access');
+
+include($c['clearcss']);
 ?>
 
 <?php
-  $sp = &$this->env->slider->params;
   $count = count($this->env->slides);
 
   $size = OfflajnValueParser::parse( $sp->get('size'));
@@ -25,7 +26,7 @@ defined('_JEXEC') or die('Restricted access');
   $pdngOut = $outerborder[0][0];
   $paddingOut = array($pdngOut, $pdngOut, $pdngOut, $pdngOut);
 
-  $controllHeight = 33;
+  $controllHeight = round(33*$ratio);
   if($this->env->slider->params->get('ctrlbar', 1) == 0){
     $controllHeight = -1;
   }
@@ -34,12 +35,6 @@ defined('_JEXEC') or die('Restricted access');
     $cwidth+= $paddingOut[1]+$paddingOut[3];
     $cheight+=$paddingOut[0]+$paddingOut[2]+$controllHeight+1;
   }
-?>
-
-<?php
-if(!$this->calc && isset($c['clearcss'])){
-  include($c['clearcss']);
-}
 ?>
 
 <?php echo $c['id']; ?> a:hover{
@@ -89,6 +84,7 @@ if(!$this->calc && isset($c['clearcss'])){
 ?>
 
 <?php echo $c['id']; ?> .outer{
+  border-radius: <?php echo OfflajnValueParser::parseUnit($sp->get('borderradius', '0|*|0|*|0|*|0|*|px'), ' '); ?>;
   /* Alpha channel*/
   <?php 
     $color = $outerborder[1];
@@ -324,6 +320,72 @@ $canvasHeight = $cheight = $cheight-$controllHeight-1;
   height: <?php echo $canvasHeight; ?>px;
   float: left;
 }
+
+<?php if($sp->get('css3transition', 1) == 1): ?>
+    <?php
+    $mainanimation = OfflajnValueParser::parse($sp->get('mainanimation'));
+    $duration = $mainanimation[0][0]/1000;
+    $easing = dojoEasingToCSSEasing($mainanimation[1]);
+    ?>
+    .nextend-csstransitions <?php echo $c['id']; ?> .slinner .slides{
+        margin-top:0px;
+        transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0); /* IE 9 */
+        -webkit-transform: translate3d(0,0,0); /* Safari and Chrome */
+        -o-transform: translate3d(0,0,0); /* Opera */
+        -moz-transform: translate3d(0,0,0); /* Firefox */
+    }
+    
+    .nextend-csstransitions <?php echo $c['id']; ?> .controll .dots .dot.selected{
+      background: url('<?php echo $c['url']; ?>images/dot.png') no-repeat center center;
+    }
+    
+    <?php if($sp->get('transition', 1) == 1): ?>
+    
+    .nextend-csstransitions <?php echo $c['id']; ?> .slinner .slides{
+        transition: all <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -moz-transition: all <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -webkit-transition: all <?php echo $duration ?>s <?php echo str_replace('-','',$easing); ?> 0s;
+        -webkit-transition: all <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -o-transition: all <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+    }
+    
+    <?php for($i = 0; $i < count($this->env->slides); $i++ ): ?>
+    .nextend-csstransitions <?php echo $c['id']; ?>.new-activeslide<?php echo $i; ?> .slinner .slides{
+        transform: translate3d(<?php echo -$canvasWidth*$i; ?>px,0,0);
+        -ms-transform: translate3d(<?php echo -$canvasWidth*$i; ?>px,0,0);
+        -webkit-transform: translate3d(<?php echo -$canvasWidth*$i; ?>px,0,0);
+        -o-transform: translate3d(<?php echo -$canvasWidth*$i; ?>px,0,0);
+        -moz-transform: translate3d(<?php echo -$canvasWidth*$i; ?>px,0,0);
+    }
+    
+    .nextend-csstransitions <?php echo $c['id']; ?>.new-activeslide<?php echo $i; ?> .controll .dots div.dot.dot-<?php echo $i; ?>{
+      background-image: url('<?php if(!$this->calc) echo $this->themeCacheUrl.$c['helper']->ColorizeImage(dirname(__FILE__).'/images/dotselected.png', substr($activebg,0,6), '188DD9'); ?>');
+    }
+    <?php endfor; ?>
+    <?php else: ?>
+    .nextend-csstransitions <?php echo $c['id']; ?> .slinner .slides .sslide{
+        position: absolute;
+        opacity: 0;
+        transition: opacity <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -moz-transition: opacity <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -webkit-transition: opacity <?php echo $duration ?>s <?php echo str_replace('-','',$easing); ?> 0s;
+        -webkit-transition: opacity <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -o-transition: opacity <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        z-index: 1;
+    }
+    <?php for($i = 0; $i < count($this->env->slides); $i++ ): ?>
+    .nextend-csstransitions <?php echo $c['id']; ?>.new-activeslide<?php echo $i; ?> .slinner .slides .slide-<?php echo $i; ?>{
+        opacity: 1;
+        z-index: 2;
+    }
+    
+    .nextend-csstransitions <?php echo $c['id']; ?>.new-activeslide<?php echo $i; ?> .controll .dots div.dot.dot-<?php echo $i; ?>{
+      background-image: url('<?php if(!$this->calc) echo $this->themeCacheUrl.$c['helper']->ColorizeImage(dirname(__FILE__).'/images/dotselected.png', substr($activebg,0,6), '188DD9'); ?>');
+    }
+    <?php endfor; ?>
+    <?php endif; ?>
+<?php endif; ?>
 
 <?php
 if(!$this->calc && isset($c['captioncss'])){

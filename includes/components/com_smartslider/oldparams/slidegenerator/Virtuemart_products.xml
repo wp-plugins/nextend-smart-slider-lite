@@ -2,12 +2,9 @@
 <config>
   <name>Virtuemart products by category</name>
   <params addPath="/administrator/components/com_smartslider/params">
-    <param name="generatorcategory" type="vmcategories" default="" label="Product categories" description="Id of the category"/>
+    <param name="generatorcategory" type="OfflajnVm1Categories" default="" label="Product categories" description="Id of the category"/>
     <param name="generatorslidenumber" type="text" default="" label="Number of slides" description="Number of the slides"/>
-    <param name="generatorslidegenerate" type="radio" default="0" label="Generates slides" description="Generates the slides">
-      <option value="0">No</option>
-      <option value="1">Yes</option>
-    </param>
+    <param name="generatorslidegenerate" type="offlajnonoff" default="0" label="Generates slides" description="Generates the slides"/>
   </params>
   <settings>
   <component>com_virtuemart</component>

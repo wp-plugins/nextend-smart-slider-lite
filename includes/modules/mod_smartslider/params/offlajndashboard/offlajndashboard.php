@@ -20,7 +20,7 @@ Nextendjimport( 'joomla.utilities.simplexml' );
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die();
 define("OFFLAJNADMINPARAMPATH", dirname(__FILE__).DS.'..');
-$_SESSION['OFFLAJNADMINPARAMPATH'] = OFFLAJNADMINPARAMPATH;
+$_SESSION['OFFLAJNADMINPARAMPATH'] = str_replace('\\','/',OFFLAJNADMINPARAMPATH);
 
 if(version_compare(JVERSION,'1.6.0','ge')) JFormHelper::addFieldPath(JFolder::folders(OFFLAJNADMINPARAMPATH, '.', false, true));
 //else if(isset($this)) $this->addElementPath(JFolder::folders(OFFLAJNADMINPARAMPATH, '.', false, true));
@@ -112,7 +112,7 @@ class JElementOfflajnDashboard extends JOfflajnFakeElementBase
       @$control = $out[1];
       
       $x = file_get_contents($xml);
-      preg_match('/<fieldset.*?>(.*)<\/fieldset>/ms', $x, $out);
+      preg_match('/<fieldset.*?>(.*?)<\/fieldset>/ms', $x, $out);
       
       //$params = str_replace(array('<field', '</field'),array('<param','</param'),$out[0]);
       $params = $out[0];

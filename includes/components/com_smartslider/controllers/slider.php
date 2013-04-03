@@ -37,6 +37,12 @@ class SliderControllerSlider extends SliderController
 
 		parent::display();
 	}
+  
+  function savegenerate(){
+      $_REQUEST['task'] = 'apply';
+      $_REQUEST['generate'] = 1;
+      $this->save();
+  }
 	
 	function save()
 	{

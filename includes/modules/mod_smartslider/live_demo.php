@@ -86,6 +86,7 @@ $module->module = 'mod_smartslider';
 $module->id = "1";
 
 $id = $module->module.'_'.$module->id;
+DojoLoader::addScriptFile(DS . 'modules' . DS . 'mod_smartslider' . DS . 'js' . DS . 'responsive.js');
 
 $themecache = new OfflajnSliderThemeCache($tthis, $module, $params, $theme.'style.css.php');
 if(defined('ABSPATH')) $themecache->themeCacheUrl = smartslider_translate_url($themecache->themeCacheUrl);

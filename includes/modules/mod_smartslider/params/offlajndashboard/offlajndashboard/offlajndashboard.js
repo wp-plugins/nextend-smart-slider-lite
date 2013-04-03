@@ -1,6 +1,30 @@
 //toolTip usage:
 // call dojo.global.toolTips.connectToolTips();
 
+if(typeof window.nextendajax == 'undefined'){
+  window.nextendajax = {
+    i: 0,
+    increase: function(){
+      window.nextendajax.i++;
+      if(window.nextendajax.submit)
+        dojo.style(window.nextendajax.submit, 'visibility', 'hidden');
+    },
+    decrease: function(){
+      window.nextendajax.i--;
+      if(window.nextendajax.i == 0 && window.nextendajax.submit)
+        dojo.style(window.nextendajax.submit, 'visibility', 'visible');
+    }
+  };
+}
+
+dojo.addOnLoad(function(){
+    window.nextendajax.submit = dojo.query('#toolbar')[0];
+    if(window.nextendajax.i > 0){
+      window.nextendajax.i--;
+      window.nextendajax.increase();
+    }
+});
+
 dojo.require("dojo.cookie");
 
 dojo.declare("OfflajnParams", null, {
@@ -121,7 +145,7 @@ dojo.declare("OfflajnParams", null, {
   },
   
   resizeBoxes : function(event){
-    if(this.relatedNews)
+    if(this.relatedNews && this.rightColumn && this.boxTitle)
       dojo.style(this.relatedNews,'height',(dojo.marginBox(this.rightColumn).h- dojo.marginBox(this.boxTitle).h)+"px");
     var db = dojo.query('.dashboard-box', this.rightcolumn)[3];
     if(db){
@@ -130,8 +154,6 @@ dojo.declare("OfflajnParams", null, {
       'height': 'auto',
       'borderBottom': '0px'
       });
-      var ci = dojo.query('.content-inner', db)[0];
-      dojo.style(ci, 'height', + dojo.position(ci).h + 2 + 'px');
     }
   },
 

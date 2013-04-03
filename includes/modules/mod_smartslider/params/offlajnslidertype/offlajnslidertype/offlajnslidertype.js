@@ -26,7 +26,7 @@ dojo.declare("ThemeConfigurator", null, {
     dojo.addClass(this.typetitle, 'offlajnloading');
     this.typedetails.innerHTML = '';
     var xhrArgs = {
-      url: '',
+      url: this.url,
       content: {
         'offlajnformrenderer': '1',
         'key': this.data[this.type].html
@@ -70,7 +70,7 @@ dojo.declare("ThemeConfigurator", null, {
     dojo.addClass(this.themetitle, 'offlajnloading');
     this.themedetails.innerHTML = '';
     var xhrArgs = {
-      url: '',
+      url: this.url,
       content: {
         'offlajnformrenderer': '1',
         'key': this.data[this.type].themes[this.theme].html,

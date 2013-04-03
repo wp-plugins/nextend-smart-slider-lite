@@ -12,9 +12,9 @@ class JElementNextendconfigurator extends JOfflajnFakeElementBase
   	$this->loadFiles();
   	$this->loadFiles('offlajnimagemanager','offlajnimagemanager');
     $html = '';
-    $html.= '<div id="nextend-configurator-lightbox">';
-    $html.= '<div class="nextend-configurator-container">';
-    $html.= '<div class="nextend-configurator-container-inner">';
+    $html.= '<div id="nextend-configurator-lightbox" class="gk_hack">';
+    $html.= '<div class="gk_hack nextend-configurator-container">';
+    $html.= '<div class="gk_hack nextend-configurator-container-inner">';
     $params = new OfflajnJParameter('');
     $params->setXML($node->params[0]);
     
@@ -28,7 +28,7 @@ class JElementNextendconfigurator extends JOfflajnFakeElementBase
       $control = $name;
       if($value != ''){
         $params->bind($value);
-      }else if($_REQUEST['id'] != ''){
+      }else if(isset($_REQUEST['id']) && $_REQUEST['id'] != ''){
         $module_id = intval($_REQUEST['id']);
         if($module_id > 0){
           $db =& JFactory::getDBO();
@@ -40,8 +40,8 @@ class JElementNextendconfigurator extends JOfflajnFakeElementBase
     }
     
     //$html.= '<div class="pane-slider panel">';
-    $html.= '<fieldset id="nextend-configurator-panels" class="panelform">';
-    $html.= '<div id="menu-pane" class="pane-sliders">';
+    $html.= '<fieldset id="nextend-configurator-panels" class="gk_hack panelform">';
+    $html.= '<div id="menu-pane" class="gk_hack pane-sliders">';
     $params->render($control);
     $html.= isset($offlajnDashboard) ? $offlajnDashboard : '';
     $html.= isset($offlajnParams['first']) && is_array($offlajnParams['first']) ? implode("\n",$offlajnParams['first']) : '';

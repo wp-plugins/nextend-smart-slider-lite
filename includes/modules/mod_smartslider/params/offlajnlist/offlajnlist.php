@@ -54,7 +54,12 @@ class JElementOfflajnList extends JOfflajnFakeElementBase {
 		$html .= '<div class="offlajnlistbtn"><span></span></div>';
     $html .= '</div>';
     
-    $html .= '<input type="hidden" name="'.$name.'" id="'.$this->generateId($name).'" value="'.$this->options[$this->selectedIndex]['value'].'"/>';
+    $currentvalue = 0;
+    if(isset($this->options[$this->selectedIndex])){
+        $currentvalue = $this->options[$this->selectedIndex]['value'];
+    }
+    
+    $html .= '<input type="hidden" name="'.$name.'" id="'.$this->generateId($name).'" value="'.$currentvalue.'"/>';
     $html .= '</div>';
     $n = strtolower($this->_name);
     

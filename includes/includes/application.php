@@ -46,53 +46,6 @@ class JWpadministrator extends JApplication
 	}
 
 	/**
-	 * Initialise the application.
-	 *
-	 * @param	array	$options	An optional associative array of configuration settings.
-	 *
-	 * @return	void
-	 * @since	1.5
-	 */
-	public function initialise($options = array())
-	{
-		$config = JFactory::getConfig();
-
-		// if a language was specified it has priority
-		// otherwise use user or default language settings
-		if (empty($options['language']))
-		{
-			$user	= JFactory::getUser();
-			$lang	= $user->getParam('admin_language');
-
-			// Make sure that the user's language exists
-			if ($lang && JLanguage::exists($lang)) {
-				$options['language'] = $lang;
-			} else {
-				$params = JComponentHelper::getParams('com_languages');
-				$client	= JApplicationHelper::getClientInfo($this->getClientId());
-				$options['language'] = $params->get($client->name, $config->get('language', 'en-GB'));
-			}
-		}
-
-		// One last check to make sure we have something
-		if (!JLanguage::exists($options['language'])) {
-			$lang = $config->get('language', 'en-GB');
-			if (JLanguage::exists($lang)) {
-				$options['language'] = $lang;
-			} else {
-				$options['language'] = 'en-GB'; // as a last ditch fail to english
-			}
-		}
-
-		// Execute the parent initialise method.
-		parent::initialise($options);
-
-		// Load Library language
-		$lang = JFactory::getLanguage();
-		$lang->load('lib_joomla', JPATH_ADMINISTRATOR);
-	}
-
-	/**
 	 * Route the application
 	 *
 	 * @return	void
@@ -123,6 +76,11 @@ class JWpadministrator extends JApplication
 	{
 		$router = parent::getRouter('wpadministrator');
 		return $router;
+	}
+  
+	public function isSite()
+	{
+		return !defined('WP_ADMIN');
 	}
 
 	/**

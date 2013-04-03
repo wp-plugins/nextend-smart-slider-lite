@@ -173,6 +173,7 @@ class JElementOfflajnSliderTemplate extends JElementOfflajnList{
       }elseif($o[1] == 'image'){
         $a['type'] = 'offlajnimagemanager';
         $a['folder'] = '/images/';
+        $a['urlfield'] = 'text';
       }elseif($o[1] == 'easing'){
         $a['type'] = 'offlajneasing';
       }

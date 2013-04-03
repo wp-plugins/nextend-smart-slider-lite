@@ -49,12 +49,13 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php echo $c['id']; ?> .sslide .caption .fromright{
  position: absolute;
- width: 5px;
+ width: 0px;
  padding-left: 29px;
  height: 100%;
  right: 0px;
  top: 0;
  height: 0;
+ visibility: visible;
 }
 
 <?php echo $c['id']; ?> .sslide .caption .fromright .opener{
@@ -99,12 +100,13 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php echo $c['id']; ?> .sslide .caption .frombottom{
  position: absolute;
- height: 5px;
+ height: 0;
  padding-top: 29px;
  width: 100%;
  bottom: 0px;
  right: 0;
  width: 0;
+ visibility: visible;
 }
 
 <?php echo $c['id']; ?> .sslide .caption .frombottom .opener{
@@ -210,6 +212,7 @@ defined('_JEXEC') or die('Restricted access');
   left: 0;
 }
 
+<?php echo $c['id']; ?> .sslide .caption .smartcaption div.caption-h4,
 <?php echo $c['id']; ?> .sslide .caption .smartcaption h4{
   white-space:nowrap;
   position: absolute;
@@ -233,18 +236,89 @@ defined('_JEXEC') or die('Restricted access');
   padding: 1px 10px;
   text-transform:uppercase;
   <?php $fonts->printFont('captionfont', 'Tag', true); ?>
+  
+  line-height: <?php
+    ob_start();
+    $fonts->_printFont('captionfont', 'Tag', null,array('font-size'), true, true);
+    echo intval(ob_get_clean())*1.3;
+    ?>px;
 }
 
+.dj_ie7 <?php echo $c['id']; ?> .sslide .caption .smartcaption div.caption-h4,
 .dj_ie7 <?php echo $c['id']; ?> .sslide .caption .smartcaption h4{
   background-color: #<?php echo substr($color, 0, 6); ?>;
 }
 
+<?php echo $c['id']; ?> .sslide .caption .smartcaption div.caption-h3,
 <?php echo $c['id']; ?> .sslide .caption .smartcaption h3{
   white-space:nowrap;
   position: absolute;
   margin: 0;
   display: block;
-  padding: 11px 10px;
+  padding: <?php echo 11*$ratio; ?>px <?php echo 10*$ratio; ?>px;
   background: url('<?php echo $c['captionurl']; ?>images/black70.png') repeat;
   <?php $fonts->printFont('captionfont', 'Title', true); ?>
+}
+<?php echo $c['id']; ?> .sslide .caption{
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+<?php echo $c['id']; ?> .sslide .caption .defaultcaption{
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+<?php echo $c['id']; ?> .sslide .caption .defaultcaption-title,
+<?php echo $c['id']; ?> .sslide .caption .defaultcaption-description{
+    background: #000;
+    background: RGBA(0,0,0,0.7);
+    float:left;
+    clear: left;
+    box-shadow: inset 0 5px 5px RGBA(0,0,0,0.5), 1px 1px 0 0 RGBA(255,255,255,0.1);
+}
+
+<?php echo $c['id']; ?> .sslide .caption .defaultcaption-title{
+    margin: 4% 2% 0 5%;
+    <?php $fonts->printFont('defaultcaptionfont', 'Title', true); ?>
+    padding: <?php echo 8*$ratio; ?>px;
+    z-index: 7;
+    <?php
+    ob_start();
+    $fonts->_printFont('defaultcaptionfont', 'Title', null,array('font-size'), true, true);
+    $fsize = ob_get_clean();
+    if(strpos($fsize, 'px') && intval($fsize) < 8){
+    ?>
+    display: none;
+    <?php
+    }
+    ?>
+}
+
+<?php echo $c['id']; ?> .sslide .caption .defaultcaption-description{
+    margin: 2px 2% 0 5%;
+    <?php $fonts->printFont('defaultcaptionfont', 'Description', true); ?>
+    padding: <?php echo 8*$ratio; ?>px;
+    max-width: 90%;
+    z-index: 6;
+    
+    <?php
+    ob_start();
+    $fonts->_printFont('defaultcaptionfont', 'Description', null,array('font-size'), true, true);
+    $fsize = ob_get_clean();
+    if(strpos($fsize, 'px') && intval($fsize) < 8){
+    ?>
+    display: none;
+    <?php
+    }
+    ?>
+}
+
+.nextend-csstransitions <?php echo $c['id']; ?>  .sslide.animating .caption .defaultcaption-title,
+.nextend-csstransitions <?php echo $c['id']; ?>  .sslide.animating .caption .defaultcaption-description,
+.nextend-csstransitions <?php echo $c['id']; ?>  .sslide.selected .caption .defaultcaption-title,
+.nextend-csstransitions <?php echo $c['id']; ?>  .sslide.selected .caption .defaultcaption-description{
+    visibility: visible;
 }

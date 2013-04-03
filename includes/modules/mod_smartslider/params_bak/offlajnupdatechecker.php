@@ -1,13 +1,4 @@
 <?php
-/*-------------------------------------------------------------------------
-# com_smartslider - Smart Slider
-# -------------------------------------------------------------------------
-# @ author    Roland Soós
-# @ copyright Copyright (C) 2013 Nextendweb.com  All Rights Reserved.
-# @ license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# @ website   http://www.nextendweb.com
--------------------------------------------------------------------------*/
-?><?php
 @ini_set('memory_limit','260M');
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die();

@@ -22,9 +22,25 @@ class ArticlesParser {
   function makeSlides() {
     $content = TemplateParser::getFile("contents", $this->params->get('generatorcontents'));
     $caption = TemplateParser::getFile("captions", $this->params->get('generatorcaptions'));
-
     $slides = array();
-    $this->result = TemplateParser::getIds("content", $this->params->get("generatorcategory"), "catid", "", " `state` = '1'");
+    $_orderby = $this->params->get('generatororderby');
+    $_order = $this->params->get('generatororder');
+    $order = '';
+    $where = '';
+    if($this->params->get('generatorfeatured',0) == 1){
+      $where.=' AND featured = 1 ';
+    }
+    if($this->params->get('generatorcontentimage',0) == 1){
+      $where.=' AND introtext LIKE "%src=%"';
+    }
+    
+    
+    if($_order == 'random'){
+      $order = 'rand()';
+    }else if($_orderby != ''){
+      $order = $_orderby.','.$_order;
+    }
+    $this->result = TemplateParser::getIds("content", $this->params->get("generatorcategory"), "catid", $order, " `state` = '1'".$where);
     
     
     if(version_compare(JVERSION,'3.0.0','>=')){
@@ -44,12 +60,12 @@ class ArticlesParser {
     for($i=0;$i<$count;$i++) {
       //$d = $this->getDatas($i);
       $d = TemplateParser::getDatas($i, $this->xml, $this->result, $this->params);
+      $slides[$i]->id = $this->result[$i];
       $slides[$i]->content = TemplateParser::parse($content, $d, "content");
       $slides[$i]->caption = TemplateParser::parse($caption, $d, "caption");
       $slides[$i]->groupprev = 0;      
       $slides[$i]->title = $d["generatorslidetitle"];
     }
-    
     return $slides;
   }
   

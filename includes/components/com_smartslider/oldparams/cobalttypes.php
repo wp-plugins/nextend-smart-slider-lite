@@ -59,7 +59,7 @@ class JElementCobalttypes extends JElement {
       $options[] = JHTML::_('select.option', $res->id, $res->name);
     }
     DojoLoader::addScript('
-      var cobaltccktypefields = dojo.fromJson(\''.json_encode($this->fields).'\');
+      var cobaltccktypefields = dojo.fromJson(\''.addslashes(json_encode($this->fields)).'\');
       var cobaltccktype = dojo.byId("paramsgeneratortypes");
       var cobaltckkfn = function(){
         window.slidegenerator.data["CobaltCck"].contentvalue = cobaltccktypefields[cobaltccktype.options[cobaltccktype.selectedIndex].value];

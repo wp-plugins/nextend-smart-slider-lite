@@ -38,7 +38,7 @@ fieldset.adminform .imagelist img{
   float: none;
 }
 </style>
-<form action="index.php" method="post" name="adminForm" id="adminForm">
+<form action="index.php" method="post" name="adminForm" id="adminForm" style="margin-bottom: 500px;">
   <div id="nextend-configurator-lightbox" class="nextend-no-style">
     <div class="pane-sliders">		
       <div class="col <?php if(defined('WP_ADMIN')) { ?> col50 width-50 fltlft <?php }else{ ?>col100 width-100 <?php } ?>" id="defaultparams">			

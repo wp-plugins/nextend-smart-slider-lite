@@ -1,16 +1,14 @@
 <?php
 /*-------------------------------------------------------------------------
-# mod_accordion_menu - Accordion Menu - Offlajn.com
+#  Fonts helper - Nextendweb.com
 # -------------------------------------------------------------------------
 # @ author    Roland Soos
-# @ copyright Copyright (C) 2012 Offlajn.com  All Rights Reserved.
+# @ copyright Copyright (C) 2013 Nextendweb.com  All Rights Reserved.
 # @ license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# @ website   http://www.offlajn.com
+# @ website   http://www.nextendweb.com
 -------------------------------------------------------------------------*/
 ?><?php
 if(!class_exists('OfflajnFontHelper')){
-  if(!isset($GLOBALS['googlefontsloaded']))
-    $GLOBALS['googlefontsloaded'] = array();
   
   class OfflajnFontHelper {
     function OfflajnFontHelper($params){
@@ -19,7 +17,7 @@ if(!class_exists('OfflajnFontHelper')){
     }
     
     function parseFonts(){
-      $imports = '';
+      $fonts = array();
       foreach($this->_params->toArray() AS $k => $f){
         if(strpos($k, 'font')!==false && isset($f[0]) && $f[0] == '{'){
           $f = json_decode($f, true);
@@ -43,18 +41,28 @@ if(!class_exists('OfflajnFontHelper')){
           if(isset($t['type']) && $t['type'] == '0' || !isset($t['type']) && $f[$default_tab]['type'] == '0') continue;
           
           
-            $url = isset($t['family']) ? $t['family'] : $f[$default_tab]['family'];
-            $url.= ":".(isset($t['bold']) ? ($t['bold'] ? 700 : 400) : $weight);
-            $url.= (isset($t['italic']) ? ($t['italic'] ? 'italic' : '') : $italic);
-            $url.= '&subset='.(isset($t['subset']) ? $this->_getSubset($t['subset']) : $subset);
-            if(!isset($GLOBALS['googlefontsloaded'][$url]) && $url!="" && substr($url, 0, 1)!=":"){
-              $imports.= "@import url('https://fonts.googleapis.com/css?family=".$url."');\n";
-              $GLOBALS['googlefontsloaded'][$url] = 1;
-            }
+            $_family = isset($t['family']) ? $t['family'] : $f[$default_tab]['family'];
+            $_subset = (isset($t['subset']) ? $this->_getSubset($t['subset']) : $subset);
+            $_weight = (isset($t['bold']) ? ($t['bold'] ? 700 : 400) : $weight);
+            $_italic = (isset($t['italic']) ? ($t['italic'] ? 'italic' : '') : $italic);
+            if(!isset($fonts[$_family]))
+              $fonts[$_family] = array('subset' => array());
+            $fonts[$_family]['subset'][] = $_subset;
+            $fonts[$_family]['options'][] = $_weight.$_italic;
           }
         }
       }
-      return $imports;
+    
+      $query = '';
+      foreach($fonts AS $k => $font){
+        if($k == '') continue;
+        if($query != '') $query.='|';
+        $query.= $k.':'.implode(',',array_unique($font['options']));
+      }
+      if($query == '') return ''; 
+      $url = 'https://fonts.googleapis.com/css?family='.$query;
+      
+      return "@import url('".$url."');\n";;
     }
     
     /*
@@ -63,12 +71,16 @@ if(!class_exists('OfflajnFontHelper')){
     */
     
     function _printFont($name, $tab, $excl = null, $incl=null, $loadDefaultTab = false, $justValue = false){
+      global $ratio;
+      if(!$ratio) $ratio = 1;
       $f = $this->_params->get($name);
       if(!$tab) $tab = $f['default_tab'];
       $t = $f[$tab];
-      if($loadDefaultTab && $tab != $f['default_tab']){
-        foreach($f[$f['default_tab']] AS $k => $v){
-          if(!isset($t[$k])) $t[$k] = $v;
+      if($loadDefaultTab && $tab != $f['default_tab'] && isset($f[$f['default_tab']])){
+        if(count($f[$f['default_tab']])){
+          foreach($f[$f['default_tab']] AS $k => $v){
+            if(!isset($t[$k])) $t[$k] = $v;
+          }
         }
       }
       $family = '';
@@ -87,8 +99,15 @@ if(!class_exists('OfflajnFontHelper')){
       
       if((!$excl || !in_array('font-size', $excl)) && (!$incl || in_array('font-size', $incl)))
         if(isset($t['size']) && $t['size'] != '') 
-          if(!$justValue) echo 'font-size: '.$this->_parser->parse($t['size'],'').";\n";
-            else echo $this->_parser->parse($t['size'],'');
+          if(!$justValue){
+            $s = $this->_parser->parse($t['size']);
+            $s[0] = intval($s[0]*$ratio);
+            echo 'font-size: '.implode('',$s).";\n";
+          }else{
+            $s = $this->_parser->parse($t['size']);
+            $s[0] = intval($s[0]*$ratio);
+            echo implode('',$s);
+          }
       
       if((!$excl || !in_array('color', $excl)) && (!$incl || in_array('color', $incl)))
         if(isset($t['color']) && $t['color'] != '') 
@@ -120,8 +139,21 @@ if(!class_exists('OfflajnFontHelper')){
       
       if((!$excl || !in_array('line-height', $excl)) && (!$incl || in_array('line-height', $incl)))
         if(isset($t['lineheight'])) 
-          if(!$justValue) echo 'line-height: '.$t['lineheight'].";\n";
-            else echo $t['lineheight'];
+          if(!$justValue){
+            if($ratio == 1)
+              echo 'line-height: '.$t['lineheight'].";\n";
+            else{
+              $lht = $t['lineheight'];
+              $lh = intval($t['lineheight']);
+              if($lh > 0){
+                $lhu = str_replace($lh,'',$t['lineheight']);
+                $lh = intval($lh*$ratio);
+                echo 'line-height: '.$lh.$lhu.";\n";
+              }else{
+                echo 'line-height: '.$t['lineheight'].";\n";
+              }
+            }
+          }else echo $t['lineheight'];
     }
     
     function printFont($name, $tab, $loadDefaultTab = false){

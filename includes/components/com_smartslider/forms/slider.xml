@@ -14,9 +14,13 @@
       </param>
     </param>
     
+    <param name="responsive" type="offlajnonoff" default="0" label="Responsive mode" description=""/>
+    <param name="css3transition" type="offlajnonoff" default="0" label="CSS3 transitions" description=""/>
+    <param name="imageresize" type="offlajnonoff" default="0" label="Image resizer" description=""/>
+  
     <param name="type" type="offlajnslidertype" default="accordionHorizontal" label="Slider Type" description="The type of the Slider"/>
   </params>
   <params addPath="/administrator/components/com_smartslider/params" group="generator">
-    <param name="generator" type="offlajnslidegenerator" default="choose" label="Slide generator" description="Slidegenerator"/>
+  <param name="generator" type="offlajnslidegenerator" default="choose" label="Slide generator" description="Slidegenerator"/>
   </params>
 </config>

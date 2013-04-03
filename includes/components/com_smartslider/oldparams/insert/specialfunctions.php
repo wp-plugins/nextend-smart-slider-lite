@@ -15,6 +15,20 @@ function SSDefaultFilter($row){
   return $row[0];
 }
 
+function SSImageFilter($row){
+  $desc = $row[0];
+  preg_match('/src=("|\')([^("|\')]+)("|\')/', $desc, $matches);
+  if(count($matches) > 2){
+    return $matches[2];
+  }
+  return '';
+}
+
+function K2_Image($row){
+  $id = $row[0];
+  return "media/k2/items/cache/".md5("Image".$id)."_XL.jpg";
+}
+
 /*
 *Virtuemart 1.x Special Functions
 */
@@ -179,10 +193,27 @@ function SSLinkToCategory($row) {
 */
 
 function SSLinkToArticle($row) {
-  // return JURI::root(true).JRoute::_( '/index.php?option=com_content&view=article&id='.$row[0] );
-  //return JRoute::_( 'index.php?option=com_content&view=article&id='.$row[0].'&Itemid='.JApplication::getItemid($row[0]) ); for 1.5.x OK, but not for newer
-  require_once(JPATH_SITE.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php');
-  return @ContentHelperRoute::getArticleRoute($row[0], '');  
+  if(version_compare(JVERSION,'3.0.0','l') && !class_exists('JControllerLegacy')){
+    class JControllerLegacy extends JController{};
+    jimport( 'joomla.application.component.view' );
+    class JViewLegacy extends JView{};
+    jimport( 'joomla.application.component.model' );
+    class JModelLegacy extends JModel{};
+  }
+  
+  $com_path = JPATH_SITE.'/components/com_content/';
+  require_once $com_path.'router.php';
+  require_once $com_path.'helpers/route.php';
+  jimport('joomla.application.component.modellegacy');
+  JModelLegacy::addIncludePath($com_path . '/models', 'ContentModel'); 
+  
+  $model = JModelLegacy::getInstance('Article', 'ContentModel', array('ignore_request' => true)); 
+  
+  $app = JFactory::getApplication('site');
+	$params = $app->getParams();
+	$model->setState('params', $params);
+  $item = $model->getItem($row[0]);
+  return ContentHelperRoute::getArticleRoute($item->id, $item->catid, $item->language);
 }
 
 /*

@@ -40,7 +40,7 @@ class JElementOfflajnMultiSelectList extends JOfflajnFakeElementBase {
     $html .= '<div id="offlajnmultiselect'.$this->name.'" class="gk_hack offlajnmultiselect" style="height: '.$height.'px">';
     $html .= '</div>'; 
     (!isset($value)) ? $value = 0 : $value = $value;
-    $html .= '<input type="hidden" id="'.$this->generateId($name).'" name="'.$name.'" value="'.$value.'"/>';
+    $html .= '<input autocomplete="off" type="hidden" id="'.$this->generateId($name).'" name="'.$name.'" value="'.$value.'"/>';
     DojoLoader::addScript('new OfflajnMultiSelectList({
       name: '.json_encode($this->name).',
       height: '.json_encode($height).',

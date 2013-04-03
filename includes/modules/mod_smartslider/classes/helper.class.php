@@ -23,38 +23,40 @@ class OfflajnSliderHelper{
   }
   
   function ColorizeImage($img, $targetColor, $baseColor){
-    $c1 = $this->c->hex2hsl($baseColor);
-    $c2 = $this->c->hex2hsl($targetColor);
-    $im = imagecreatefrompng($img);
-    $height = imagesy($im);
-    $width = imagesx($im);
-    $imnew = imagecreatetruecolor($width, $height);
-    imagealphablending($imnew, false);
-    imagesavealpha($imnew, true);  
-    $transparent = imagecolorallocatealpha($imnew, 255, 255, 255, 127);
-		imagefilledrectangle($imnew, 0, 0, $width, $height, $transparent);
-    $rgb = $this->rgb2array($targetColor);
-    for($x=0; $x<$width; $x++){
-        for($y=0; $y<$height; $y++){
-            $rgba = ImageColorAt($im, $x, $y);
-            $rgb = array((($rgba >> 16) & 0xFF), (($rgba >> 8) & 0xFF), $rgba & 0xFF);
-            
-            $hsl = $this->c->rgb2hsl($rgb);
-            $a[0] = $hsl[0] + ($c2[0] - $c1[0]);
-            $a[1] = $hsl[1] * ($c2[1] / $c1[1]);
-            if($a[1] > 1) $a[1] = 1;
-            $a[2] = exp(log($hsl[2]) * log($c2[2]) / log($c1[2]) );
-            if($a[2] > 1) $a[2] = 1;
-            $rgb = $this->c->hsl2rgb($a);
-            $A = ($rgba >> 24) & 0xFF; 
-            imagesetpixel($imnew, $x, $y, imagecolorallocatealpha($imnew, $rgb[0], $rgb[1], $rgb[2], $A));
-        }
+    $hash = md5($img.filemtime($img).$targetColor.$baseColor).'.png';
+    if(!file_exists($this->cache.$hash)){
+      $c1 = $this->c->hex2hsl($baseColor);
+      $c2 = $this->c->hex2hsl($targetColor);
+      $im = imagecreatefrompng($img);
+      $height = imagesy($im);
+      $width = imagesx($im);
+      $imnew = imagecreatetruecolor($width, $height);
+      imagealphablending($imnew, false);
+      imagesavealpha($imnew, true);  
+      $transparent = imagecolorallocatealpha($imnew, 255, 255, 255, 127);
+		  imagefilledrectangle($imnew, 0, 0, $width, $height, $transparent);
+      $rgb = $this->rgb2array($targetColor);
+      for($x=0; $x<$width; $x++){
+	  for($y=0; $y<$height; $y++){
+	      $rgba = ImageColorAt($im, $x, $y);
+	      $rgb = array((($rgba >> 16) & 0xFF), (($rgba >> 8) & 0xFF), $rgba & 0xFF);
+	      
+	      $hsl = $this->c->rgb2hsl($rgb);
+	      $a[0] = $hsl[0] + ($c2[0] - $c1[0]);
+	      $a[1] = $hsl[1] * ($c2[1] / $c1[1]);
+	      if($a[1] > 1) $a[1] = 1;
+	      $a[2] = exp(log($hsl[2]) * log($c2[2]) / log($c1[2]) );
+	      if($a[2] > 1) $a[2] = 1;
+	      $rgb = $this->c->hsl2rgb($a);
+	      $A = ($rgba >> 24) & 0xFF; 
+	      imagesetpixel($imnew, $x, $y, imagecolorallocatealpha($imnew, $rgb[0], $rgb[1], $rgb[2], $A));
+	  }
+      }
+      imagepng($imnew, $this->cache.DS.$hash);
+      @chmod($this->cache.DS.$hash,0777);
+      imagedestroy($imnew);
+      imagedestroy($im);
     }
-    $hash = md5($img.$targetColor).'.png';
-    imagepng($imnew, $this->cache.DS.$hash);
-    @chmod($this->cache.DS.$hash,0777);
-    imagedestroy($imnew);
-    imagedestroy($im);
     return $hash; 
   }
   
@@ -65,6 +67,9 @@ class OfflajnSliderHelper{
     if($targetH == 0){
       $targetH = (int)($targetW/$width*$height);
       $GLOBALS['height'] = $targetH;
+    }else if($targetW == 0){
+      $targetW = (int)($targetH/$height*$width);
+      $GLOBALS['width'] = $targetW;
     }
     
     $imnew = imagecreatetruecolor($targetW, $targetH);

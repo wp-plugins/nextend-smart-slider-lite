@@ -25,28 +25,35 @@ if(version_compare(JVERSION,'1.6.0','>=')) {
     
   	var	$_name = 'articlecategories';
   
-  	function fetchElement($name, $value, &$node, $control_name){
-  	
-  	  $option = array();
-  	  $class = "class=inputbox";
-  	  
-  	   $db = & JFactory::getDBO();
-       if(version_compare(JVERSION,'1.6.0','>=')) { 
-    	   $query = "SELECT ". $db->qn('id').", ".$db->qn('title').
-                  " FROM ". $db->qn('#__categories'). 
-                  " WHERE ".$db->qn('extension')."=".$db->quote('com_content');
-       }else{
-    	   $query = "SELECT ". $db->nameQuote('id').", ".$db->nameQuote('title').
-                  " FROM ". $db->nameQuote('#__categories'). 
-                  " WHERE ".$db->nameQuote('extension')."=".$db->quote('com_content');
-       }
+    function fetchElement($name, $value, &$node, $control_name){
+      
+      $option = array();
+      $class = "class='inputbox'";
+      
+       $db = & JFactory::getDBO();
+       $query = "SELECT ". $db->qn('id').", ".$db->qn('title').", parent_id".
+                " FROM ". $db->qn('#__categories'). 
+                " WHERE ".$db->qn('extension')."=".$db->quote('com_content');
        $db->setQuery($query);
-       $result = $db->loadRowList();
-       foreach($result as $res) {
-        $options[] = JHTML::_('select.option', $res[0], $res[1]);
+        $menuItems = $db->loadObjectList();
+        
+        $children = array();
+        if ($menuItems) {
+          foreach ($menuItems as $v) {
+              $pt = $v->parent_id;
+              $list = isset($children[$pt]) ? $children[$pt] : array();
+              array_push($list, $v);
+              $children[$pt] = $list;
+          }
+        }
+        jimport('joomla.html.html.menu');
+        $_options = JHTML::_('menu.treerecurse', 1, '', array(), $children, 9999, 0, 0);
+
+       foreach($_options as $res) {
+        $options[] = JHTML::_('select.option', $res->id, $res->treename);
        }
-       return JHTML::_('select.genericlist', $options, 'params['.$name.']', $class , 'value', 'text',  $value, $control_name.$name);
-  	}
+       return JHTML::_('select.genericlist', $options, 'params['.$name.'][]', $class." multiple='1' size='10'" , 'value', 'text',  $value, $control_name.$name);
+    }
   }
 } else {
     jimport( 'joomla.html.parameter.element.category' );

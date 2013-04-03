@@ -68,11 +68,13 @@ class DojoLoader{
     $this->script[] = $script;
   }
   
-  function addScriptFile($file, $version = null, $scope = 'o'){
-    if($version == null)
-      $l = DojoLoader::getInstance();
-    else
-      $l = DojoLoader::getInstance($version, $scope);
+  function addScriptFile($file, $version = null, $scope = 'o') {
+    DojoLoader::addAbsoluteScriptFile(JPATH_SITE.$file, $version, $scope);
+  }
+  
+  function addAbsoluteScriptFile($file, $version = null, $scope = 'o'){
+    if ($version == null) $l = DojoLoader::getInstance();
+    else $l = DojoLoader::getInstance($version, $scope);
     $l->_addScriptFile($file);
   }
   
@@ -105,18 +107,16 @@ class DojoLoader{
     
     $pathfolder = JPATH_SITE.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'dojo'.DIRECTORY_SEPARATOR.$folder.DIRECTORY_SEPARATOR;
     
-    $hashfile = $pathfolder.'hash.txt';
     $hashcode = '';
-    if(!JFile::exists($hashfile)){
-      JFile::write($hashfile, md5(time()));
+    for($i=0; $i < count($fkeys); $i++){
+      $hashcode.= filemtime($fkeys[$i]);
     }
-    $hashcode = JFile::read($hashfile);
     
     $hash = md5(implode('', $keys).implode('', $fkeys).$script.$hashcode).'.js';
     
     $path = $pathfolder.$hash;
     
-    if(isset($_GET['nextendclearcache']) || !JFile::exists($path)){
+    if(!JFile::exists($path)){
       $t = '
         (function(){';
       if(!isset($_POST['offlajnformrenderer'])){
@@ -149,7 +149,7 @@ class DojoLoader{
         $t.= $this->read($this->scripts[$keys[$i]])."\n";
       }
       for($i=0; $i < count($fkeys); $i++){
-        $t.= $this->readAbs(JPATH_SITE.$fkeys[$i])."\n";
+        $t.= $this->readAbs($fkeys[$i])."\n";
       }
       $t.='dojo.addOnLoad(function(){'.$script.'});
       ';
@@ -194,7 +194,7 @@ class DojoLoader{
     $date = date('Ymd');
     $folders = array();
     $path = JPATH_SITE.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'dojo';
-    if(!JFolder::exists($path.DIRECTORY_SEPARATOR.$date)) {
+    if(isset($_GET['nextendclearcache']) || !JFolder::exists($path.DIRECTORY_SEPARATOR.$date)) {
       $folders = JFolder::folders($path, '', '', 1);
       if(is_array($folders)){
         foreach($folders as $folder) {

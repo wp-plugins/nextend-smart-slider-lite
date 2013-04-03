@@ -10,11 +10,15 @@
 ?>
 <?php
 defined('_JEXEC') or die('Restricted access');
+
+$sp = &$tthis->slider->params;
+$slideids = array();
 ?>
 <script type="text/javascript">
 var captions = new Array;
+var resizeableimages = new Array;
 </script>
-<div id="<?php echo $id; ?>">
+<div id="<?php echo $id; ?>" class="new-activeslide0">
   <div class="outer">
     <div class="slinner">
       <dl>
@@ -27,36 +31,40 @@ var captions = new Array;
         
       $class = implode(' ', $classes);
       ?>
-        <dt class="<?php echo $class; ?> sslide">
+        <dt class="<?php echo $class; ?> sslide slide-<?php echo $x; ?>">
           <span class="slideinner">
             <span class="slidepattern">
               <span class="rotated-90">
                 <span class="title">
                   <?php echo $slide->title; ?>
                 </span>  
-              </span>
-              <span class="numbering">
-                <?php echo $x+1; ?>
-              </span>
-              <?php 
+                </span>
+                <span class="numbering">
+                    <?php echo $x+1; ?>
+                </span>
+                <?php 
                 $icon = '';
-                if(defined('ABSPATH')){
-                  $icon = $slide->icon;
-                }else{
-                  $icon = JURI::base().'images/smartslider/slidericons/'.$slide->icon;
+                if(property_exists($slide, 'icon') && $slide->icon != '' && $slide->icon != '-1'){
+                  if(defined('ABSPATH')){
+                    $icon = $slide->icon;
+                  }else{
+                    $icon = JURI::root().$slide->icon;
+                  }
                 }
-              ?>
-              <span class="icon" style="<?php if($slide->icon != '' && $slide->icon != '-1') : ?>background-image:url('<?php echo $icon; ?>');<?php endif; ?>"></span>
+                ?>
+                <span class="icon" style="<?php if($icon != '') : ?>background-image:url('<?php echo $icon; ?>');<?php endif; ?>"></span>
             </span>
           </span>
         </dt>
-        <dd class="<?php echo $class; ?> sslide">
+        <dd class="<?php echo $class; ?> sslide slide-<?php echo $x; ?>">
           <script type="text/javascript">
             captions[<?php echo $x; ?>] = new Array;
           </script>
           <ul class="vertical">
-            <?php $y = 0; foreach($slide->childs AS $child){ ?>
-            <li class="subslide">
+            <?php $y = 0; foreach($slide->childs AS $child){ 
+              $slideids[$child->id] = array($x, $y);
+            ?>
+            <li class="subslide slide-<?php echo $x; ?>-<?php echo $y; ?>">
               <div class="canvas">
                 <?php echo $context['helper']->modulePositionReplacer($child->content); ?>
               </div>
@@ -88,6 +96,7 @@ var captions = new Array;
 ?>
 <script type="text/javascript">
 var <?php echo $id?>captions = odojo.clone(captions);
+var <?php echo $id?>resizeableimages = odojo.clone(resizeableimages);
 odojo.addOnLoad(odojo,function(){
   var dojo = this;
   new OfflajnSlider({
@@ -101,7 +110,13 @@ odojo.addOnLoad(odojo,function(){
     secondaryinterval: <?php echo $secondanim[0][0]; ?>,
     secondaryeasing: <?php echo $secondanim[1]; ?>,
     mousescroll: <?php echo $tthis->slider->params->get('mousescroll', 1); ?>,
-    showdots: <?php echo $tthis->slider->params->get('showdots', 1); ?>
+    showdots: <?php echo $tthis->slider->params->get('showdots', 1); ?>,
+    url: '<?php echo JUri::root(); ?>',
+    resizeableimages: <?php echo $id?>resizeableimages,
+    responsive: <?php echo $sp->get('responsive', 0); ?>,
+    css3transition: <?php echo $sp->get('css3transition', 0); ?>,
+    imageresize: <?php echo $sp->get('imageresize', 0); ?>,
+    slideids: <?php echo json_encode($slideids); ?>
     
   });
 });

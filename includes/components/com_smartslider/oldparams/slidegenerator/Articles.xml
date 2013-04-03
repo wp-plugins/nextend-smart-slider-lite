@@ -5,7 +5,23 @@
   <params>
    
     
-    <param name="generatorcategory" type="articlecategories" default="" label="Select a category"/>
+    <param name="generatorcategory" type="articlecategories" default="" label="Select source categories"/>
+    <param name="generatorfeatured" type="offlajnonoff" default="0" label="Featured"/>
+    <param name="generatororderby" type="list" default="" label="Order by">
+      <option value="title">Title</option>
+      <option value="hits">Most popular</option>
+      <option value="created">Created date</option>
+      <option value="modified">Modified date</option>
+      <option value="ordering">Ordering</option>
+    </param>
+    <param name="generatororder" type="list" default="desc" label="Order">
+      <option value="ASC">Ascending</option>
+      <option value="DESC">Descending</option>
+      <option value="random">Random</option>
+    </param>
+    <param name="generatorcontentimage" type="offlajnonoff" default="0" label="Only contents with image"/>
+    
+    
     <param name="generatorslidenumber" type="offlajntext" default="" label="Number of slides" description="Number of the slides"/>
     <param name="generatorslidegenerate" type="offlajnonoff" default="0" label="Generates slides" description="Generates the slides">
       <option value="0">No</option>
@@ -18,6 +34,7 @@
       <allowedtemplate>onecolumn</allowedtemplate>
       <allowedtemplate>twocolumn</allowedtemplate>
       <allowedtemplate>threecolumn</allowedtemplate>
+      <allowedtemplate>linkandbackground</allowedtemplate>
     </allowedtemplates>
     
     <editablefields>
@@ -55,6 +72,9 @@
       <editablefield>captioncontentanimationdelay</editablefield>
       <editablefield>captioncontentanimationeasing</editablefield>
       <editablefield>captionanimationdelay</editablefield>
+      <editablefield>captiontop</editablefield>
+      <editablefield>contentimagewidth</editablefield>
+      <editablefield>contentimageheight</editablefield>
     </editablefields>
     
     <deniedfields>    
@@ -77,12 +97,16 @@
       <contentposition>Content Third column content</contentposition>
       <contentposition>Content Read more url</contentposition>
       <contentposition>Content Read more text</contentposition>
+      <contentposition>Content Link for image</contentposition>
+      <contentposition>Content Background image url</contentposition>
+      <contentposition>Content Image url</contentposition>
     </contentpositions>
     
     <contentvalues>
       <title type="content" insert="0">Title</title>
       <alias type="content" insert="0">Alias</alias>
       <introtext type="content" insert="0">Introtext</introtext>
+      <articleimage type="article_image" insert="1">First image of the article</articleimage>
       <category type="article_category" insert="1">Category</category>
       <createdby type="article_created_by" insert="1">Article created by</createdby>
       <linktoarticle type="link_to_article" insert="1">Link to Article</linktoarticle>
@@ -93,6 +117,7 @@
     <captionposition>Caption Tag</captionposition>
       <captionposition>Caption Caption Title</captionposition>
       <captionposition>Caption Description</captionposition>
+      <captionposition>Caption Title</captionposition>
     </captionpositions>
     
     <showcaptions>1</showcaptions>

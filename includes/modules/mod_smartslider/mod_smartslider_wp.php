@@ -1,13 +1,4 @@
 <?php
-/*-------------------------------------------------------------------------
-# com_smartslider - Smart Slider
-# -------------------------------------------------------------------------
-# @ author    Roland Soós
-# @ copyright Copyright (C) 2013 Nextendweb.com  All Rights Reserved.
-# @ license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# @ website   http://www.nextendweb.com
--------------------------------------------------------------------------*/
-?><?php
 // $slider_id
 // $wpdb->base_prefix
 global $wpdb;
@@ -111,8 +102,9 @@ if(!function_exists('getSmartSlider')) {
     
     $id = $module->module.'_'.$module->id;
     
-    DojoLoader::r('dojo.uacss');
     DojoLoader::r('dojo.fx.easing');
+    DojoLoader::r('dojo.uacss');
+    DojoLoader::addScriptFile(DS . 'modules' . DS . 'mod_smartslider' . DS . 'js' . DS . 'responsive.js');
     DojoLoader::addScriptFile(DS.'modules'.DS.'mod_smartslider'.DS.'ie6'.DS.'ie6.js');
     DojoLoader::addScriptFile(DS.'modules'.DS.'mod_smartslider'.DS.'captions'.DS.'captions.js');
     DojoLoader::addScriptFile(DS.'modules'.DS.'mod_smartslider'.DS.'types'.DS.$tthis->slider->type.DS.'script.js');

@@ -32,7 +32,8 @@ defined('_JEXEC') or die('Restricted access');
   
   $marginDt = array(2, 0, 2, 2);
   $paddingDt = array(3, 3, 3, 3);
-  $titleWidth = 38;
+  
+  $titleWidth = round(38*$ratio/2)*2; // Always even fix
   
   $marginDd = array(2, 2, 2, -2);
   $paddingDd = array(0, 0, 0, 2);
@@ -89,7 +90,7 @@ defined('_JEXEC') or die('Restricted access');
   $cheight = $cheight-$paddingOut[0]-$paddingOut[2];
 ?>
 <?php echo $c['id']; ?> .outer{
-  border-radius: 1px;
+  border-radius: <?php echo OfflajnValueParser::parseUnit($sp->get('borderradius', '1|*|1|*|1|*|1|*|px'), ' '); ?>;
   /* Alpha channel*/
   <?php 
     $color = $outerborder[1];
@@ -217,7 +218,7 @@ defined('_JEXEC') or die('Restricted access');
   height: <?php echo $cheight; ?>px;
   background: url('<?php echo $c['url']; ?>images/pattern.png') repeat;
   overflow: hidden;
-  z-index: 50;
+  z-index: 3;
   margin: -<?php echo $paddingDt[0]; ?>px 0 0 -<?php echo $paddingDt[3]; ?>px;
   display: block;
 }
@@ -227,6 +228,7 @@ defined('_JEXEC') or die('Restricted access');
   -moz-transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
   -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
   zoom: 1;
 
   height: <?php echo $cheight-10; ?>px;
@@ -247,7 +249,6 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php echo $c['id']; ?> dt.sslide .title{
   height: <?php echo $titleWidth-5*2; ?>px;
-  line-height: <?php echo $titleWidth-5*2; ?>px;
   padding: 0 0 0 10px;
   display: block;
   text-align: left;
@@ -255,6 +256,7 @@ defined('_JEXEC') or die('Restricted access');
   /*font chooser*/
   <?php if(!$this->calc) $fonts->printFont('tabfont', 'Tab'); ?>
   /*font chooser*/
+  line-height: <?php echo $titleWidth-5*2; ?>px;
 }
 
 .dj_ie7 <?php echo $c['id']; ?> dt.sslide .title,
@@ -348,6 +350,7 @@ defined('_JEXEC') or die('Restricted access');
   /*font chooser*/
   <?php if(!$this->calc) $fonts->printFont('tabfont', 'Selected', true); ?>
   /*font chooser*/
+  line-height: <?php echo $titleWidth-5*2; ?>px;
 }
 
 <?php echo $c['id']; ?> dt.selected{
@@ -357,12 +360,12 @@ defined('_JEXEC') or die('Restricted access');
 <?php echo $c['id']; ?> dt.sslide .dots{
   position: absolute;
   left: 0;
-  top: 45px;
+  top: <?php echo 45*$ratio; ?>px;
   <?php if($this->env->slider->params->get('slidenumbering') && $this->env->slider->params->get('slideicons')): ?>
-  top: 65px;
+  top: <?php echo 70*$ratio; ?>px;
   <?php endif; ?>
   width: <?php echo $titleWidth; ?>px;
-  z-index: 56;
+  z-index: 5;
   display: block;
     <?php if (!$this->env->slider->params->get('showdots', 1)): ?> 
    display: none;    
@@ -378,6 +381,13 @@ defined('_JEXEC') or die('Restricted access');
   display: block;
 }
 
+.nextend-backgroundsize <?php echo $c['id']; ?> dt.sslide .dots .dot{
+  width: <?php echo round(9*$ratio); ?>px;
+  height: <?php echo round(9*$ratio); ?>px;
+  background-size: 100% 100%;
+  margin: <?php echo round(3*$ratio); ?>px auto 0;
+}
+
 <?php echo $c['id']; ?> dt.sslide .dots .dot.active{
   background-image: url('<?php echo $c['url']; ?>images/filleddot.png');
   cursor: auto;
@@ -389,8 +399,9 @@ defined('_JEXEC') or die('Restricted access');
 /*Circles with numbers*/
 
 <?php echo $c['id']; ?> dt.sslide .dots .circle {
-  width: 15px;
-  height: 15px;
+  width: <?php echo 15*$ratio; ?>px;
+  height: <?php echo 15*$ratio; ?>px;
+  line-height: <?php echo 15*$ratio; ?>px;
   background: url('<?php echo $c['url']; ?>images/numberingbg.png') no-repeat;
   margin: 3px auto 0;
   text-align: center;
@@ -399,9 +410,10 @@ defined('_JEXEC') or die('Restricted access');
   color: #fff; 
   display: block;
   font-family: Arial;
-  font-size: 11px;
+  font-size: <?php echo 11*$ratio; ?>px;
   text-shadow: 0 1px 1px #000000;
   top: 0;
+  background-size: 100% 100%;
 }
 
 <?php echo $c['id']; ?> dt.sslide .dots .circle.active{
@@ -432,12 +444,9 @@ defined('_JEXEC') or die('Restricted access');
 <?php echo $c['id']; ?> dt.sslide .arrowup {
   visibility: hidden;
   cursor: pointer;
-  width: 32px;
+  width: 100%;
   height: 30px;
   background: url('<?php echo $c['url']; ?>images/up.png') no-repeat center center;
- /* border-top: 1px solid #3E3E3E;
-  box-shadow: 0px 0.5px 1px rgba(255, 255, 255, 0.4) inset;*/
-  margin-left: 3px;
 }
 
 <?php echo $c['id']; ?> dt.sslide .topline {
@@ -448,9 +457,8 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php echo $c['id']; ?> dt.sslide .col {
   height: 2px;
-  width: 32px;
+  width: 100%;
   background: url('<?php echo $c['url']; ?>images/black20.png') repeat;
-  margin-left: 3px;
 }
 
 <?php echo $c['id']; ?> dt.sslide .arrowup.show {
@@ -464,12 +472,9 @@ defined('_JEXEC') or die('Restricted access');
 <?php echo $c['id']; ?> dt.sslide .arrowdown {
   visibility: hidden;
   cursor: pointer;
-  width: 32px;
+  width: 100%;
   height: 30px;
   background: url('<?php echo $c['url']; ?>images/down.png') no-repeat center center;
-  /*border-bottom: 1px solid #3E3E3E;
-  box-shadow: 0px 0.5px 1px rgba(255, 255, 255, 0.4) inset;*/
-  margin-left: 3px;
 }
 
 <?php echo $c['id']; ?> dt.sslide .bottomnline {
@@ -481,7 +486,7 @@ defined('_JEXEC') or die('Restricted access');
   height: 2px;
   background: url('<?php echo $c['url']; ?>images/black20.png') repeat;
   bottom: 0;
-  width: 32px;
+  width: 100%;
   position: absolute;
 }
 
@@ -493,8 +498,7 @@ defined('_JEXEC') or die('Restricted access');
 
 }
 <?php echo $c['id']; ?> dt.sslide .dots .numbers{
-  margin-left: 3px;
-  width: 32px;
+  width: 100%;
 }
 
 <?php echo $c['id']; ?> dt.sslide .dots .nums {
@@ -507,6 +511,7 @@ defined('_JEXEC') or die('Restricted access');
    /*font chooser*/
   <?php if(!$this->calc) $fonts->printFont('slidenumberfont', 'Text'); ?>
   /*font chooser*/
+  text-align: center;
 }
 
 <?php echo $c['id']; ?> dt.sslide .numbering{
@@ -514,11 +519,11 @@ defined('_JEXEC') or die('Restricted access');
   top: 8px;
   width: 100%;
   padding: 5px 0;
+  display: block;
   <?php if(!$this->env->slider->params->get('slidenumbering')): ?>
   display: none;
   <?php endif; ?>
   background: url('<?php echo $c['url']; ?>images/black20.png') repeat;
-  display: block;
 
   /*font chooser*/
 <?php if(!$this->calc) $fonts->printFont('tabfont', 'Tab'); ?>
@@ -538,7 +543,7 @@ defined('_JEXEC') or die('Restricted access');
   position: absolute;
   top: 10px;
   <?php if($this->env->slider->params->get('slidenumbering') && $this->env->slider->params->get('slideicons')): ?>
-  top: 45px;
+  top: <?php echo 45*$ratio; ?>px;
   <?php endif; ?>
   width: 100%;
   height: 20px;
@@ -547,6 +552,11 @@ defined('_JEXEC') or die('Restricted access');
   <?php if(!$this->env->slider->params->get('slideicons')): ?>
   display: none;
   <?php endif; ?>
+}
+
+.nextend-backgroundsize <?php echo $c['id']; ?> dt.sslide .icon{
+  height: <?php echo round(20*$ratio); ?>px;
+  background-size: contain;
 }
 
 <?php echo $c['id']; ?> dd.sslide{
@@ -565,7 +575,7 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php echo $c['id']; ?> dd.sslide.selected{
 
-  z-index: 55;
+  z-index: 4;
 }
 
 <?php
@@ -585,7 +595,7 @@ $canvasHeight = $cheight;
   bottom: 10px;
   margin-left: -16px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 2;
   display: none;
   opacity:0;
 }
@@ -599,7 +609,7 @@ $canvasHeight = $cheight;
   top: 10px;
   margin-left: -16px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 2;
   display: none;
   opacity:0;
 }
@@ -635,7 +645,64 @@ $canvasHeight = $cheight;
   width: <?php echo $canvasWidth; ?>px;
   float: left;
   overflow: hidden;
+  position: absolute;
+  top:0;
 }
+
+<?php if($sp->get('css3transition', 1) == 1): ?>
+    <?php
+    $mainanimation = OfflajnValueParser::parse($sp->get('mainanimation'));
+    $duration = $mainanimation[0][0]/1000;
+    $easing = dojoEasingToCSSEasing($mainanimation[1]);
+    ?>
+    .nextend-csstransitions <?php echo $c['id']; ?> .slinner dd.sslide{
+        transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0); /* IE 9 */
+        -webkit-transform: translate3d(0,0,0); /* Safari and Chrome */
+        -o-transform: translate3d(0,0,0); /* Opera */
+        -moz-transform: translate3d(0,0,0); /* Firefox */
+    }
+    
+    .nextend-csstransitions <?php echo $c['id']; ?>.nextend-animation .slinner dd.sslide{
+        transition: width <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -ms-transition: width <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -moz-transition: width <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -webkit-transition: width <?php echo $duration ?>s <?php echo str_replace('-','',$easing); ?> 0s;
+        -webkit-transition: width <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -o-transition: width <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+    }
+    
+    <?php
+    $secondaryanimation = OfflajnValueParser::parse($sp->get('secondaryanimation'));
+    $duration = $secondaryanimation[0][0]/1000;
+    $easing = dojoEasingToCSSEasing($secondaryanimation[1]);
+    ?>
+    .nextend-csstransitions <?php echo $c['id']; ?> .slinner .sslide > ul{
+        transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0); /* IE 9 */
+        -webkit-transform: translate3d(0,0,0); /* Safari and Chrome */
+        -o-transform: translate3d(0,0,0); /* Opera */
+        -moz-transform: translate3d(0,0,0); /* Firefox */
+        transition: transform <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -ms-transition: -ms-transform <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -moz-transition: -moz-transform <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -webkit-transition: -webkit-transform <?php echo $duration ?>s <?php echo str_replace('-','',$easing); ?> 0s;
+        -webkit-transition: -webkit-transform <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+        -o-transition: -o-transform <?php echo $duration ?>s <?php echo $easing; ?> 0s;
+    }
+    .nextend-csstransitions <?php echo $c['id']; ?> .slinner .sslide .subslide{
+        transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0); /* IE 9 */
+        -webkit-transform: translate3d(0,0,0); /* Safari and Chrome */
+        -o-transform: translate3d(0,0,0); /* Opera */
+        -moz-transform: translate3d(0,0,0); /* Firefox */
+    }
+    
+    .nextend-csstransitions <?php echo $c['id']; ?> dd.sslide{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+<?php endif; ?>
 
 <?php
 if(!$this->calc && isset($c['captioncss'])){

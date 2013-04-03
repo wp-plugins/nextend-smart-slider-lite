@@ -1,13 +1,4 @@
 <?php
-/*-------------------------------------------------------------------------
-# mod_smartslider - Nextend Smart Slider
-# -------------------------------------------------------------------------
-# @ author    Roland Soos @ Nextendweb.com
-# @ copyright Copyright (C) 2013 Nextendweb.com  All Rights Reserved.
-# @ license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# @ website   http://www.nextendweb.com
--------------------------------------------------------------------------*/
-?><?php
 if(!class_exists('OfflajnBgHelper')){
   class OfflajnBgHelper {
     
@@ -20,6 +11,26 @@ if(!class_exists('OfflajnBgHelper')){
     function OfflajnBgHelper($cacheDir, $cacheUrl) {
       $this->cache = $cacheDir;
       $this->cacheUrl = $cacheUrl;
+    }
+    
+    function generateRGB($color) {
+      if(strlen($color) == 6) {
+        return '#'.$color;
+      } else if(strlen($color) == 8) {
+        return '#'.substr($color, 0, 6);
+      }
+      return '#fff';
+    }
+    
+    function generateRGBA($color) {
+      if(strlen($color) == 6) {
+        return '#'.$color;
+      } else if(strlen($color) == 8) {
+        $rgba = $this->hex2rgba($color);
+        $alpha = round($rgba[3]/127, 2);
+        return "rgba(".$rgba[0].", ".$rgba[1].", ".$rgba[2].", ".$alpha.")";
+      }
+      return '#fff';
     }
     
     function generateBackground($color, $repeat = "", $pos = "", $isrgba = 0) {

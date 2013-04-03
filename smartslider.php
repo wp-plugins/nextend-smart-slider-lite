@@ -5,7 +5,7 @@ Plugin URI: http://www.nextendweb.com/smart-slider
 Description: The perfect all-in-one slider solution for WordPress. 
 Author: Roland Soos
 Author URI: http://www.nextendweb.com
-Version: 1.0.7
+Version: 1.0.8
 License: GPL2
 */
 
@@ -22,6 +22,7 @@ define("SS_LITE", 1);
 if ( !isset( $wpdb ) && empty( $wpdb ) ) {
     global $wpdb;
 }
+
 global $smartslider;
 
 $wpdb->offlajn_slide = $wpdb->base_prefix.'offlajn_slide';
@@ -112,6 +113,12 @@ function smartslider_render(){
 }
 
 function smartslider_joomla_dipatcher(){
+
+if(isset($_GET['module']) &&  isset($_GET['w'])){
+  require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR.'init.php');
+  exit;
+}
+
   if($_REQUEST['page'] == '' && $_REQUEST['option'] == 'com_smartslider'){
     !isset($_REQUEST['controller']) ? $_REQUEST['controller']='' : '';
     if($_SERVER['REQUEST_METHOD'] != 'POST'){
@@ -132,7 +139,7 @@ function smartslider_joomla_dipatcher(){
 }
 
 
-function generate_slider($slider_id, $instances) {
+function generate_slider($slider_id, &$instances) {
     global $smartslider;
     if(!isset($instances[$slider_id])) $instances[$slider_id] = 1;
     else $instances[$slider_id]++;
@@ -160,7 +167,7 @@ function smartslider_wp_hook() {
     if (count($sswidget)>1) {
       foreach($sswidget as $widget) {
         if (isset($widget['slider'])) {
-          generate_slider($widget['slider'], &$instances);
+          generate_slider($widget['slider'], $instances);
         }
       }    
     } 
@@ -171,7 +178,7 @@ function smartslider_wp_hook() {
 
         if( !empty( $matches[1] ) ) {
             foreach( $matches[1] as $slider_id ) {
-              generate_slider($slider_id, &$instances);
+              generate_slider($slider_id, $instances);
             }
         }
     }
@@ -180,6 +187,7 @@ function smartslider_wp_hook() {
   if(count($instances) > 0 ){
     plgSystemDojoloader::customBuild();
     $document	= &JFactory::getDocument();
+
     foreach($document->_scripts AS $k => $s){
       wp_register_script( 'smartslider-script'.md5($k), smartslider_translate_url($k));
       wp_enqueue_script( 'smartslider-script'.md5($k));
@@ -214,6 +222,5 @@ add_action('load-smart-slider_page_smartslider/slider', 'smartslider_listsliders
 add_action('load-smart-slider_page_smartslider/slide', 'smartslider_listslides');
 
 add_action('plugins_loaded', 'smartslider_joomla_dipatcher');
-
 
 ?>

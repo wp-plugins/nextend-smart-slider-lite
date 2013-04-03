@@ -38,7 +38,9 @@ if (!($instance instanceof JUserWP))
 $app = JFactory::getApplication('wpadministrator');
 //$_REQUEST['tmpl'] = 'component';
 OfflajnJPluginHelper::importPlugin( 'system' );
-    
+
+$app->initialise();
+
 $obj->path = JPATH_ADMINISTRATOR;
 
 $lang = JFactory::getLanguage();

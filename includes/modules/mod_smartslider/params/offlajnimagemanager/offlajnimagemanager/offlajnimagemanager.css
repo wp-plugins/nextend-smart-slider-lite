@@ -349,8 +349,12 @@
   width: auto;
   cursor: pointer;
   float: left;
-  height: 33px;
   margin-top: auto;
+}
+
+.offlajnimagemanager input{
+    min-width: 400px;
+    width: 100%;
 }
 
 .offlajnimagemanagerimg {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
   <name>K2 items by category</name>
+  
   <params addPath="/administrator/components/com_smartslider/params">
     <param name="generatorcategory" type="sql" default="" label="Category id" description="Id of the category" query="SELECT id AS value, name AS generatorcategory FROM #__k2_categories"/>
     <param name="generatorslidenumber" type="text" default="" label="Number of slides" description="Number of the slides"/>
@@ -8,7 +9,7 @@
       <option value="0">Start with latest</option>
       <option value="1">End with latest</option>
     </param>
-    <param name="generatorslidegenerate" type="radio" default="0" label="Generates slides" description="Generates the slides">
+    <param name="generatorslidegenerate" type="offlajnonoff" default="0" label="Generates slides" description="Generates the slides">
       <option value="0">No</option>
       <option value="1">Yes</option>
     </param>
@@ -19,11 +20,11 @@
       <allowedtemplate>onecolumn</allowedtemplate>
       <allowedtemplate>twocolumn</allowedtemplate>
       <allowedtemplate>threecolumn</allowedtemplate>
+      <allowedtemplate>linkandbackground</allowedtemplate>
     </allowedtemplates>
     
     <editablefields>
       <editablefield>contentheadingtargetwindow</editablefield>
-      <editablefield>contentheadingurl</editablefield>
       <editablefield>contenttagtargetwindow</editablefield>
       <editablefield>contentreadmoretargetwindow</editablefield>
       <editablefield>captionheightoftheopenedcaption</editablefield>
@@ -56,6 +57,10 @@
       <editablefield>captioncontentanimationinterval</editablefield>
       <editablefield>captioncontentanimationdelay</editablefield>
       <editablefield>captioncontentanimationeasing</editablefield>
+      <editablefield>captionanimationdelay</editablefield>
+      <editablefield>captiontop</editablefield>
+      <editablefield>contentimagewidth</editablefield>
+      <editablefield>contentimageheight</editablefield>
     </editablefields>
     
     <deniedfields>      
@@ -64,6 +69,7 @@
     <contentpositions>
       <contentposition>Slide title</contentposition>
       <contentposition>Content Heading</contentposition>
+      <contentposition>Content Heading url</contentposition>
       <contentposition>Content Subheading</contentposition>
       <contentposition>Content First tag url</contentposition>
       <contentposition>Content First tag text</contentposition>
@@ -76,11 +82,15 @@
       <contentposition>Content Third column content</contentposition>
       <contentposition>Content Read more url</contentposition>
       <contentposition>Content Read more text</contentposition>
+      <contentposition>Content Link for image</contentposition>
+      <contentposition>Content Background image url</contentposition>
+      <contentposition>Content Image url</contentposition>
     </contentpositions>
     
     <contentvalues>
       <title type="k2_items" insert="0">Title</title>
       <introtext type="k2_items" insert="0">Introtext</introtext>
+      <k2image type="k2image" insert="1">Image</k2image>
       <linktoitem type="link_to_k2item" insert="1">Link to Item</linktoitem>
       <linktocategory type="link_to_k2category" insert="1">Link to Category</linktocategory>
     </contentvalues>
@@ -89,6 +99,7 @@
     <captionposition>Caption Tag</captionposition>
       <captionposition>Caption Caption Title</captionposition>
       <captionposition>Caption Description</captionposition>
+      <captionposition>Caption Title</captionposition>
     </captionpositions>
     
     <showcaptions>1</showcaptions>

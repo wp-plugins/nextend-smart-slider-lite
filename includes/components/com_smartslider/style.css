@@ -1,3 +1,7 @@
+.clr{
+clear:both;
+}
+
 input, textarea {
   float: left;
 }
@@ -138,6 +142,7 @@ div.toolbar-list span.icon-32-back2slider{
   font-family: Tahoma;
   font-weight: bold;
   font-size: 10px;
+  line-height: 13px;
 }
 
 .livepreview .size b{
@@ -153,6 +158,7 @@ div.toolbar-list span.icon-32-back2slider{
   text-align: center;
   width: 340px;
   text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2);
+  line-height: 14px;
 }
 
 .sliderpreview{

@@ -1,13 +1,4 @@
 <?php
-/*-------------------------------------------------------------------------
-# com_smartslider - Smart Slider
-# -------------------------------------------------------------------------
-# @ author    Roland Soós
-# @ copyright Copyright (C) 2013 Nextendweb.com  All Rights Reserved.
-# @ license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# @ website   http://www.nextendweb.com
--------------------------------------------------------------------------*/
-?><?php
  
  // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );

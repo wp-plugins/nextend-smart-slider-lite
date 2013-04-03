@@ -9,6 +9,7 @@
 -------------------------------------------------------------------------*/
 ?><?php
 $specialQueries = array(
+  "article_image" => array ("com_content","", "SELECT introtext FROM #__content WHERE id={id}", "SSImageFilter"),
   "article_created_by" => array ("com_users","", "SELECT #__users.username FROM #__users LEFT JOIN #__content ON #__content.created_by=#__users.id WHERE #__content.id={id}", "SSDefaultFilter"),
   "article_category" => array ("com_content","", "SELECT #__categories.title FROM #__categories LEFT JOIN #__content ON #__content.catid=#__categories.id WHERE #__content.id={id}", "SSDefaultFilter"),
   "virtuemart_product_price" => array("com_virtuemart","1", "SELECT {id}", "SSVirtuemartProductPrice"),
@@ -38,7 +39,8 @@ $specialQueries = array(
   "vm2_link_to_product" => array("com_virtuemart","2", "SELECT {id}", "SSLinkToVm2Product"),
   
   "cobaltcck" => array("hhfwu_js_res_record","2", "SELECT {id}", "SSCobalt"),
-  "cobaltcckrecordurl" => array("hhfwu_js_res_record","2", "SELECT {id}, 'url'", "SSCobalt")
+  "cobaltcckrecordurl" => array("hhfwu_js_res_record","2", "SELECT {id}, 'url'", "SSCobalt"),
+  "k2image" => array("com_k2", "", "SELECT {id}", "K2_Image")
 );
 
 ?>

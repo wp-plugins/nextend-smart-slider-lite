@@ -48,7 +48,7 @@ if(!class_exists('JOfflajnFakeElementBase')) {
           $node = $this->element;
         }else{
           $node = JFactory::getXMLParser('Simple');
-          $node->loadString($this->element->asXML());
+          $node->loadString($this->element->asFormattedXML());
           $node = $node->document;
         }
         return $scripthack.$this->universalfetchElement($this->name, $this->value, $node);

@@ -19,6 +19,7 @@ dojo.declare("OfflajnImagemanager", null, {
     this.selectedImage = "";
     this.hidden = dojo.byId(this.id);
     dojo.connect(this.hidden, 'change', this, 'reset');
+    dojo.connect(this.hidden, 'click', dojo.stopEvent);
     
     this.imgprev = dojo.query('.offlajnimagemanagerimg div', this.btn)[0];
     if(this.hidden.value != "") dojo.style(this.imgprev,'backgroundImage','url("'+this.translateRelativeToAbsolute(this.hidden.value)+'")');
@@ -350,6 +351,7 @@ dojo.declare("OfflajnImagemanager", null, {
   },
   
   translateRelativeToAbsolute: function(rel){
+    if(rel.substring(0,4) == 'http') return rel;
     return this.root+rel;
   },
   

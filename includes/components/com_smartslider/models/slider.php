@@ -92,7 +92,7 @@ class SliderModelSlider extends JModelLegacy{
     //SlideGenerator
     $params = new JParameter('');
 		$params->loadArray($data['params']);
-    if($data['params']['generator'] != "" && $data['params']['generatorslidegenerate']== 1) {
+    if($_REQUEST['generate'] == '1' && $data['params']['generator'] != "" && $data['params']['generatorslidegenerate']== 1) {
       $gen =$data['params']['generator'];
       require_once( JPATH_SITE.DS.'modules/mod_smartslider/generators'.DS.$gen.'.php');
       $gen.='Parser';

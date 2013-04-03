@@ -34,7 +34,13 @@ class JElementOfflajnColor extends JOfflajnFakeElementBase
           alphaSupport: '.($alpha ? 'true' : 'false').'}
         });
     dojo.connect(el, "change", function(){
-      this.c[0].color.active.val("hex", this.value);
+      '.($alpha ? 
+        '
+        if(this.value.length == 6) this.value+="ff";
+        this.c[0].color.active.val("ahex", this.value);'
+      :
+        'this.c[0].color.active.val("hex", this.value);'
+      ).'
     });
     ');
 		return '<div class="offlajncolor"><input type="text" name="'.$name.'" id="'.$id.'" value="'.$value.'" class="color '.$width.'" '.$size.' /></div>';

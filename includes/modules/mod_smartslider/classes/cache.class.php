@@ -85,7 +85,7 @@ if(!defined('OfflajnSliderThemeCache')) {
         count($this->env->slides));
         $doc =& JFactory::getDocument();
         
-      if(!is_file($this->themeCacheDir.$hash.'.css')){
+      if(1 || !is_file($this->themeCacheDir.$hash.'.css')){
         $this->calc = false;
         ob_start();
         include($this->css);

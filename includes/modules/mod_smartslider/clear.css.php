@@ -8,20 +8,24 @@
 # Websites: http://www.offlajn.com
 -------------------------------------------------------------------------*/
 defined('_JEXEC') or die('Restricted access');
+global $ratio;
+
 if(!isset($calc)) $calc = 0;
+
+$sp = &$this->env->slider->params;
+
+$ratio = round($sp->get('ratio', 1),2);
 
 if(!$calc){
   $fonts = new OfflajnFontHelper($this->env->slider->params);
   echo $fonts->parseFonts();
 }
 
-$sp = &$this->env->slider->params;
 $count = count($this->env->slides);
   
 $tabcolor = OfflajnValueParser::parse( $sp->get('tabbg'));
 $bg = $tabcolor[0];
 $activebg = $tabcolor[1];
-
 ?>
 
 div<?php echo $c['id']; ?> div,
@@ -51,6 +55,19 @@ div<?php echo $c['id']; ?> .title{
   position: static;
   text-transform: none;
   border-radius: 0;
+  -moz-user-select: none;
+}
+
+div<?php echo $c['id']; ?> span{
+  box-shadow: none;
+}
+
+div<?php echo $c['id']; ?>{
+    transform: translate3d(0,0,0);
+    -ms-transform: translate3d(0,0,0); /* IE 9 */
+    -webkit-transform: translate3d(0,0,0); /* Safari and Chrome */
+    -o-transform: translate3d(0,0,0); /* Opera */
+    -moz-transform: translate3d(0,0,0); /* Firefox */
 }
 
 div<?php echo $c['id']; ?> .title{

@@ -20,7 +20,13 @@ class sliderViewslider extends JViewLegacy{
 	  $mainframe = &JFactory::getApplication();
 	  
 		JToolBarHelper::title(   JText::_( SMARTS?'Slider and Tabber Manager':(SMARTSLIDER?'Slider Manager':'Tabber Manager') ) .' - '. JText::_( SMARTS?'Edit Slider/Tabber':(SMARTSLIDER?'Edit Slider':'Edit Tabber') ), 'generic.png' );
-		JToolBarHelper::save();
+		
+    $bar = & JToolBar::getInstance('toolbar');
+    if(!defined('WP_ADMIN')){
+        $bar->appendButton('Standard', 'savenew', 'Save & Generate', 'savegenerate', false, false);
+    }
+    
+    JToolBarHelper::save();
 		JToolBarHelper::apply();
 		JToolBarHelper::cancel();
 		$model = $this->getModel();

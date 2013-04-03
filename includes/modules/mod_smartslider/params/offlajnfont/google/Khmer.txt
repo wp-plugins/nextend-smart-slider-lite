@@ -5,6 +5,7 @@ Bokor
 Chenla
 Content
 Dangrek
+Fasthand
 Freehand
 Hanuman
 Khmer
@@ -12,6 +13,7 @@ Koulen
 Metal
 Moul
 Moulpali
+Nokora
 Odor Mean Chey
 Preahvihear
 Siemreap

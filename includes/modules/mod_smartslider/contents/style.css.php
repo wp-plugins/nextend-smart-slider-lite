@@ -58,6 +58,10 @@ defined('_JEXEC') or die('Restricted access');
   <?php $fonts->printFont('headingfont', 'Subheading', true); ?>
 }
 
+<?php
+$tmpratio = $ratio;
+$ratio = 1;
+?>
 <?php echo $c['id']; ?> .column .tags{
   position: absolute;
   top: 0;
@@ -112,6 +116,10 @@ if(!$this->calc) $tag = $this->themeCacheUrl.$c['helper']->ColorizeImage(dirname
   background: url('<?php echo $tag; ?>') repeat-x 0 -1px;
   padding: 0 5px;
 }
+
+<?php
+$ratio = $tmpratio;
+?>
 
 <?php echo $c['id']; ?> .column .hr{
   background: url('<?php echo $c['contenturl']; ?>images/dottedpattern.png') repeat-x;
@@ -170,13 +178,19 @@ $plussign = '';
 if(!$this->calc) $plussign = $this->themeCacheUrl.$c['helper']->ColorizeImage(dirname(__FILE__).'/images/plussign.png', substr($activebg,0,6), '188DD9'); 
 ?>
 
+<?php echo $c['id']; ?> .column a.ss-readmore,
+<?php echo $c['id']; ?> .column a.ss-readmore:LINK,
+<?php echo $c['id']; ?> .column a.ss-readmore:HOVER,
+<?php echo $c['id']; ?> .column a.ss-readmore:ACTIVE,
+<?php echo $c['id']; ?> .column a.ss-readmore:VISITED,
 <?php echo $c['id']; ?> .column a.readmore,
 <?php echo $c['id']; ?> .column a.readmore:LINK,
 <?php echo $c['id']; ?> .column a.readmore:HOVER,
 <?php echo $c['id']; ?> .column a.readmore:ACTIVE,
 <?php echo $c['id']; ?> .column a.readmore:VISITED{
-  background: url('<?php echo $plussign; ?>') no-repeat;
-  padding: 0 0 1px 20px;
+  background: url('<?php echo $plussign; ?>') no-repeat left center;
+  background-size: contain;
+  padding: 0 0 1px <?php echo 20*$ratio; ?>px;
   float: left;
   margin-top:6px;
   border: 0;
@@ -190,16 +204,36 @@ if(!$this->calc) $plussign = $this->themeCacheUrl.$c['helper']->ColorizeImage(di
 <?php echo $c['id']; ?> .rightimage .col2{
   text-align: center;
   float: right;
+  height: 100%;
+}
+
+<?php echo $c['id']; ?> .rightimage .col2 a{
+  display: block;
+  height:100%;
+  width:100%;
 }
 
 <?php echo $c['id']; ?> .leftimage .col1{
   text-align: center;
   float: left;
+  height: 100%;
+}
+
+<?php echo $c['id']; ?> .leftimage .col1 a{
+  display: block;
+  height:100%;
+  width:100%;
 }
 
 <?php echo $c['id']; ?> .leftimage .col2{
   float: right;
+  height: 100%;
 }
+
+<?php
+$tmpratio = $ratio;
+$ratio = 1;
+?>
 
 <?php echo $c['id']; ?> .column .readmorebig, <?php echo $c['id']; ?> .column .readmorebig span{
   display: block;
@@ -231,6 +265,11 @@ if(!$this->calc) $readmore = $this->themeCacheUrl.$c['helper']->ColorizeImage(di
  padding: 0 5px;
  text-transform: uppercase;
 }
+
+
+<?php
+$ratio = $tmpratio;
+?>
 
 <?php echo $c['id']; ?> .rightimage .col1{
   height: 100%;

@@ -5,6 +5,7 @@ dojo.declare("NextendConfigurator", null, {
     dojo.mixin(this,args);
     this.container = dojo.query('.nextend-configurator-container', this.node)[0];
     this.containerinner = dojo.query('.nextend-configurator-container-inner', this.node)[0];
+    this.showed = false;
     this.onResize();
     dojo.connect(window, 'resize', this, 'onResize');
     
@@ -16,7 +17,13 @@ dojo.declare("NextendConfigurator", null, {
   },
   
   onResize: function(){
-    var vs = dojo.window.getBox();
+    this.vs = dojo.window.getBox();
+    if(this.showed) this.showOverlay();
+  },
+  
+  showOverlay: function(){
+    dojo.style(this.node, 'display', 'block');
+    var vs = this.vs;
     dojo.contentBox(this.node,{
       w: vs.w,
       h: vs.h
@@ -25,16 +32,14 @@ dojo.declare("NextendConfigurator", null, {
       w: vs.w,
       h: vs.h
     });
-  },
-  
-  showOverlay: function(){
-    dojo.style(this.node, 'display', 'block');
-    this.onResize();
-    if(window.OfflajnParams)
-      window.OfflajnParams.resizeBoxes();
+    
+    if(this.showed == false) this.onResize();
+    this.showed = true;
+    setTimeout(dojo.hitch(this,'fireEvent',window, 'resize'), 500);
   },
   
   hideOverlay: function(){
+    this.showed = false;
     dojo.style(this.node, 'display', 'none');
     this.message.innerHTML = 'Now you should save the module settings to apply changes!';
   }
