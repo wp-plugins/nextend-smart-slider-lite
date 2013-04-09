@@ -3,7 +3,8 @@
 
 define('WP_TABLE_PREFIX', $table_prefix);
 
-define('WP_SS_TMP', wp_upload_dir());
+$tmp = wp_upload_dir();
+define('WP_SS_TMP', $tmp['path']);
 
 class JConfig {
 	public $offline = '0';

@@ -24,6 +24,11 @@ class sliderViewslider extends JViewLegacy{
     $bar = & JToolBar::getInstance('toolbar');
     if(!defined('WP_ADMIN')){
         $bar->appendButton('Standard', 'savenew', 'Save & Generate', 'savegenerate', false, false);
+    }else{
+        wp_enqueue_style('thickbox');
+        wp_enqueue_style('media');
+        wp_enqueue_script("jquery");
+        wp_enqueue_script('thickbox');
     }
     
     JToolBarHelper::save();

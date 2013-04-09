@@ -76,6 +76,7 @@ defined('_JEXEC') or die('Restricted access');
 			for ($i=0, $n=count( $this->items ); $i < $n; $i++) {
 				$row = &$this->items[$i];
 				$link		= JRoute::_( 'index.php?option=com_smartslider&controller=slider&task=edit&id='. $row->id );
+        defined('WP_ADMIN') ? $row->checked_out = 0 : null;
 				$published		= JHTML::_('grid.published', $row, $i );
 				$checked		= JHTML::_('grid.checkedout',   $row, $i );
       				?>				

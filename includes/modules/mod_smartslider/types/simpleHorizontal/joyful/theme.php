@@ -54,7 +54,7 @@ var resizeableimages = new Array;
       </ul>
       <div class="controll">
         <?php if($tthis->slider->params->get('ctrlbtn', 1)): ?>
-        <div class="left controllbtn"><div><?php echo JText::_('SS-Previous'); ?></div></div>
+        <div class="left controllbtn"><div><?php echo (JText::_('SS-Previous') != 'SS-Previous' ? JText::_('SS-Previous') : 'Previous'); ?></div></div>
         <?php endif; ?>
         <div class="dots" style="width: <?php echo count($tthis->slides)*19; ?>px;">
           <?php foreach($tthis->slides as $k => $slide): ?>
@@ -62,7 +62,7 @@ var resizeableimages = new Array;
           <?php ++$x; endforeach; ?>
         </div>
         <?php if($tthis->slider->params->get('ctrlbtn', 1)): ?>
-        <div class="right controllbtn"><div><?php echo JText::_('SS-Next'); ?></div></div>
+        <div class="right controllbtn"><div><?php echo (JText::_('SS-Next') != 'SS-Next' ? JText::_('SS-Next') : 'Next'); ?></div></div>
         <?php endif; ?>
       </div>
     </div>

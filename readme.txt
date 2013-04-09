@@ -3,7 +3,7 @@ Contributors: nextendweb
 Tags: slider, smart slider, wordpress slider, lite, dynamic, image gallery, iPad, iphone, jquery, media, photo, pictures, plugin, posts, Search Engine Optimized, seo, skin, slide, slide show, slider, slideshow, theme, vertical slides, video, widget
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.0.8
+Stable tag: 1.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

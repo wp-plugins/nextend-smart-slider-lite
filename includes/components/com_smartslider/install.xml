@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<install type="component" version="1.5" method="upgrade">
+<extension type="component" version="1.5" method="upgrade">
     <name>Smart Slider</name>
     <creationDate>Aug 2011</creationDate>
     <author>Roland Soós</author>
@@ -49,4 +49,4 @@
     			<language tag="en-GB">language/en-GB/en-GB.plg_system_smartslidertabber.ini</language>
     		</languages>
     </administration>
-</install>
+</extension>

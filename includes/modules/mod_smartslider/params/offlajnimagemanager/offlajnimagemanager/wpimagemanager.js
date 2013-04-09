@@ -21,7 +21,7 @@ dojo.declare("NextendWPImagemanager", null, {
   loadImage: function(html){
     var html = jQuery(html);
     var img = html;
-    if(html.prop("tagName") != 'IMG'){
+    if(html[0].tagName != 'IMG'){
   		img = jQuery('img',html);
 		}
 		this.setValue(img.attr('src'));

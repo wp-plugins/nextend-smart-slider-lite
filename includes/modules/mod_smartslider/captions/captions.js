@@ -667,7 +667,7 @@ dojo.declare("slidercaptiondefault", slidercaption, {
             } else {
                 if (this.title) dojo.style(this.title, Modernizr.prefixed('transition'), 'opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
                 if (this.description) dojo.style(this.description, Modernizr.prefixed('transition'), 'opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
-                this.onAnimate(1);
+                this.onAnimate(0.999);
             }
         } else {
             this.anim = new dojo.Animation({

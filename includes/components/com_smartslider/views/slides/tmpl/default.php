@@ -87,6 +87,7 @@ $ordering = ($this->lists['order'] == 'c.name');
           $row->groupprev = 0;
         }
 				$link		= JRoute::_( 'index.php?option=com_smartslider&controller=slide&task=edit&id='. $row->id );
+        defined('WP_ADMIN') ? $row->checked_out = 0 : null;
 				$published		= JHTML::_('grid.published', $row, $i );
 				$checked		= JHTML::_('grid.checkedout',   $row, $i );
       				?>				

@@ -16,7 +16,6 @@
 		<filename plugin="offlajnparams">offlajnparams.php</filename>
 		<filename>tab15.tpl.php</filename>
 		<filename>tab16.tpl.php</filename>
-		<filename>offlajnparams.xml</filename>
     <filename>index.html</filename>
 		<filename>imageuploader.php</filename>
 		<filename>formrenderer.php</filename>

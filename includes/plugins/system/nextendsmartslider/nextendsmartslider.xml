@@ -13,7 +13,6 @@
 	<!-- Files -->
 	<files>
 		<filename plugin="nextendsmartslider">nextendsmartslider.php</filename>
-		<filename>nextendsmartslider.xml</filename>
 	</files>
 
 	<!-- Parameters -->

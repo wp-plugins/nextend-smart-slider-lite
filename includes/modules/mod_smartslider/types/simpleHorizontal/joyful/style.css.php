@@ -374,6 +374,11 @@ $canvasHeight = $cheight = $cheight-$controllHeight-1;
         -o-transition: opacity <?php echo $duration ?>s <?php echo $easing; ?> 0s;
         z-index: 1;
     }
+    .nextend-csstransitions <?php echo $c['id']; ?> .slinner .slides .sslide .canvas{
+        position:absolute;
+        top:0;
+        left: 0;
+    }
     <?php for($i = 0; $i < count($this->env->slides); $i++ ): ?>
     .nextend-csstransitions <?php echo $c['id']; ?>.new-activeslide<?php echo $i; ?> .slinner .slides .slide-<?php echo $i; ?>{
         opacity: 1;
