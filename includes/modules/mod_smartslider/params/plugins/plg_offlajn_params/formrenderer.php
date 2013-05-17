@@ -19,6 +19,7 @@ if(isset($_REQUEST['offlajnformrenderer'])){
       return str_replace('/',DIRECTORY_SEPARATOR,$p);
     }
     $dispatcher = JDispatcher::getInstance();
+    $dispatcher->trigger('onAfterInitialise', null);
     $dispatcher->trigger('onAfterRoute', null);
     if(isset($_SESSION['theme']) && isset($_SESSION['theme']['forms'][$_REQUEST['key']])){
       $env = $_SESSION['theme'];

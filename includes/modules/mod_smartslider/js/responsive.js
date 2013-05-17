@@ -78,6 +78,7 @@ window.dojoEasingToCSSEasing = function(easing) {
 }
 
 dojo.declare("NextendSmartSliderResponsive", null, {
+    responsivescaleup: 1,
     constructor: function(args) {
         var transEndEventNames = {
             'WebkitTransition': 'webkitTransitionEnd',
@@ -107,6 +108,11 @@ dojo.declare("NextendSmartSliderResponsive", null, {
         if (args.css3animation == 1 && (!Modernizr.cssanimations || !Modernizr.csstransforms3d)) {
             args.css3animation = 0;
         }
+        
+        if(dojo.isSafari && dojo.isSafari < 6){
+            args.css3animation = 0;
+            dojo.removeClass(document.body.parentNode, 'nextend-csstransitions');
+        }
 
         this.moduleid = parseInt(dojo.attr(args.node, 'id').replace('mod_smartslider_', ''));
 
@@ -117,14 +123,24 @@ dojo.declare("NextendSmartSliderResponsive", null, {
         this.style = dojo.query("link[href*='/mod_smartslider/cache/" + this.moduleid + "/']")[0];
         this.respNormalize = null;
         this.responsiveW = this.originalWidth = parseInt(dojo.position(this.node).w);
-        this.onResponsiveResize();
-        dojo.connect(window, 'resize', this, 'onResponsiveResize');
+        if(this.responsiveW == 0){
+            var _this = this;
+            setTimeout(function(){
+            _this.makeResponsive();
+            }, 500);
+        }else{
+          this.onResponsiveResize();
+          dojo.connect(window, 'resize', this, 'onResponsiveResize');
+        }
     },
 
     onResponsiveResize: function() {
         if (this.respNormalize) clearTimeout(this.respNormalize);
         this.respNormalize = setTimeout(dojo.hitch(this, function() {
             var p = dojo.contentBox(this.node.parentNode);
+            if(!this.responsivescaleup && p.w > this.originalWidth){
+                p.w = this.originalWidth;
+            }
             if (this.responsiveW == p.w) {
                 if (this.firstRun) {
                     this.runCaption();

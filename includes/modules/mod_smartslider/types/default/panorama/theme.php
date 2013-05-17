@@ -85,6 +85,7 @@ odojo.addOnLoad(odojo,function(){
     url: '<?php echo JUri::root(); ?>',
     resizeableimages: <?php echo $id?>resizeableimages,
     responsive: <?php echo $sp->get('responsive', 0); ?>,
+    responsivescaleup: <?php echo $sp->get('responsivescaleup', 1); ?>,
     css3transition: <?php echo $sp->get('css3transition', 0); ?>,
     imageresize: <?php echo $sp->get('imageresize', 0); ?>,
     slideids: <?php echo json_encode($slideids); ?>

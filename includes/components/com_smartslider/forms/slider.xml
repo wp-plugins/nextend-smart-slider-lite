@@ -15,8 +15,12 @@
     </param>
     
     <param name="responsive" type="offlajnonoff" default="0" label="Responsive mode" description=""/>
+    <param name="responsivescaleup" type="offlajnonoff" default="1" label="Responsive scale up" description=""/>
+     
     <param name="css3transition" type="offlajnonoff" default="0" label="CSS3 transitions" description=""/>
     <param name="imageresize" type="offlajnonoff" default="0" label="Image resizer" description=""/>
+    
+    <param name="uploaddir" type="offlajntext" default="/images/" label="Image upload directory" description="The folder should exist in the filesystem and should be writable and accessible by WEB."/>
   
     <param name="type" type="offlajnslidertype" default="accordionHorizontal" label="Slider Type" description="The type of the Slider"/>
   </params>

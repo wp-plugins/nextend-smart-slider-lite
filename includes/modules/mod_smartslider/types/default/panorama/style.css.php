@@ -294,7 +294,7 @@ $canvasWidth = $cwidth;
     -o-animation-duration: <?php echo $duration ?>s;
     animation-duration: <?php echo $duration ?>s;
     z-index:1;
-    visibility:hidden;
+    display:none;
   }
   
   .hinge {
@@ -307,11 +307,11 @@ $canvasWidth = $cwidth;
   
   .nextend-csstransitions <?php echo $c['id']; ?>  .sslide.animating{
     z-index:2;
-    visibility:visible;
+    display:block;
   }
   .nextend-csstransitions <?php echo $c['id']; ?>  .sslide.selected{
     z-index:3;
-    visibility:visible;
+    display:block;
   }
   
   <?php
@@ -337,14 +337,14 @@ if (!$this->calc && isset($c['contentcss'])) {
 <?php if ($sp->get('css3transition', 1) == 1 && $css3animation[0] == 1): ?>
 <?php echo $c['id']; ?> .sslide .caption .fromright,
 <?php echo $c['id']; ?> .sslide .caption .frombottom{
-  visibility: hidden;
+  display: none;
 }
 
 <?php echo $c['id']; ?> .sslide.animating .caption .fromright,
 <?php echo $c['id']; ?> .sslide.selected .caption .fromright,
 <?php echo $c['id']; ?> .sslide.animating .caption .frombottom,
 <?php echo $c['id']; ?> .sslide.selected .caption .frombottom{
-  visibility: visible;
+  display: block;
 }
 <?php
 endif; ?>

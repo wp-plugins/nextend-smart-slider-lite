@@ -5,7 +5,7 @@ Plugin URI: http://www.nextendweb.com/smart-slider
 Description: The perfect all-in-one slider solution for WordPress. 
 Author: Roland Soos
 Author URI: http://www.nextendweb.com
-Version: 1.0.10
+Version: 1.0.12
 License: GPL2
 */
 
@@ -156,14 +156,12 @@ Searches for Smart Sliders in the posts and creates the required styles and scri
 */
 function smartslider_wp_hook() {
   global $posts, $smartslider;
-  $_posts = $posts;
-  if( isset( $_posts ) && !empty( $_posts ) ) {
     $instances = array();
     
     /*
       Hozzáadjuk a postokhoz a widgetekben talált slidereket is.
     */
-    $sswidget = get_option('widget_SmartSliderWidget');
+    $sswidget = get_option('widget_smartsliderwidget');
     if (count($sswidget)>1) {
       foreach($sswidget as $widget) {
         if (isset($widget['slider'])) {
@@ -171,7 +169,9 @@ function smartslider_wp_hook() {
         }
       }    
     } 
-    // Process through $posts for the existence of SlideDecks
+    
+  $_posts = $posts;
+  if( isset( $_posts ) && !empty( $_posts ) ) {
     foreach( (array) $_posts as $post ) {
         $matches = array();
         preg_match_all( '/\[SmartSlider ([0-9]*)\]/', $post->post_content, $matches );
@@ -182,7 +182,6 @@ function smartslider_wp_hook() {
             }
         }
     }
-
   }
   if(count($instances) > 0 ){
     plgSystemDojoloader::customBuild();

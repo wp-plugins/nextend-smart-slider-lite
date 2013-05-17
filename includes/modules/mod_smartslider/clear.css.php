@@ -70,6 +70,11 @@ div<?php echo $c['id']; ?>{
     -moz-transform: translate3d(0,0,0); /* Firefox */
 }
 
+.safari5 <?php echo $c['id']; ?>,
+.safari5 <?php echo $c['id']; ?> *:not(.rotated-90){
+    -webkit-transform: none !important;
+}
+
 div<?php echo $c['id']; ?> .title{
   background:none;
   text-shadow: none;

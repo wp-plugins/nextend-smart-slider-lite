@@ -182,9 +182,10 @@ class plgSystemNextendSmartSlider extends JPlugin{
               echo JText::_('Please add some slide to the slider!');
               return;
             }
+            $tthis->slider->params->set('bak_size', $tthis->slider->params->get('size'));
             
             $size = OfflajnValueParser::parse( $tthis->slider->params->get('size'));
-	    $ow = $size[1][0];
+	          $ow = $size[1][0];
 	    
             $size[0] = 1;
             $w = JRequest::getInt('w');

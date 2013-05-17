@@ -168,11 +168,14 @@ class JElementOfflajnSliderTemplate extends JElementOfflajnList{
       }elseif($o[1] == 'text'){
         $a['type'] = 'offlajntext';
         $a['size'] = 20;
+      }elseif($o[1] == 'url'){
+        $a['type'] = 'nextendurl';
+        $a['size'] = 20;
       }elseif($o[1] == 'list'){
         $a['type'] = 'offlajnlist';
       }elseif($o[1] == 'image'){
         $a['type'] = 'offlajnimagemanager';
-        $a['folder'] = '/images/';
+        $a['folder'] = $this->row->sliderparams->get('uploaddir','/images/');
         $a['urlfield'] = 'text';
       }elseif($o[1] == 'easing'){
         $a['type'] = 'offlajneasing';

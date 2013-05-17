@@ -83,18 +83,20 @@ if (!function_exists('getSmartSlider')) {
     $count = count($slides);
     if ($tthis->slider->params->get('generator') != "Choose" && $count == 0) {
       $gen = $tthis->slider->params->get('generator');
-      require_once (dirname(__FILE__) . DS . 'generators' . DS . $gen . '.php');
-      $gen.= 'Parser';
-      $tp = new $gen($tthis->slider->params);
-      $slidearray = $tp->makeSlides();
-      for ($i = 0;$i < count($slidearray);$i++) {
-        $slides[$i]->id = $slidearray[$i]->id;
-        $slides[$i]->title = $slidearray[$i]->title;
-        $slides[$i]->content = $slidearray[$i]->content;
-        $slides[$i]->caption = $slidearray[$i]->caption;
-        $slides[$i]->groupprev = $slidearray[$i]->groupprev;
+      if($gen != '' && file_exists(dirname(__FILE__) . DS . 'generators' . DS . $gen . '.php')){
+          require_once (dirname(__FILE__) . DS . 'generators' . DS . $gen . '.php');
+          $gen.= 'Parser';
+          $tp = new $gen($tthis->slider->params);
+          $slidearray = $tp->makeSlides();
+          for ($i = 0;$i < count($slidearray);$i++) {
+            $slides[$i]->id = $slidearray[$i]->id;
+            $slides[$i]->title = $slidearray[$i]->title;
+            $slides[$i]->content = $slidearray[$i]->content;
+            $slides[$i]->caption = $slidearray[$i]->caption;
+            $slides[$i]->groupprev = $slidearray[$i]->groupprev;
+          }
+          $count = $i;
       }
-      $count = $i;
     }
     if (($count != 0)) {
       $url = JUri::root();
@@ -129,7 +131,7 @@ if (!function_exists('getSmartSlider')) {
         $tthis->slides[$j]->childs[] = & $slides[$i];
       }
     } else {
-      echo JText::_('Please add some slide to the slider!');
+      echo JText::_('Please add some slides to the slider!');
       return;
     }
     $document = & JFactory::getDocument();

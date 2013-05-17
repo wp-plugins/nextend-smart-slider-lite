@@ -31,9 +31,13 @@ include($c['clearcss']);
     $controllHeight = -1;
   }
   
+  $bak_size = OfflajnValueParser::parse( $sp->get('bak_size'));
+  
   if(!$size[0]){
     $cwidth+= $paddingOut[1]+$paddingOut[3];
     $cheight+=$paddingOut[0]+$paddingOut[2]+$controllHeight+1;
+  }lse if(isset($bak_size[0]) && $bak_size[0] == 0){
+    $cheight =$bak_size[2][0]*$ratio+$paddingOut[0]+$paddingOut[2]+$controllHeight+1;
   }
 ?>
 
@@ -390,6 +394,14 @@ $canvasHeight = $cheight = $cheight-$controllHeight-1;
     }
     <?php endfor; ?>
     <?php endif; ?>
+<?php endif; ?>
+
+<?php if($sp->get('transition', 1) == 2): ?>
+    <?php echo $c['id']; ?> .canvas{
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
 <?php endif; ?>
 
 <?php

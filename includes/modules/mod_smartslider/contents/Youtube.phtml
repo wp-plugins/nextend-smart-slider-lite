@@ -13,7 +13,7 @@ if(!odojo.hasFlash){
   var firstScriptTag = document.getElementsByTagName("script")[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   var node = odojo.byId("youtube{param text "Video code"}");
-  node.parentNode.innerHTML = "<iframe class=\"youtubeapi\" id=\"youtube{param text \"Video code\"}\" width=\"{param text \"Video width\"}\" height=\"{param text \"Video height\"}\" src=\"http://www.youtube.com/embed/{param text \"Video code\"}?hd=1&enablejsapi=1&playerapiid=youtube{param text \"Video code\"}&autohide=1&controls=1&showinfo=0&iv_load_policy=3&theme=dark&html5=1&ap=%2526fmt%3D18&rel=0&wmode=transparent\" frameborder=\"0\" allowfullscreen></iframe>";
+  node.parentNode.innerHTML = "<iframe class=\\\"youtubeapi\\\" id=\\\"youtube{param text "Video code"}\\\" width=\\\"{param text "Video width"}\\\" height=\\\"{param text "Video height"}\\\" src=\\\"http://www.youtube.com/embed/{param text "Video code"}?hd=1&enablejsapi=1&playerapiid=youtube{param text "Video code"}&autohide=1&controls=1&showinfo=0&iv_load_policy=3&theme=dark&html5=1&ap=%2526fmt%3D18&rel=0&wmode=transparent\\\" frameborder=\\\"0\\\" allowfullscreen></iframe>";
   function onYouTubeIframeAPIReady() {
     var players = odojo.query(".youtubeapi");
     for(var i = 0; i < players.length; i++){
@@ -32,7 +32,7 @@ function onYouTubePlayerReady(playerId) {
     player = node;
   }
   if(player && player.getPlayerState){
-    node.parentNode.youtube = player;
+    node.parentNode.parentNode.youtube = player;
   }
 }
 </script>
