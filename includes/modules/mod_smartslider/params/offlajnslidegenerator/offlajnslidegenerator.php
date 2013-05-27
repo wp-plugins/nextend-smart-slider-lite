@@ -267,6 +267,7 @@ class JElementOfflajnSlideGenerator extends JOfflajnFakeElementBase {
 
       if (((!in_array($name2, $this->deniedfields)) && (in_array($name2, $this->editablefields)))) {
         if (isset($values[$newname])) $o[4] = $values[$newname];
+        if($o[1] == 'url') $o[1] = 'text';
         $a = array(
           'name' => $newname,
           'type' => $o[1],

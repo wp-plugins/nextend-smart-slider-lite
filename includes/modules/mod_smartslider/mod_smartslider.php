@@ -245,6 +245,11 @@ if (isset($iscache) && $iscache == 1) {
 
 //show the slider
 $document = & JFactory::getDocument();
-$document->addStyleSheet($rows[2]);
-echo $rows[0];
+$document->addStyleSheet(str_replace('//','/',$rows[2]));
+if(isset($_SERVER['HTTPS']) && ('on' == strtolower($_SERVER['HTTPS']) || '1' == $_SERVER['HTTPS'])){
+    $u = &JURI::getInstance();
+    echo str_replace('http://'.$u->getHost(), 'https://'.$u->getHost(),$rows[0]);
+}else{
+    echo $rows[0];
+}
 ?>

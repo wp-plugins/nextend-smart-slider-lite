@@ -137,7 +137,7 @@ dojo.declare("OfflajnSlider", NextendSmartSliderResponsive, {
                 v.height = parseInt(dojo.style(v.nodes[0], 'height'));
                 if (v.css3transition) {
                     v.suppressNextCSSEnd = 1;
-                    dojo.style(v.node, Modernizr.prefixed('transform'), 'translate3d(0,' + (v.height * v.current * -1) + 'px,0)');
+                    dojo.style(v.node, nModernizr.prefixed('transform'), 'translate3d(0,' + (v.height * v.current * -1) + 'px,0)');
                 } else {
                     dojo.style(v.node, 'top', v.height * v.current * -1 + 'px');
                 }
@@ -526,7 +526,7 @@ dojo.declare("vertical", null, {
                     return "playing";
                 }
             };
-            dojo.style(this.node, Modernizr.prefixed('transform'), 'translate3d(0,' + (this.height * nextSlide * -1) + 'px,0)');
+            dojo.style(this.node, nModernizr.prefixed('transform'), 'translate3d(0,' + (this.height * nextSlide * -1) + 'px,0)');
         } else {
             this.anim = dojo.animateProperty({
                 node: this.node,
