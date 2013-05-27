@@ -36,7 +36,7 @@ include($c['clearcss']);
   if(!$size[0]){
     $cwidth+= $paddingOut[1]+$paddingOut[3];
     $cheight+=$paddingOut[0]+$paddingOut[2]+$controllHeight+1;
-  }else if(isset($bak_size[0]) && $bak_size[0] == 0){
+  }lse if(isset($bak_size[0]) && $bak_size[0] == 0){
     $cheight =$bak_size[2][0]*$ratio+$paddingOut[0]+$paddingOut[2]+$controllHeight+1;
   }
 ?>

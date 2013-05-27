@@ -11,7 +11,7 @@ dojo.declare("slidercaption", null, {
             'msTransition': 'MSTransitionEnd',
             'transition': 'transitionend'
         };
-        this.transitionEnd = transEndEventNames[nModernizr.prefixed('transition')];
+        this.transitionEnd = transEndEventNames[Modernizr.prefixed('transition')];
 
         this.delay = 0;
         this.interval = 400;
@@ -71,7 +71,7 @@ dojo.declare("slidercaption", null, {
 
         if (prop > this.minval) {
             if (this.css3transition) {
-                dojo.style(this.node, nModernizr.prefixed('transition'), 'all ' + this.interval / 1000 + 's ' + this.cssHideEasing + ' ' + this.delay / 1000 + 's');
+                dojo.style(this.node, Modernizr.prefixed('transition'), 'all ' + this.interval / 1000 + 's ' + this.cssHideEasing + ' ' + this.delay / 1000 + 's');
                 this.onAnimate(this.minval);
             } else {
                 this.anim = new dojo.Animation({
@@ -86,7 +86,7 @@ dojo.declare("slidercaption", null, {
             dojo.removeClass(this.node, 'opened');
         } else {
             if (this.css3transition) {
-                dojo.style(this.node, nModernizr.prefixed('transition'), 'all ' + this.interval / 1000 + 's ' + this.cssShowEasing + ' ' + this.delay / 1000 + 's');
+                dojo.style(this.node, Modernizr.prefixed('transition'), 'all ' + this.interval / 1000 + 's ' + this.cssShowEasing + ' ' + this.delay / 1000 + 's');
                 this.onAnimate(this.value);
             } else {
                 this.anim = new dojo.Animation({
@@ -133,7 +133,7 @@ dojo.declare("slidercaption", null, {
 
     touchstart: function(e) {
         if (this.css3transition) {
-            dojo.style(this.node, nModernizr.prefixed('transition'), 'all 0s ease 0s');
+            dojo.style(this.node, Modernizr.prefixed('transition'), 'all 0s ease 0s');
         }
         dojo.copyTouch(e.changedTouches[0], this.touch);
     },
@@ -178,7 +178,7 @@ dojo.declare("slidercaptionfromright", slidercaption, {
 
     onAnimateTransition: function(e) {
         var px = parseInt(e);
-        dojo.style(this.node, nModernizr.prefixed('transform'), 'translate3d(' + (-px) + 'px,0,0)');
+        dojo.style(this.node, Modernizr.prefixed('transform'), 'translate3d(' + (-px) + 'px,0,0)');
         this.currentValue = px;
     },
 
@@ -241,7 +241,7 @@ dojo.declare("slidercaptionfrombottom", slidercaption, {
 
     onAnimateTransition: function(e) {
         var px = parseInt(e);
-        dojo.style(this.node, nModernizr.prefixed('transform'), 'translate3d(0,' + (-px) + 'px,0)');
+        dojo.style(this.node, Modernizr.prefixed('transform'), 'translate3d(0,' + (-px) + 'px,0)');
         this.currentValue = px;
     },
 
@@ -397,8 +397,8 @@ dojo.declare("slidercaptionsmart", slidercaption, {
         this.reInitTag();
         dojo.style(this.node, 'visibility', 'visible');
         if (this.css3transition) {
-            if (this.title) dojo.style(this.title, nModernizr.prefixed('transition'), nModernizr.hyphenated('transform') + ' ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's, opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
-            if (this.tag) dojo.style(this.tag, nModernizr.prefixed('transition'), nModernizr.hyphenated('transform') + ' ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's, opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
+            if (this.title) dojo.style(this.title, Modernizr.prefixed('transition'), Modernizr.hyphenated('transform') + ' ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's, opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
+            if (this.tag) dojo.style(this.tag, Modernizr.prefixed('transition'), Modernizr.hyphenated('transform') + ' ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's, opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
             this.onAnimate(1);
         } else {
             this.anim = new dojo.Animation({
@@ -431,16 +431,16 @@ dojo.declare("slidercaptionsmart", slidercaption, {
             if (e == 1) {
                 setTimeout(dojo.hitch(this, function() {
                     dojo.style(this.tag, 'opacity', e);
-                    dojo.style(this.tag, nModernizr.prefixed('transform'), 'translate3d(' + (tagl) + 'px,0,0)');
+                    dojo.style(this.tag, Modernizr.prefixed('transform'), 'translate3d(' + (tagl) + 'px,0,0)');
                 }), 110);
             } else {
                 dojo.style(this.tag, 'opacity', e);
-                dojo.style(this.tag, nModernizr.prefixed('transform'), 'translate3d(' + (tagl) + 'px,0,0)');
+                dojo.style(this.tag, Modernizr.prefixed('transform'), 'translate3d(' + (tagl) + 'px,0,0)');
             }
         }
         if (this.title) {
             dojo.style(this.title, 'opacity', e);
-            dojo.style(this.title, nModernizr.prefixed('transform'), 'translate3d(' + (titlel) + 'px,0,0)');
+            dojo.style(this.title, Modernizr.prefixed('transform'), 'translate3d(' + (titlel) + 'px,0,0)');
         }
     },
 
@@ -452,8 +452,8 @@ dojo.declare("slidercaptionsmart", slidercaption, {
         dojo.style(this.node, 'visibility', 'hidden');
 
         if (this.css3transition) {
-            if (this.title) dojo.style(this.title, nModernizr.prefixed('transition'), 'all 0s ease 0s');
-            if (this.tag) dojo.style(this.tag, nModernizr.prefixed('transition'), 'all 0s ease 0s');
+            if (this.title) dojo.style(this.title, Modernizr.prefixed('transition'), 'all 0s ease 0s');
+            if (this.tag) dojo.style(this.tag, Modernizr.prefixed('transition'), 'all 0s ease 0s');
         }
 
         this.onAnimate(0);
@@ -632,14 +632,14 @@ dojo.declare("slidercaptiondefault", slidercaption, {
             if (this.parent && this.parent.cssanimationEnd) {
                 if (this.title) {
                     dojo.connect(this.title, this.parent.cssanimationEnd, dojo.stopEvent);
-                    dojo.style(this.title, nModernizr.prefixed('animationFillMode'), 'both');
-                    dojo.style(this.title, nModernizr.prefixed('animationDuration'), (this.interval / 1000) + 's');
+                    dojo.style(this.title, Modernizr.prefixed('animationFillMode'), 'both');
+                    dojo.style(this.title, Modernizr.prefixed('animationDuration'), (this.interval / 1000) + 's');
                 }
                 if (this.description) {
                     dojo.connect(this.description, this.parent.cssanimationEnd, dojo.stopEvent);
-                    dojo.style(this.description, nModernizr.prefixed('animationFillMode'), 'both');
-                    dojo.style(this.description, nModernizr.prefixed('animationDuration'), (this.interval / 1000) + 's');
-                    dojo.style(this.description, nModernizr.prefixed('animationDelay'), (this.interval / 3000) + 's');
+                    dojo.style(this.description, Modernizr.prefixed('animationFillMode'), 'both');
+                    dojo.style(this.description, Modernizr.prefixed('animationDuration'), (this.interval / 1000) + 's');
+                    dojo.style(this.description, Modernizr.prefixed('animationDelay'), (this.interval / 3000) + 's');
                 }
             }
         }
@@ -665,8 +665,8 @@ dojo.declare("slidercaptiondefault", slidercaption, {
                 if (this.title) dojo.addClass(this.title, this.inClass);
                 if (this.description) dojo.addClass(this.description, this.inClass);
             } else {
-                if (this.title) dojo.style(this.title, nModernizr.prefixed('transition'), 'opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
-                if (this.description) dojo.style(this.description, nModernizr.prefixed('transition'), 'opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
+                if (this.title) dojo.style(this.title, Modernizr.prefixed('transition'), 'opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
+                if (this.description) dojo.style(this.description, Modernizr.prefixed('transition'), 'opacity ' + this.interval / 1000 + 's ' + this.cssEasing + ' ' + this.delay / 1000 + 's');
                 this.onAnimate(0.999);
             }
         } else {
@@ -717,8 +717,8 @@ dojo.declare("slidercaptiondefault", slidercaption, {
             dojo.style(this.node, 'visibility', 'hidden');
 
             if (this.css3transition) {
-                if (this.title) dojo.style(this.title, nModernizr.prefixed('transition'), 'all 0s ease 0s');
-                if (this.description) dojo.style(this.description, nModernizr.prefixed('transition'), 'all 0s ease 0s');
+                if (this.title) dojo.style(this.title, Modernizr.prefixed('transition'), 'all 0s ease 0s');
+                if (this.description) dojo.style(this.description, Modernizr.prefixed('transition'), 'all 0s ease 0s');
             }
 
             this.onAnimate(0);

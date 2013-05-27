@@ -50,7 +50,6 @@ class ImgsParser {
     }
     
     for($i=0;$i<$count;$i++) {
-      $slides[$i]->id = $i+1;
       $xmlfile = $xmlpath.DS.JFILE::stripExt($this->imgfiles[$i]).".xml";
       $this->data['generatorbackgroundimageurl'] = $this->linktoimg. "/" .$this->imgfiles[$i];
       if(file_exists($xmlfile)) {

@@ -93,7 +93,7 @@ class DojoLoader{
       $document->addScript($this->_build());
     }else{
       $body = JResponse::getBody();
-  		$body = preg_replace('/<head>/', '<head><script src="'.$this->_build().'" type="text/javascript"></script>', $body, 1);
+  		$body = str_replace('<head>', '<head><script src="'.$this->_build().'" type="text/javascript"></script>', $body);
       JResponse::setBody($body);
     }
   }

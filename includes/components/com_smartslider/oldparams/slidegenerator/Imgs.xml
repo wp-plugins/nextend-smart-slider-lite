@@ -3,7 +3,7 @@
   <name>Images</name>
   <img>images.png</img>
   <params addPath="/administrator/components/com_smartslider/params">
-    <param name="generatorpath" type="nextendmultifolderlist" directory="images" label="Folder Path" description="Path of the folder" hide_default="1" />
+    <param name="generatorpath" type="folderlist" directory="images" label="Folder Path" description="Path of the folder" hide_default="1" />
     <param name="generatorslidenumber" type="text" default="" label="Number of slides" description="Number of the slides"/>
     <param name="generatorslidegenerate" type="offlajnonoff" default="0" label="Generates slides" description="Generates the slides">
       <option value="0">No</option>

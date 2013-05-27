@@ -336,7 +336,7 @@ function SSCobalt($row){
     switch($row[1]){
       case 'title':
         return $rec->title;
-      case 'recordurl':
+      case 'url':
         return $rec->href;
       default:
       $row[1] = str_replace('field','',$row[1]);
