@@ -19,19 +19,34 @@ dojo.declare("NextendWPImagemanager", null, {
   },
   
   loadImage: function(html){
-    var html = jQuery(html);
-    var img = html;
-    if(html[0].tagName != 'IMG'){
-  		img = jQuery('img',html);
-		}
-		this.setValue(img.attr('src'));
+    if( Object.prototype.toString.call( html) === '[object Array]' ) {
+        this.setValue(html[0]);
+    }else{
+        var html = jQuery(html);
+        var img = html;
+        if(html[0].tagName != 'IMG'){
+      		img = jQuery('img',html);
+    		}
+    		this.setValue(img.attr('src'));
+    }
     
 		tb_remove();
   },
   
   setValue: function(image){
     this.hidden.value = image;
-    jQuery(this.hidden).trigger('change');
-  }
+    this.fireEvent(this.hidden, 'change');
+  },
+  
+  fireEvent: function(element,event){
+    if ((document.createEventObject && !dojo.isIE) || (document.createEventObject && dojo.isIE && dojo.isIE < 9)){
+      var evt = document.createEventObject();
+      return element.fireEvent('on'+event,evt);
+    }else{
+      var evt = document.createEvent("HTMLEvents");
+      evt.initEvent(event, true, true );
+      return !element.dispatchEvent(evt);
+    }
+  },
   
 });

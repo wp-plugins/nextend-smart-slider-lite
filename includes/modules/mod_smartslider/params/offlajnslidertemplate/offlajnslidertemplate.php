@@ -169,7 +169,7 @@ class JElementOfflajnSliderTemplate extends JElementOfflajnList{
         $a['type'] = 'offlajntext';
         $a['size'] = 20;
       }elseif($o[1] == 'url'){
-        $a['type'] = 'nextendurl';
+        $a['type'] = defined('WP_ADMIN') ? 'offlajntext' : 'nextendurl';
         $a['size'] = 20;
       }elseif($o[1] == 'list'){
         $a['type'] = 'offlajnlist';

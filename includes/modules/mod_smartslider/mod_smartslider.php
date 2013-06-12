@@ -89,6 +89,7 @@ if (!function_exists('getSmartSlider')) {
           $tp = new $gen($tthis->slider->params);
           $slidearray = $tp->makeSlides();
           for ($i = 0;$i < count($slidearray);$i++) {
+            $slides[$i] = new stdClass();
             $slides[$i]->id = $slidearray[$i]->id;
             $slides[$i]->title = $slidearray[$i]->title;
             $slides[$i]->content = $slidearray[$i]->content;
@@ -245,6 +246,23 @@ if (isset($iscache) && $iscache == 1) {
 
 //show the slider
 $document = & JFactory::getDocument();
-$document->addStyleSheet($rows[2]);
-echo $rows[0];
+$document->addStyleSheet(str_replace('//','/',$rows[2]));
+if(isset($_SERVER['HTTPS']) && ('on' == strtolower($_SERVER['HTTPS']) || '1' == $_SERVER['HTTPS'])){
+    $u = &JURI::getInstance();
+    echo str_replace('http://'.$u->getHost(), 'https://'.$u->getHost(),$rows[0]);
+}else{
+    echo $rows[0];
+}
+
+$config =& JFactory::getConfig();
+$caching = $config->getValue( 'config.caching' );
+$app =& JFactory::getApplication();
+if($app->isSite() && ($caching == 2 || $caching == 1)){
+    foreach(@DojoLoader::getInstance(null) AS $loader){
+        $document->addScript($loader->_build());
+        $loader->scripts = array();
+        $loader->script = array();
+    }
+}
+
 ?>

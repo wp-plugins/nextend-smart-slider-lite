@@ -93,7 +93,7 @@ class DojoLoader{
       $document->addScript($this->_build());
     }else{
       $body = JResponse::getBody();
-  		$body = str_replace('<head>', '<head><script src="'.$this->_build().'" type="text/javascript"></script>', $body);
+  		$body = preg_replace('/<head>/', '<head><script src="'.$this->_build().'" type="text/javascript"></script>', $body, 1);
       JResponse::setBody($body);
     }
   }
@@ -195,12 +195,12 @@ class DojoLoader{
     $folders = array();
     $path = JPATH_SITE.DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR.'dojo';
     if(isset($_GET['nextendclearcache']) || !JFolder::exists($path.DIRECTORY_SEPARATOR.$date)) {
-      $folders = JFolder::folders($path, '', '', 1);
+      /*$folders = JFolder::folders($path, '', '', 1);
       if(is_array($folders)){
         foreach($folders as $folder) {
           JFolder::delete($folder);
         }
-      }
+      }*/
       JFolder::create($path.DIRECTORY_SEPARATOR.$date, 0777);
     }
     return $date;

@@ -38,10 +38,8 @@ $specialQueries = array(
                                                                 #__virtuemart_product_categories WHERE #__virtuemart_product_categories.virtuemart_product_id={id}", "SSLinkToVm2Category"),
   "vm2_link_to_product" => array("com_virtuemart","2", "SELECT {id}", "SSLinkToVm2Product"),
   
-  "cobaltcck" => array("hhfwu_js_res_record","2", "SELECT {id}", "SSCobalt"),
-  "cobaltcckrecordurl" => array("hhfwu_js_res_record","2", "SELECT {id}, 'url'", "SSCobalt"),
+  "cobaltcck" => array("#__js_res_record","2", "SELECT {id}", "SSCobalt"),
+  "cobaltcckrecordurl" => array("#__js_res_record","2", "SELECT {id}, 'url'", "SSCobalt"),
   "k2image" => array("com_k2", "", "SELECT {id}", "K2_Image")
 );
-
-?>
 

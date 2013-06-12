@@ -153,7 +153,7 @@ dojo.declare("OfflajnSliderDefault", NextendSmartSliderResponsive, {
         if (this.transition == 1 && this.css3animation == 0) {
             if (this.css3transition) {
                 this.suppressNextCSSEnd = 1;
-                dojo.style(this.pipe, Modernizr.prefixed('transform'), 'translate3d(' + (-this.width * this.opened) + 'px,0,0)');
+                dojo.style(this.pipe, nModernizr.prefixed('transform'), 'translate3d(' + (-this.width * this.opened) + 'px,0,0)');
             } else {
                 dojo.style(this.pipe, 'marginLeft', -this.width * this.opened + 'px');
             }
@@ -280,7 +280,7 @@ dojo.declare("OfflajnSliderDefault", NextendSmartSliderResponsive, {
 
             } else if (this.transition == 1) {
                 this.suppressNextCSSEnd = 0;
-                dojo.style(this.pipe, Modernizr.prefixed('transform'), 'translate3d(' + (-this.width * nextSlide) + 'px,0,0)');
+                dojo.style(this.pipe, nModernizr.prefixed('transform'), 'translate3d(' + (-this.width * nextSlide) + 'px,0,0)');
 
                 this.previous = this.opened;
                 this.opened = nextSlide;

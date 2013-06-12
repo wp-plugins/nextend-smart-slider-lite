@@ -17,7 +17,7 @@ class JElementNextendurl extends JElementOfflajnText{
   
   function universalfetchElement($name, $value, &$node){
     $html = parent::universalfetchElement($name, $value, $node);
-    if(version_compare(JVERSION,'1.6.0','ge')) {
+    if(!defined('WP_ADMIN') && version_compare(JVERSION,'1.6.0','ge')) {
         $lang =& JFactory::getLanguage();
         $lang->load('plg_editors-xtd_article', JPATH_ADMINISTRATOR);
   		  $button = $this->onDisplay($this->id);

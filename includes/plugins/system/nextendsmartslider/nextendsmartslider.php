@@ -152,6 +152,7 @@ class plgSystemNextendSmartSlider extends JPlugin{
               $tp = new $gen($tthis->slider->params);
               $slidearray = $tp->makeSlides();
               for ($i = 0;$i < count($slidearray);$i++) {
+                $slides[$i] = new stdClass();
                 $slides[$i]->title = $slidearray[$i]->title;
                 $slides[$i]->content = $slidearray[$i]->content;
                 $slides[$i]->caption = $slidearray[$i]->caption;

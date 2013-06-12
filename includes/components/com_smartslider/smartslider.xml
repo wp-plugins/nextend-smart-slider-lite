@@ -38,6 +38,7 @@
             <folder>views</folder>
             <folder>images</folder>
             <folder>buttons</folder>
+            <folder>oldparams</folder>
             <folder>language</folder>
             <folder>js</folder>
         </files>
