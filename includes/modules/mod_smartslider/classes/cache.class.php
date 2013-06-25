@@ -54,12 +54,12 @@ if(!defined('OfflajnSliderThemeCache')) {
       $folders = array();
       $path = $this->themeCacheDir;
       if(!JFolder::exists($path.$date)) {
-        $folders = JFolder::folders($path, '', '', 1);
+        /*$folders = JFolder::folders($path, '', '', 1);
         if(is_array($folders)){
           foreach($folders as $folder) {
             JFolder::delete($folder);
           }
-        }
+        }*/
         if(!JFolder::create($path.$date, 0777)){
           echo $path.DIRECTORY_SEPARATOR.$date." is unwriteable, so the Slider won't work correctly. Please set the folder to 777!";
         }

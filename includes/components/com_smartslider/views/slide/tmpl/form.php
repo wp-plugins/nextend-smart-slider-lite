@@ -43,7 +43,7 @@ fieldset.adminform .imagelist img{
     <div class="pane-sliders">		
       <div class="col <?php if(defined('WP_ADMIN')) { ?> col50 width-50 fltlft <?php }else{ ?>col100 width-100 <?php } ?>" id="defaultparams">			
         <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('details', 'Details', $this->defaultparams, 'alwaysopen'); ?>
+          <?php echo plgSystemNextendParams::renderNewTab('details', 'Details', $this->defaultparams, 'alwaysopen'); ?>
     		</div>
       </div>
        <?php if(defined('WP_ADMIN')) { ?>
@@ -57,10 +57,10 @@ fieldset.adminform .imagelist img{
       
       <div class="col100 width-100 fltlft">
         <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('content', 'Content', '
+          <?php echo plgSystemNextendParams::renderNewTab('content', 'Content', '
             <div style="margin: 4px 10px 0;">
-            '.plgSystemOfflajnParams::renderNewTab('contenttemplate', 'Template', $this->contentparams, 'alwaysopen').'
-            '.plgSystemOfflajnParams::renderNewTab('contenteditor', 'Editor', '', 'alwaysopen').'
+            '.plgSystemNextendParams::renderNewTab('contenttemplate', 'Template', $this->contentparams, 'alwaysopen').'
+            '.plgSystemNextendParams::renderNewTab('contenteditor', 'Editor', '', 'alwaysopen').'
             </div>
           '); ?>
     		</div>	
@@ -68,10 +68,10 @@ fieldset.adminform .imagelist img{
       
       <div class="col100 width-100 fltlft">
         <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('caption', 'Caption', '
+          <?php echo plgSystemNextendParams::renderNewTab('caption', 'Caption', '
             <div style="margin: 4px 10px 0;">
-            '.plgSystemOfflajnParams::renderNewTab('captiontemplate', 'Template', $this->captionparams, 'alwaysopen').'
-            '.plgSystemOfflajnParams::renderNewTab('captioneditor', 'Editor', '', 'alwaysopen').'
+            '.plgSystemNextendParams::renderNewTab('captiontemplate', 'Template', $this->captionparams, 'alwaysopen').'
+            '.plgSystemNextendParams::renderNewTab('captioneditor', 'Editor', '', 'alwaysopen').'
             </div>
           '); ?>
     		</div>	

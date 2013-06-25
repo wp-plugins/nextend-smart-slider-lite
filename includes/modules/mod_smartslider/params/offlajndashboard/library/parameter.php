@@ -3,16 +3,16 @@ defined('_JEXEC') or die('Restricted access');
 
 Nextendjimport('joomla.html.parameter');
 Nextendjimport('joomla.html.parameter.element');
-foreach(JFolder::folders(OFFLAJNADMINPARAMPATH, '.', false, false) AS $f){
-  if(file_exists(OFFLAJNADMINPARAMPATH.DS.$f.DS.$f.'.php'))
-    require_once(OFFLAJNADMINPARAMPATH.DS.$f.DS.$f.'.php');
+foreach(JFolder::folders(NEXTENDADMINPARAMPATH, '.', false, false) AS $f){
+  if(file_exists(NEXTENDADMINPARAMPATH.DS.$f.DS.$f.'.php'))
+    require_once(NEXTENDADMINPARAMPATH.DS.$f.DS.$f.'.php');
 }
 
 if(version_compare(JVERSION,'1.6.0','ge')) {
   class OfflajnJParameter extends JParameter{
     public function __construct($data = '', $path = ''){
       parent::__construct($data, $path);
-      $this->addElementPath(JFolder::folders(OFFLAJNADMINPARAMPATH, '.', false, true));
+      $this->addElementPath(JFolder::folders(NEXTENDADMINPARAMPATH, '.', false, true));
     }
     
     public function render($name = 'params', $group = '_default'){
@@ -77,7 +77,7 @@ if(version_compare(JVERSION,'1.6.0','ge')) {
   class OfflajnJParameter extends JParameter{
   	function __construct($data, $path = ''){
   		parent::__construct($data, $path);
-      $this->addElementPath(JFolder::folders(OFFLAJNADMINPARAMPATH, '.', false, true));
+      $this->addElementPath(JFolder::folders(NEXTENDADMINPARAMPATH, '.', false, true));
   	}
     
     function getRaw(){

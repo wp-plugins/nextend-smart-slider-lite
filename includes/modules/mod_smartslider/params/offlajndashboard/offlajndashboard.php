@@ -19,11 +19,11 @@ Nextendjimport( 'joomla.utilities.simplexml' );
 @ini_set('memory_limit','260M');
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die();
-define("OFFLAJNADMINPARAMPATH", dirname(__FILE__).DS.'..');
-$_SESSION['OFFLAJNADMINPARAMPATH'] = str_replace('\\','/',OFFLAJNADMINPARAMPATH);
+define("NEXTENDADMINPARAMPATH", dirname(__FILE__).DS.'..');
+$_SESSION['NEXTENDADMINPARAMPATH'] = str_replace('\\','/',NEXTENDADMINPARAMPATH);
 
-if(version_compare(JVERSION,'1.6.0','ge')) JFormHelper::addFieldPath(JFolder::folders(OFFLAJNADMINPARAMPATH, '.', false, true));
-//else if(isset($this)) $this->addElementPath(JFolder::folders(OFFLAJNADMINPARAMPATH, '.', false, true));
+if(version_compare(JVERSION,'1.6.0','ge')) JFormHelper::addFieldPath(JFolder::folders(NEXTENDADMINPARAMPATH, '.', false, true));
+//else if(isset($this)) $this->addElementPath(JFolder::folders(NEXTENDADMINPARAMPATH, '.', false, true));
 
 include_once(dirname(__FILE__).DS.'library'.DS.'fakeElementBase.php');
 include_once(dirname(__FILE__).DS.'library'.DS.'parameter.php');
@@ -47,7 +47,6 @@ class JElementOfflajnDashboard extends JOfflajnFakeElementBase
   }
   
 	function universalfetchElement($name, $value, &$node){
-    define("OFFLAJNADMIN", "1");
   	$this->loadFiles();
   	$this->loadFiles('legacy', 'offlajndashboard');
     $j17 = 0;

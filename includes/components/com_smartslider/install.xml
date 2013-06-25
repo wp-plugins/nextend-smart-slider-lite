@@ -6,7 +6,7 @@
     <authorUrl>http://www.nextendweb.com</authorUrl>
     <copyright>Copyright (C) 2009-2013 Nextendweb.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-    <version>4.1.2</version>
+    <version>4.2.0</version>
 		<media folder="" destination="../images/smartslider/">
   		<folder>slidericons</folder>
     </media>

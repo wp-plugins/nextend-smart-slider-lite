@@ -44,7 +44,7 @@ dojo.declare("TypeConfigurator", null, {
       var xhrArgs = {
         url: this.url,
         content: {
-          'offlajnformrenderer': '1',
+          'nextendformrenderer': '1',
           'control': this.control,
           'key': this.typeParams[this.type]
         },

@@ -255,7 +255,8 @@ if(isset($_SERVER['HTTPS']) && ('on' == strtolower($_SERVER['HTTPS']) || '1' == 
 }
 
 $config =& JFactory::getConfig();
-$caching = $config->getValue( 'config.caching' );
+$caching = $config->get( 'config.caching' );
+if($caching === NULL) $caching = $config->get( 'caching' );
 $app =& JFactory::getApplication();
 if($app->isSite() && ($caching == 2 || $caching == 1)){
     foreach(@DojoLoader::getInstance(null) AS $loader){

@@ -58,7 +58,7 @@ var resizeableimages = new Array;
         <?php endif; ?>
         <div class="dots" style="width: <?php echo count($tthis->slides)*19; ?>px;">
           <?php foreach($tthis->slides as $k => $slide): ?>
-            <div class="dot dot-<?php echo $k; ?>""></div>
+            <div class="dot dot-<?php echo $k; ?>"></div>
           <?php ++$x; endforeach; ?>
         </div>
         <?php if($tthis->slider->params->get('ctrlbtn', 1)): ?>

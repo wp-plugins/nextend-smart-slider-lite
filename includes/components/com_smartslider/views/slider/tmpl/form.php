@@ -24,7 +24,7 @@ fieldset.adminform .radiobtn{
     <div class="pane-sliders">
   		<div class="col <?php if(defined('WP_ADMIN')) { ?> col50 width-50 fltlft <?php }else{ ?>col100 width-100 <?php } ?>">
   		  <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('details', 'Details', $this->defaultparams, 'alwaysopen'); ?>
+          <?php echo plgSystemNextendParams::renderNewTab('details', 'Details', $this->defaultparams, 'alwaysopen'); ?>
   		  </div>
   		</div>
        <?php if(defined('WP_ADMIN')) { ?>
@@ -38,16 +38,16 @@ fieldset.adminform .radiobtn{
       
       <div class="col width-50 fltlft">
         <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('type', 'Slider Type', ''); ?>
+          <?php echo plgSystemNextendParams::renderNewTab('type', 'Slider Type', ''); ?>
         </div>
   		</div>
       
   		<div class="col width-50 fltlft">
         <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('themechooser', 'Theme Chooser', ''); ?>
+          <?php echo plgSystemNextendParams::renderNewTab('themechooser', 'Theme Chooser', ''); ?>
         </div>
         <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('thememanager', 'Theme Manager', ''); ?>
+          <?php echo plgSystemNextendParams::renderNewTab('thememanager', 'Theme Manager', ''); ?>
         </div>
       </div>
       
@@ -55,13 +55,13 @@ fieldset.adminform .radiobtn{
       <?php if(!defined('WP_ADMIN')): ?>
       <div class="col fltlft" style="width: 100%;">
         <div style="margin: 0 5px;">
-          <?php echo plgSystemOfflajnParams::renderNewTab('slidegenerator', 'Slide Generator', '
+          <?php echo plgSystemNextendParams::renderNewTab('slidegenerator', 'Slide Generator', '
           <div id="slidegenerator">
           '.$this->generatorparams.'
   				  <div id="generatorform"></div>
   				  <div class="clr"></div>
   				  
-          '.plgSystemOfflajnParams::renderNewTab('Content positions', 'Content positions', '
+          '.plgSystemNextendParams::renderNewTab('Content positions', 'Content positions', '
             <div id="contents"></div>
             <div id="contentmanager"></div>
   				  <div id="additionalfields"></div>
@@ -69,7 +69,7 @@ fieldset.adminform .radiobtn{
           ', 'alwaysopen').'
   				  
             
-          '.plgSystemOfflajnParams::renderNewTab('Caption positions', 'Caption positions', '
+          '.plgSystemNextendParams::renderNewTab('Caption positions', 'Caption positions', '
   				  <div id="captions"></div>
   				  <div id="captionmanager"></div>
   				  <div id="additionalcaptions"></div>

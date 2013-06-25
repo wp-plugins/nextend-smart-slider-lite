@@ -3,7 +3,7 @@
   <name>K2 items by category</name>
   
   <params addPath="/administrator/components/com_smartslider/params">
-    <param name="generatorcategory" type="sql" default="" label="Category id" description="Id of the category" query="SELECT id AS value, name AS generatorcategory FROM #__k2_categories"/>
+    <param name="generatorcategory" type="nextendmultisql" default="" label="Category id" multiple="multiple" size="10" description="Id of the category" query="SELECT id AS value, name FROM #__k2_categories"/>
     <param name="generatorslidenumber" type="text" default="" label="Number of slides" description="Number of the slides"/>
     <param name="generatororder" type="list" default="" label="Select ordering" description="Select the order of the blog posts">
       <option value="0">Start with latest</option>

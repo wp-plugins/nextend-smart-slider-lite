@@ -99,7 +99,7 @@ class JElementOfflajnMenutype extends JElementOfflajnList{
     $typeField = parent::universalfetchElement($name, version_compare(JVERSION,'1.6.0','ge') ? @$value[$orig_name] : $value, $node);
 
     
-    plgSystemOfflajnParams::addNewTab($id, $this->label.' Parameters', '');
+    plgSystemNextendParams::addNewTab($id, $this->label.' Parameters', '');
 
     $document =& JFactory::getDocument();
     DojoLoader::addScript('

@@ -141,7 +141,7 @@ $slider->instance = $instance;
 
 $s = getSmartSlider($slider);
 
-echo $s[0];
+echo do_shortcode($s[0]);
 
 wp_register_style( 'smartslider-style'.md5($s[2]), $s[2]);
 wp_enqueue_style( 'smartslider-style'.md5($s[2]));

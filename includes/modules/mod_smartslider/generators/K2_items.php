@@ -39,6 +39,7 @@ class K2_itemsParser {
     }
     for($i=0;$i<$count;$i++) {
       $d = TemplateParser::getDatas($i, $this->xml, $this->result, $this->params);
+      $slides[$i]->id = $i+1;
       $slides[$i]->content = TemplateParser::parse($content, $d, "content");
       $slides[$i]->caption = TemplateParser::parse($caption, $d, "caption");
       $slides[$i]->groupprev = 0;      

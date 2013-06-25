@@ -10,7 +10,12 @@ class JElementOfflajnTab extends JOfflajnFakeElementBase{
  
   function universalFetchElement($name, $value, &$node){
     $n = new JSimpleXML();
-    $n->loadString(method_exists($node, 'toString') ? $node->toString() : $node->asXML());
+    if(method_exists($node, 'toString')){
+        $n->loadString($node->toString());
+    }else{
+        $node->asXML(JFactory::getApplication()->getCfg('tmp_path').'/test.xml');
+        $n->loadString(file_get_contents(JFactory::getApplication()->getCfg('tmp_path').'/test.xml'));
+    }
     $params = new OfflajnJParameter('');
     $params->setXML($n->document);
     $attr = $node->attributes();
@@ -28,7 +33,7 @@ class JElementOfflajnTab extends JOfflajnFakeElementBase{
       if($value != '')
         $params->bind($value);
     }
-    plgSystemOfflajnParams::addNewTab($this->generateId($name), parent::getLabel(), $params->render($control), (string)$attr['position']);
+    plgSystemNextendParams::addNewTab($this->generateId($name), parent::getLabel(), $params->render($control), (string)$attr['position']);
     return '';
   }
   

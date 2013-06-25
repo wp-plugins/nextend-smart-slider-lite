@@ -28,7 +28,7 @@ dojo.declare("ThemeConfigurator", null, {
     var xhrArgs = {
       url: this.url,
       content: {
-        'offlajnformrenderer': '1',
+        'nextendformrenderer': '1',
         'key': this.data[this.type].html
       },
       load: dojo.hitch(this, function(data){
@@ -72,7 +72,7 @@ dojo.declare("ThemeConfigurator", null, {
     var xhrArgs = {
       url: this.url,
       content: {
-        'offlajnformrenderer': '1',
+        'nextendformrenderer': '1',
         'key': this.data[this.type].themes[this.theme].html,
         'key2': this.data[this.type].html
       },

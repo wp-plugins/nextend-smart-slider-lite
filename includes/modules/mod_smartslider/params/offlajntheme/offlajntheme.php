@@ -87,7 +87,7 @@ class JElementOfflajnTheme extends JElementOfflajnList{
     $themeField = parent::universalfetchElement($name, is_array($value) ? $value["theme"] : $value, $lnode);
     
     $id = $this->generateId($control).'theme';
-    plgSystemOfflajnParams::addNewTab($id, 'Theme Parameters', '');
+    plgSystemNextendParams::addNewTab($id, 'Theme Parameters', '');
 
     DojoLoader::addScript('
       var theme = new ThemeConfigurator({

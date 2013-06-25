@@ -39,7 +39,7 @@ dojo.declare("ThemeConfigurator", null, {
     var xhrArgs = {
       url: this.url,
       content: {
-        'offlajnformrenderer': '1',
+        'nextendformrenderer': '1',
         'key': this.themeParams[this.theme]
       },
       load: dojo.hitch(this, function(e, data){
