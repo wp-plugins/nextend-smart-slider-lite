@@ -5,7 +5,7 @@ Plugin URI: http://www.nextendweb.com/smart-slider
 Description: The perfect all-in-one slider solution for WordPress. 
 Author: Roland Soos
 Author URI: http://www.nextendweb.com
-Version: 1.0.17
+Version: 1.0.20
 License: GPL2
 */
 
@@ -111,6 +111,14 @@ function smartslider_render(){
   $out = (string)JFactory::getApplication('wpadministrator');
   echo smartslider_fix_images($out);
 }
+
+function smartslider_responsive(){
+    if(isset($_GET['module']) &&  isset($_GET['w'])){
+      require_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR.'init.php');
+      exit;
+    }
+}
+add_action('init', 'smartslider_responsive');
 
 function smartslider_joomla_dipatcher(){
 

@@ -13,6 +13,7 @@
   <filename plugin="dojoloader">dojoloader.php</filename>
   <filename>loader.php</filename>
   <folder>dojo</folder>
+  <filename>dojoloader.xml</filename>
 </files>
 <params>
 </params>

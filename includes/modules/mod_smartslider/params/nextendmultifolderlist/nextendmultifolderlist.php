@@ -15,7 +15,7 @@ class JElementNextendMultifolderlist extends JOfflajnFakeElementBase
   		$path = JPATH_ROOT . '/' . $sdir;
   		$filter = $node->attributes('filter');
   		$exclude = $node->attributes('exclude');
-  		$folders = JFolder::listFolderTree($path, $filter, 3, 0);
+  		$folders = JFolder::listFolderTree($path, $filter, 8, 0);
   		$options = array();
   		foreach ($folders as $folder)
   		{

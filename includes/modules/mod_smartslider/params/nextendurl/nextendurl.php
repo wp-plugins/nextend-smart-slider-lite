@@ -32,7 +32,8 @@ class JElementNextendurl extends JElementOfflajnText{
           DojoLoader::addScript('
             window.jInsertEditorText = function(text, editor){
               odojo.byId(editor+"input").value = odojo.attr(odojo._toDom(text), "href");
-              fireEvent(odojo.byId(editor+"input"), "change");
+              odojo.byId(editor+"input").focus();
+              odojo.byId(editor+"input").blur();
             };
             SqueezeBox.assign($$("#'.$this->id.'_modal"), {
               parse: "rel"

@@ -12,7 +12,7 @@
 
 	<!-- Files -->
 	<files>
-		<filename plugin="nextendsmartslider">nextendsmartslider.php</filename>
+		  <filename plugin="nextendsmartslider">nextendsmartslider.php</filename>
 	</files>
 
 	<!-- Parameters -->

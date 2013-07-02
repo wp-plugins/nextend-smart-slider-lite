@@ -21,6 +21,7 @@
 		<filename>formrenderer.php</filename>
 		<filename>JSON.php</filename>
 		<filename>compatibility.php</filename>
+		<filename>nextendparams.php</filename>
 	</files>
 
 	<!-- Parameters -->
