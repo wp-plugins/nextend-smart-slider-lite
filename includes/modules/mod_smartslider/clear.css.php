@@ -62,7 +62,7 @@ div<?php echo $c['id']; ?> span{
   box-shadow: none;
 }
 
-div<?php echo $c['id']; ?>{
+.nextend-csstransitions div<?php echo $c['id']; ?>{
     transform: translate3d(0,0,0);
     -ms-transform: translate3d(0,0,0); /* IE 9 */
     -webkit-transform: translate3d(0,0,0); /* Safari and Chrome */
