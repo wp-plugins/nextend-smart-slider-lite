@@ -26,6 +26,7 @@ class JElementNextendMultifolderlist extends JOfflajnFakeElementBase
   					continue;
   				}
   			}
+        $folder['relname'] = str_replace('\\', '/', $folder['relname']);
   			$options[] = JHtml::_('select.option', preg_replace('/\/'.preg_quote($sdir,'/').'\//','',$folder['relname'], 1).'/', $folder['relname']);
   		}
   

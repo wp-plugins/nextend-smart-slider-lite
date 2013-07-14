@@ -46,6 +46,7 @@ class JElementOfflajnSliderTemplate extends JElementOfflajnList{
         editor: dojo.byId("'.$this->editor.'"),
         data: '.json_encode($this->_data).',
         v16: "'.(version_compare(JVERSION,'1.6.0','ge') ? 1 : 0).'",
+        wp: "'.defined('WP_ADMIN').'",
         ext: "'.$this->ext.'",
         imageurl: "'.$url.'"
       });

@@ -88,7 +88,7 @@ dojo.declare("SliderTemplate", null, {
       var elemID = dojo.attr(field, 'id');
       if(field.nodeName == 'select'){
         this.vals[elemID] = field.options[field.selectedIndex].value;
-      }else if(elemID.match(/imageurl$/)){
+      }else if(!this.wp && elemID.match(/imageurl$/)){
         if(field.value.substr(0,4) != 'http' && field.value.substr(0,3) != '://'){
           field.value = this.imageurl+field.value;
         }

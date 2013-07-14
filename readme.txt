@@ -3,7 +3,7 @@ Contributors: nextendweb
 Tags: slider, smart slider, wordpress slider, lite, dynamic, image gallery, iPad, iphone, jquery, media, photo, pictures, plugin, posts, Search Engine Optimized, seo, skin, slide, slide show, slider, slideshow, theme, vertical slides, video, widget
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.0.21
+Stable tag: 1.0.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ We have a fully working demo site with a lot of predefined templates. You can re
 4. [DEMO](http://demo.nextendweb.com/smartslider)
 
 == Changelog ==
+
+= 1.0.22 =
+* Compatiblity fix with realtive urls plugin
 
 = 1.0.21 =
 * Youtube fix
